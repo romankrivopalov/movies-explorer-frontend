@@ -1,7 +1,9 @@
+import Header from "../Header/Header.js";
+
 function App() {
   return (
-    <div className="App">
-
+    <div className="content">
+      <Header/>
     </div>
   );
 }

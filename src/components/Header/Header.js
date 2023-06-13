@@ -1,7 +1,7 @@
 function Header() {
   return (
-    <header className="header">
-
+    <header className="header container">
+      <button className='header__logo'/>
     </header>
   )
 }

@@ -1,5 +1,7 @@
 .header {
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   padding: 14px 18px;
 }
 
@@ -11,10 +13,62 @@
   background-image: url('../../images/logo.svg');
   background-size: cover;
   background-repeat: no-repeat;
+  cursor: pointer;
 }
 
-@media screen and (min-width: 1280px) {
+.header__burger {
+  display: block;
+  width: 22px;
+  height: 3px;
+  color: var(--color-white);
+  border: none;
+}
+
+.header__entrance {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.header__link {
+  color: var(--color-white);
+  font-size: 10px;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.header__button {
+  padding: 5px 12px;
+  color: var(--color-black);
+  background-color: var(--color-green);
+  border: none;
+  border-radius: 3px;
+  font-size: 10px;
+  font-weight: 500;
+  line-height: 16px;
+  text-decoration: none;
+}
+
+
+@media screen and (min-width: 768px) {
   .header {
-    padding: 14px 0;
+    padding: 18px 30px;
+  }
+
+  .header__link {
+    font-size: 12px;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .header__burger {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 1220px) {
+  .header {
+    padding: 18px 0;
+    width: 1140px;
   }
 }

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Header from "../Header/Header.js";
+import Main from "../Main/Main.js";
 
 function App() {
   const [ loggeIn, setLoggeIn ] = useState(true);
@@ -17,12 +18,13 @@ function App() {
         isOpenBurger={openBurger}
         isToggleBurger={handleToggleBurger}/>
 
-      {/* <Routes>
+      <Routes>
         <Route
           path='/'
+          element={<Main/>}
         />
 
-        <Route
+        {/* <Route
           path='/movies'
         />
 
@@ -36,8 +38,8 @@ function App() {
 
         <Route
           path='/signup'
-        />
-      </Routes> */}
+        /> */}
+      </Routes>
 
     </div>
   );

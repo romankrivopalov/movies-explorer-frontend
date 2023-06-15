@@ -1,23 +1,32 @@
 .navigation {
-  position: absolute;
-  display: flex;
-  flex-direction: column;
+  box-sizing: border-box;
+  position: fixed;
+  right: -100%;
+  top: 0;
+  padding: 144px 0 48px 0;
+  display: grid;
+  grid-template-rows: auto auto 1fr;
   align-items: center;
+  gap: 24px;
   width: 100%;
   height: 100vh;
-  left: 0;
-  top: 0;
+  background-color: var(--color-dark-main);
+  z-index: 2;
+}
+
+.navigation_active {
+  right: 0;
+  transition: right .4s ease-out;
 }
 
 .navigation__list {
+  margin: 0;
+  padding: 0;
   list-style: none;
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-
-.navigation__item {
-
+  gap: 24px;
 }
 
 .navigation__link {
@@ -25,6 +34,7 @@
   font-size: 18px;
   line-height: 22px;
   font-weight: 500;
+  text-align: center;
   text-decoration: none;
 }
 
@@ -33,23 +43,58 @@
 }
 
 .navigation__profile {
+  position: relative;
+  margin: 0 auto;
+  width: 100px;
   color: var(--color-white);
   font-size: 14px;
-  line-height: 16px;
+  line-height: 30px;
   font-weight: 500;
+  text-align: left;
+  align-self: flex-end;
   text-decoration: none;
 }
 
+.navigation__profile::before {
+  content: '';
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  top: 0;
+  right: 0;
+  background-image: url('../../images/profile.svg');
+}
+
+@media screen and (min-width: 768px) {
+  .navigation {
+    right: -520px;
+    padding: 159px 0 92px 0;
+    width: 520px;
+  }
+
+  .navigation_active {
+    right: 0;
+  }
+
+  .navigation__list {
+    gap: 28px;
+  }
+}
+
+/* брейкпоинт скрытия бокового меню */
 @media screen and (min-width: 992px) {
   .navigation {
     position: relative;
-    flex-direction: row;
+    padding: 0;
+    right: 0;
+    display: flex;
     width: auto;
     height: auto;
   }
 
   .navigation__list {
     flex-direction: row;
+    gap: 20px;
   }
 
   .navigation__link {
@@ -59,5 +104,11 @@
 
   .navigation__link_home {
     display: none;
+  }
+
+  .navigation__profile {
+    line-height: -7px;
+    text-align: left;
+    align-self: flex-end;
   }
 }

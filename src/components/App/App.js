@@ -4,11 +4,18 @@ import Header from "../Header/Header.js";
 
 function App() {
   const [ loggeIn, setLoggeIn ] = useState(true);
+  const [ openBurger, setOpenBurger ] = useState(false);
+
+  function handleToggleBurger() {
+    setOpenBurger(!openBurger);
+  }
 
   return (
     <div className="content">
       <Header
-        loggeIn={loggeIn}/>
+        loggeIn={loggeIn}
+        isOpenBurger={openBurger}
+        isToggleBurger={handleToggleBurger}/>
 
       {/* <Routes>
         <Route

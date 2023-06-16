@@ -1,5 +1,5 @@
 .project {
-  margin: 70px 18px;
+  margin: 70px 18px 0 18px;
 }
 
 .project__list {
@@ -100,7 +100,7 @@
 
 @media screen and (min-width: 1280px) {
   .project {
-    margin: 110px auto 110px auto;
+    margin: 110px auto;
     width: 1140px;
   }
 

@@ -8,25 +8,25 @@ function Promo() {
         </h1>
         <ul className="promo__list">
           <li>
-            <Link
-            to="/"
+            <a
+            href="#project"
             className="promo__link">
               О проекте
-            </Link>
+            </a>
           </li>
           <li>
-            <Link
-            to="/"
+            <a
+            href="/#techno"
             className="promo__link">
               Технологии
-            </Link>
+            </a>
           </li>
           <li>
-            <Link
-            to="/"
+            <a
+            href="/#student"
             className="promo__link">
               Студент
-            </Link>
+            </a>
           </li>
         </ul>
       </section>

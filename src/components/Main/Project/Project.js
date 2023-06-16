@@ -2,7 +2,9 @@ import SectionTitle from '../SectionTitle/SectionTitle.js';
 
 function Project() {
   return (
-    <section className="project">
+    <section
+      id="project"
+      className="project">
       <SectionTitle title="О проекте"/>
       <ul className="project__list">
         <li>

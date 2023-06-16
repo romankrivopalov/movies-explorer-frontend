@@ -8,12 +8,12 @@ function Navigation({ isOpenBurger }) {
       </Link>
       <ul className='navigation__list'>
         <li>
-          <Link to='' className='navigation__link'>
+          <Link to='/movies' className='navigation__link'>
             Фильмы
           </Link>
         </li>
         <li>
-          <Link to='' className='navigation__link'>
+          <Link to='/saved-movies' className='navigation__link'>
             Сохраненные фильмы
           </Link>
         </li>

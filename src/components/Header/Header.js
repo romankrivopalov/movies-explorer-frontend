@@ -1,21 +1,28 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Navigation from '../Navigation/Navigation.js';
 
-function Header({ loggeIn, isOpenBurger, isToggleBurger }) {
+function Header({ loggeIn }) {
+  const [ openBurger, setOpenBurger ] = useState(false);
+
+  function handleToggleBurger() {
+    setOpenBurger(!openBurger);
+  }
+
   return (
     <header className="header container">
       <Link to="/" className="header__logo"/>
       { loggeIn
         ? <div>
-            <div className={`header__overlay ${isOpenBurger ? 'header__overlay_active' : ''}`}/>
+            <div className={`header__overlay ${openBurger ? 'header__overlay_active' : ''}`}/>
             <button
               className="header__burger"
-              onClick={isToggleBurger}>
+              onClick={handleToggleBurger}>
               <div
-                className={`header__burger-inner ${isOpenBurger ? 'header__burger-inner_active' : ''}`}/>
+                className={`header__burger-inner ${openBurger ? 'header__burger-inner_active' : ''}`}/>
             </button>
             <Navigation
-              isOpenBurger={isOpenBurger}/>
+              isOpenBurger={openBurger}/>
           </div>
         : <div className="header__entrance">
             <Link to="/signup" className="header__link">

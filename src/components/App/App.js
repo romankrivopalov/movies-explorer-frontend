@@ -5,18 +5,11 @@ import Main from "../Main/Main.js";
 
 function App() {
   const [ loggeIn, setLoggeIn ] = useState(true);
-  const [ openBurger, setOpenBurger ] = useState(false);
-
-  function handleToggleBurger() {
-    setOpenBurger(!openBurger);
-  }
 
   return (
     <div className="content">
       <Header
-        loggeIn={loggeIn}
-        isOpenBurger={openBurger}
-        isToggleBurger={handleToggleBurger}/>
+        loggeIn={loggeIn}/>
 
       <Routes>
         <Route

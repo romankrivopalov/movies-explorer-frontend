@@ -5,7 +5,7 @@ function Portfolio() {
         Портфолио
       </h2>
       <ul className="portfolio__list">
-        <li className="portfolio__item">
+        <li>
           <a
             href='https://github.com/romankrivopalov'
             target='_blank'
@@ -14,7 +14,7 @@ function Portfolio() {
             Статичный сайт
           </a>
         </li>
-        <li className="portfolio__item">
+        <li>
           <a
             href='https://github.com/romankrivopalov'
             target='_blank'
@@ -23,7 +23,7 @@ function Portfolio() {
             Адаптивный сайт
           </a>
         </li>
-        <li className="portfolio__item">
+        <li>
           <a
             href='https://github.com/romankrivopalov'
             target='_blank'

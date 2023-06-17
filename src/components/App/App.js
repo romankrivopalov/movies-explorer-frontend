@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { CurrentUserContext } from '../../context/CurrentUserContext.js';
 import Main from "../Main/Main.js";
+import Movies from '../Movies/Movies.js';
 
 function App() {
   const [ currentUser, setCurrentUser ] = useState({ loggeIn: true });
@@ -14,10 +15,11 @@ function App() {
           element={<Main/>}
         />
 
-        {/* <Route
+        <Route
           path='/movies'
+          element={<Movies/>}
         />
-
+{/*
         <Route
           path='/saved-movies'
         />

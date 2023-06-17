@@ -14,8 +14,14 @@
   background-color: var(--color-dark-main);
 }
 
+.layout {
+  display: grid;
+  justify-content: center;
+}
+
 @media screen and (min-width: 1220px) {
-  .container {
-    margin: 0 auto;
+  .layout {
+    min-height: 100%;
+    grid-template-columns: minmax(20px, 1fr) 1140px minmax(20px, 1fr);
   }
 }

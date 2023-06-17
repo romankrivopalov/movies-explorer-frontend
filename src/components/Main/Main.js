@@ -8,7 +8,7 @@ import Header from "../Header/Header.js";
 
 function Main() {
   return (
-    <div className="main">
+    <div className="layout">
       <Header/>
       <Promo/>
       <Project/>

@@ -1,40 +1,39 @@
 import { useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
-import Header from "../Header/Header.js";
+import { CurrentUserContext } from '../../context/CurrentUserContext.js';
 import Main from "../Main/Main.js";
 
 function App() {
-  const [ loggeIn, setLoggeIn ] = useState(true);
+  const [ currentUser, setCurrentUser ] = useState({ loggeIn: true });
 
   return (
-    <div className="content">
-      <Header
-        loggeIn={loggeIn}/>
+    <CurrentUserContext.Provider value={currentUser}>
+      <div className="content">
+        <Routes>
+          <Route
+            path='/'
+            element={<Main/>}
+          />
 
-      <Routes>
-        <Route
-          path='/'
-          element={<Main/>}
-        />
+          {/* <Route
+            path='/movies'
+          />
 
-        {/* <Route
-          path='/movies'
-        />
+          <Route
+            path='/saved-movies'
+          />
 
-        <Route
-          path='/saved-movies'
-        />
+          <Route
+            path='/signin'
+          />
 
-        <Route
-          path='/signin'
-        />
+          <Route
+            path='/signup'
+          /> */}
+        </Routes>
 
-        <Route
-          path='/signup'
-        /> */}
-      </Routes>
-
-    </div>
+      </div>
+    </CurrentUserContext.Provider>
   );
 }
 

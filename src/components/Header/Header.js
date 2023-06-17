@@ -1,8 +1,10 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { CurrentUserContext } from '../../context/CurrentUserContext.js';
 import Navigation from '../Navigation/Navigation.js';
 
-function Header({ loggeIn }) {
+function Header() {
+  const { loggeIn } = useContext(CurrentUserContext);
   const [ openBurger, setOpenBurger ] = useState(false);
 
   function handleToggleBurger() {

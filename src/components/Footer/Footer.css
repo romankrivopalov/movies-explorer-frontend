@@ -1,5 +1,5 @@
 .footer {
-  margin: 138px 10px 20px 10px;
+  margin: 0 10px 20px 10px;
 }
 
 .footer__title {
@@ -58,7 +58,7 @@
 
 @media screen and (min-width: 768px) {
   .footer {
-    margin: 148px 20px 20px 20px;
+    margin: 0 20px 20px 20px;
   }
 
   .footer__title {
@@ -91,7 +91,8 @@
 
 @media screen and (min-width: 1280px) {
   .footer {
-    margin: 184px auto 20px auto;
-    width: 1140px;
+    margin: 0 0 20px 0;
+    grid-column: 2/3;
+    align-items: end;
   }
 }

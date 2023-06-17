@@ -70,6 +70,7 @@
 @media screen and (min-width: 1280px) {
   .techno {
     padding: 100px 0;
+    grid-column: 1/4;
   }
 
   .techno__container {

@@ -1,0 +1,11 @@
+.main {
+  display: grid;
+  justify-content: center;
+}
+
+@media screen and (min-width: 1280px) {
+  .main {
+    min-height: 100%;
+    grid-template-columns: minmax(20px, 1fr) 1140px minmax(20px, 1fr);
+  }
+}

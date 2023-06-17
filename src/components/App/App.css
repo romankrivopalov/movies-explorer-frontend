@@ -14,16 +14,6 @@
   background-color: var(--color-dark-main);
 }
 
-.container {
-  margin: 0;
-}
-
-.content {
-  display: flex;
-  flex-direction: column;
-  position: relative;
-}
-
 @media screen and (min-width: 1220px) {
   .container {
     margin: 0 auto;

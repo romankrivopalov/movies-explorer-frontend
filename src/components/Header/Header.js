@@ -12,7 +12,7 @@ function Header() {
   }
 
   return (
-    <header className="header container">
+    <header className="header">
       <Link to="/" className="header__logo"/>
       { loggeIn
         ? <div>

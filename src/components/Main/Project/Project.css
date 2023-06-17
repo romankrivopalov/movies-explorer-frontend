@@ -100,8 +100,8 @@
 
 @media screen and (min-width: 1280px) {
   .project {
-    margin: 110px auto;
-    width: 1140px;
+    margin: 110px 0;
+    grid-column: 2/3;
   }
 
   .project__list {

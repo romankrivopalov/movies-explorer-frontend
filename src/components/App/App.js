@@ -8,31 +8,28 @@ function App() {
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
-      <div className="content">
-        <Routes>
-          <Route
-            path='/'
-            element={<Main/>}
-          />
+      <Routes>
+        <Route
+          path='/'
+          element={<Main/>}
+        />
 
-          {/* <Route
-            path='/movies'
-          />
+        {/* <Route
+          path='/movies'
+        />
 
-          <Route
-            path='/saved-movies'
-          />
+        <Route
+          path='/saved-movies'
+        />
 
-          <Route
-            path='/signin'
-          />
+        <Route
+          path='/signin'
+        />
 
-          <Route
-            path='/signup'
-          /> */}
-        </Routes>
-
-      </div>
+        <Route
+          path='/signup'
+        /> */}
+      </Routes>
     </CurrentUserContext.Provider>
   );
 }

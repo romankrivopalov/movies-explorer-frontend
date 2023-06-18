@@ -12,6 +12,9 @@
   -ms-text-size-adjust: 100%;
   -moz-text-size-adjust: 100%;
   background-color: var(--color-dark-main);
+  /* всегда показывать вертикальный скролл */
+  overflow: -moz-scrollbars-vertical;
+  overflow-y: scroll;
 }
 
 .layout {

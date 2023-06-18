@@ -1,16 +1,9 @@
 import { durationTitles } from '../../utils/constants.js';
+import getEndLine from '../../utils/getEndLine.js';
 
 function MoviesCard({ duration, image, name }) {
   function getDuration(duration, durationTitles) {
-    return `${duration} ${
-      durationTitles[
-        duration % 10 === 1 && duration % 100 !== 11
-        ? 0
-        : duration % 10 >= 2 && duration % 10 <= 4 && (duration % 100 < 10 || duration % 100 >= 20)
-        ? 1
-        : 2
-      ]
-    }`
+    return getEndLine(duration, durationTitles);
   }
 
   return (

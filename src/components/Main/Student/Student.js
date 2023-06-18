@@ -1,6 +1,7 @@
 import SectionTitle from '../SectionTitle/SectionTitle.js';
 import studentPhoto from '../../../images/student.jpg';
 import { birthDate } from '../../../utils/constants.js';
+import getEndLine from '../../../utils/getEndLine.js';
 
 function Student() {
   function getAge({ birthDate, dateTitles }) {
@@ -10,15 +11,7 @@ function Student() {
           diff = nowDate.getFullYear() - birthDate.getFullYear(),
           res = diff - 1 + (addOne ? 1 : 0);
 
-    return `${res} ${
-      dateTitles[
-        res % 10 === 1 && res % 100 !== 11
-        ? 0
-        : res % 10 >= 2 && res % 10 <= 4 && (res % 100 < 10 || res % 100 >= 20)
-        ? 1
-        : 2
-      ]
-    }`
+    return getEndLine(res, dateTitles);
   }
 
   return (

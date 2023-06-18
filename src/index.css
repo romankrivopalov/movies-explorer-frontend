@@ -14,6 +14,7 @@
 @import url('./components/Main/Student/Student.css');
 @import url('./components/Main/Portfolio/Portfolio.css');
 
-@import url('./components/Footer/Footer.css');
-
 @import url('./components/SearchForm/SearchForm.css');
+@import url('./components/MoviesCardList/MoviesCardList.css');
+
+@import url('./components/Footer/Footer.css');

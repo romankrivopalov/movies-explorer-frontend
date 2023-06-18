@@ -18,4 +18,6 @@
 @import url('./components/MoviesCardList/MoviesCardList.css');
 @import url('./components/MoviesCard/MoviesCard.css');
 
+@import url('./components/Profile/Profile.css');
+
 @import url('./components/Footer/Footer.css');

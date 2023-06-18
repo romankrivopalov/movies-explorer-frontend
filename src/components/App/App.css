@@ -21,6 +21,12 @@
   display: grid;
 }
 
+/* для страниц где нужно прижать элемент к нижнему краю */
+.layout_full-heigth {
+  height: 100vh;
+  grid-template-rows: auto 1fr;
+}
+
 @media screen and (min-width: 1280px) {
   .layout {
     min-height: 100%;

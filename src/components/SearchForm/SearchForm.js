@@ -21,10 +21,10 @@ function SearchForm() {
           className="search-form__checkbox"/>
         <label
           className="search-form__checkbox-label"
-          for="short-film-toggle"/>
+          htmlFor="short-film-toggle"/>
       </label>
     </form>
   )
 }
 
-export default SearchForm
+export default SearchForm;

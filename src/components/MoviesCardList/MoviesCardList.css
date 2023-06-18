@@ -1,5 +1,5 @@
 .movies-card {
-  margin: 50px 10px 0 10px;
+  margin: 50px 10px 80px 10px;
 }
 
 .movies-card__list {
@@ -15,7 +15,7 @@
 
 @media screen and (min-width: 768px) {
   .movies-card {
-    margin: 80px 30px 0 30px;
+    margin: 80px 30px 80px 30px;
   }
 
   .movies-card__list {
@@ -28,7 +28,7 @@
 
 @media screen and (min-width: 1280px) {
   .movies-card {
-    margin: 80px 0 0 0;
+    margin: 80px 0;
     grid-column: 2/3;
   }
 

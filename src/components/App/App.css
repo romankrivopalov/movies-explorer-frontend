@@ -18,7 +18,7 @@
   display: grid;
 }
 
-@media screen and (min-width: 1220px) {
+@media screen and (min-width: 1280px) {
   .layout {
     min-height: 100%;
     grid-template-columns: minmax(20px, 1fr) 1140px minmax(20px, 1fr);

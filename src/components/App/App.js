@@ -3,6 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 import { CurrentUserContext } from '../../context/CurrentUserContext.js';
 import Main from "../Main/Main.js";
 import Movies from '../Movies/Movies.js';
+import SavedMovies from '../SavedMovies/SavedMovies.js';
 
 function App() {
   const [ currentUser, setCurrentUser ] = useState({ loggeIn: true });
@@ -19,12 +20,13 @@ function App() {
           path='/movies'
           element={<Movies/>}
         />
-{/*
-        <Route
-          path='/saved-movies'
-        />
 
         <Route
+          path='/saved-movies'
+          element={<SavedMovies/>}
+        />
+
+        {/* <Route
           path='/signin'
         />
 

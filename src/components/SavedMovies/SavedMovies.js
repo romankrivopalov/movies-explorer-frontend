@@ -22,6 +22,7 @@ function SavedMovies() {
       <SearchForm/>
       <MoviesCardList
         cardList={saveCards}
+        typeCardBtn={{save: false}}
       />
       <Footer/>
     </div>

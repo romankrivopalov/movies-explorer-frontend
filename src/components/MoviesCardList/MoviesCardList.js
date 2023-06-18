@@ -1,6 +1,6 @@
 import MoviesCard from "../MoviesCard/MoviesCard.js"
 
-function MoviesCardList({ cardList }) {
+function MoviesCardList({ cardList, typeCardBtn }) {
 
   return(
     <section className="movies-card">
@@ -11,6 +11,7 @@ function MoviesCardList({ cardList }) {
             duration={card.duration}
             image={card.image}
             name={card.nameRU}
+            typeCardBtn={typeCardBtn}
           />
         ))}
       </ul>

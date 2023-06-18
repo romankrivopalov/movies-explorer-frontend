@@ -1,7 +1,7 @@
 import { durationTitles } from '../../utils/constants.js';
 import getEndLine from '../../utils/getEndLine.js';
 
-function MoviesCard({ duration, image, name }) {
+function MoviesCard({ duration, image, name, typeCardBtn }) {
   function getDuration(duration, durationTitles) {
     return getEndLine(duration, durationTitles);
   }
@@ -22,8 +22,8 @@ function MoviesCard({ duration, image, name }) {
         className="card__img"
         />
       <button
-        className='card__btn'>
-        Сохранить
+        className={`card__btn ${typeCardBtn.save ? '' : 'card__btn_type_delete'}`}>
+        {typeCardBtn.save ? 'Сохранить' : ''}
       </button>
     </li>
   )

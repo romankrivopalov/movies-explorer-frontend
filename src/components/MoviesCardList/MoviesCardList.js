@@ -8,6 +8,7 @@ function MoviesCardList({ cardList, typeCardBtn }) {
         {cardList.map(card => (
           <MoviesCard
             key={card.movieId}
+            movieId={card.movieId}
             duration={card.duration}
             image={card.image}
             name={card.nameRU}

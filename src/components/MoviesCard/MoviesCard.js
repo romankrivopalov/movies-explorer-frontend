@@ -1,7 +1,10 @@
+import { saveCardList } from '../../utils/constants';
 import { durationTitles } from '../../utils/constants.js';
 import getEndLine from '../../utils/getEndLine.js';
 
-function MoviesCard({ duration, image, name, typeCardBtn }) {
+function MoviesCard({ movieId, duration, image, name, typeCardBtn }) {
+  const isSavedMovieCard = saveCardList.some(i => i.movieId === movieId);
+
   function getDuration(duration, durationTitles) {
     return getEndLine(duration, durationTitles);
   }
@@ -22,8 +25,16 @@ function MoviesCard({ duration, image, name, typeCardBtn }) {
         className="card__img"
         />
       <button
-        className={`card__btn ${typeCardBtn.save ? '' : 'card__btn_type_delete'}`}>
-        {typeCardBtn.save ? 'Сохранить' : ''}
+        className={`card__btn ${
+          !typeCardBtn.save
+            ? 'card__btn_type_delete'
+            : isSavedMovieCard
+            ? 'card__btn_saved'
+            : ''
+        }`}>
+        {!typeCardBtn.save || isSavedMovieCard
+          ? ''
+          : 'Сохранить'}
       </button>
     </li>
   )

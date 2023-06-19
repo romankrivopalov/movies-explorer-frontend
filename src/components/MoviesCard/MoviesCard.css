@@ -71,6 +71,20 @@
   background-size: 12px 12px;
 }
 
+.card__btn_saved {
+  background-color: var(--color-pink);
+  background-image: url('../../images/icon-saved-movie-btn.svg');
+  background-size: 10px 10px;
+  background-repeat: no-repeat;
+  background-position: center;
+  transition: all .2s ease-out;
+}
+
+.card__btn_saved:hover {
+  background-image: url('../../images/icon-delete.svg');
+  background-color: #313131;
+}
+
 @media screen and (min-width: 768px) {
   .card__header {
     padding: 18px;

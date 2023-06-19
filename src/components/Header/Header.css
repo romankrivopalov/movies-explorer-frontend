@@ -11,9 +11,15 @@
   background-color: inherit;
   border: none;
   background-image: url('../../images/logo.svg');
-  background-size: cover;
+  background-size: 100% 100%;
   background-repeat: no-repeat;
+  background-position: center;
   cursor: pointer;
+  transition: background-size .1s ease-out;
+}
+
+.header__logo:hover {
+  background-size: 34px 34px;
 }
 
 .header__overlay {

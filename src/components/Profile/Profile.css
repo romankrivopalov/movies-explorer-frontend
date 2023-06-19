@@ -78,6 +78,11 @@
   border: none;
   background-color: inherit;
   cursor: pointer;
+  transition: color .2s ease-out;
+}
+
+.profile__btn-submit:hover {
+  color: var(--color-white-hover);
 }
 
 .profile__btn-exit {
@@ -88,6 +93,11 @@
   border: none;
   background-color: inherit;
   cursor: pointer;
+  transition: color .2s ease-out;
+}
+
+.profile__btn-exit:hover {
+  color: var(--color-white-hover);
 }
 
 @media screen and (min-width: 768px) {

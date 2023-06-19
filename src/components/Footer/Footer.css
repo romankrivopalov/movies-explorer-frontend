@@ -44,6 +44,12 @@
   font-weight: 400;
   color: var(--color-white);
   text-decoration: none;
+  opacity: 1;
+  transition: color .2s ease-out;
+}
+
+.footer__link:hover {
+  color: var(--color-white-hover);
 }
 
 .footer__age {
@@ -64,6 +70,7 @@
   .footer__title {
     font-size: 13px;
     line-height: 58px;
+    user-select: none;
   }
 
   .footer__wrapper {

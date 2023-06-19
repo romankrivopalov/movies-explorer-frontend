@@ -13,8 +13,18 @@ const loginFormSetting = {
   title: 'Рады видеть!',
   btnSubmitText: 'Войти',
   transitionText: 'Ещё не зарегистрированы?',
-  transitionPath: '/register',
+  transitionPath: '/signup',
   transitionLinkText: 'Регистрация',
+}
+
+export
+const registerFormSetting = {
+  type: 'register',
+  title: 'Добро пожаловать!',
+  btnSubmitText: 'Зарегистрироваться',
+  transitionText: 'Уже зарегистрированы?',
+  transitionPath: '/signin',
+  transitionLinkText: 'Войти',
 }
 
 export

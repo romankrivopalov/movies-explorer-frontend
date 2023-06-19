@@ -18,7 +18,8 @@ function SavedMovies() {
 
   return (
     <div className="layout">
-      <Header/>
+      <Header
+        theme={{ default: false }}/>
       <SearchForm/>
       <MoviesCardList
         cardList={saveCards}

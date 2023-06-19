@@ -9,7 +9,8 @@ import Header from "../Header/Header.js";
 function Main() {
   return (
     <div className="layout">
-      <Header/>
+      <Header
+        theme={{ default: false }}/>
       <Promo/>
       <Project/>
       <Techno/>

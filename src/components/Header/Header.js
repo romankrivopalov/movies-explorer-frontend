@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { CurrentUserContext } from '../../context/CurrentUserContext.js';
 import Navigation from '../Navigation/Navigation.js';
 
-function Header() {
+function Header({ theme }) {
   const { loggeIn } = useContext(CurrentUserContext);
   const [ openBurger, setOpenBurger ] = useState(false);
 
@@ -14,7 +14,7 @@ function Header() {
   return (
     <header className="header">
       <Link to="/" className="header__logo"/>
-      { loggeIn
+      { !theme.default && ( loggeIn
         ? <div>
             <div className={`header__overlay ${openBurger ? 'header__overlay_active' : ''}`}/>
             <button
@@ -34,7 +34,9 @@ function Header() {
               Войти
             </Link>
           </div>
+        )
       }
+
     </header>
   )
 }

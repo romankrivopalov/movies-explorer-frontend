@@ -7,7 +7,8 @@ function Profile() {
   const { name, email } = useContext(CurrentUserContext);
   return (
     <div className="layout layout_full-heigth">
-      <Header/>
+      <Header
+        theme={{ default: false }}/>
 
       <section className="profile">
         <h2 className="profile__title">

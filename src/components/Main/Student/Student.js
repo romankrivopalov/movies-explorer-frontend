@@ -15,7 +15,9 @@ function Student() {
   }
 
   return (
-    <section className="student">
+    <section
+      id="student"
+      className="student">
       <SectionTitle title="Студент"/>
       <div className="student__wrapper">
         <img

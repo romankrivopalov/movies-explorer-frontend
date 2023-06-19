@@ -7,8 +7,8 @@ function Portfolio() {
       <ul className="portfolio__list">
         <li>
           <a
-            href='https://github.com/romankrivopalov'
-            target='_blank'
+            href="https://github.com/romankrivopalov/how-to-learn"
+            target="_blank"
             rel="noopener noreferrer"
             className="portfolio__link">
             Статичный сайт
@@ -16,8 +16,8 @@ function Portfolio() {
         </li>
         <li>
           <a
-            href='https://github.com/romankrivopalov'
-            target='_blank'
+            href="https://github.com/romankrivopalov/russian-travel"
+            target="_blank"
             rel="noopener noreferrer"
             className="portfolio__link">
             Адаптивный сайт
@@ -25,8 +25,8 @@ function Portfolio() {
         </li>
         <li>
           <a
-            href='https://github.com/romankrivopalov'
-            target='_blank'
+            href="https://github.com/romankrivopalov/react-mesto-api-full-gha"
+            target="_blank"
             rel="noopener noreferrer"
             className="portfolio__link">
             Одностраничное приложение

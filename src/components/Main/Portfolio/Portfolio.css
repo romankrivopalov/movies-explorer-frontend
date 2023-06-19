@@ -28,6 +28,12 @@
   letter-spacing: -0.04em;
   color: var(--color-white);
   text-decoration: none;
+  cursor: pointer;
+  transition: color .2s ease-out;
+}
+
+.portfolio__link:hover {
+  color: var(--color-white-hover);
 }
 
 .portfolio__link::before {

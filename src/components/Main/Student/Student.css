@@ -56,6 +56,11 @@
   font-weight: 500;
   color: var(--color-white);
   text-decoration: none;
+  transition: color .2s ease-out;
+}
+
+.student__link:hover {
+  color: var(--color-white-hover);
 }
 
 @media screen and (min-width: 768px) {

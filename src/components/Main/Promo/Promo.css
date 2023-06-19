@@ -35,6 +35,11 @@
   text-align: center;
   background-color: var(--color-gray);
   border-radius: 6px;
+  transition: color .2s ease-out;
+}
+
+.promo__link:hover {
+  color: var(--color-white-hover);
 }
 
 @media screen and (min-width: 768px) {

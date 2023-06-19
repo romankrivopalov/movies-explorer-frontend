@@ -8,6 +8,16 @@ export
 const durationTitles = ['минута', 'минуты', 'минут'];
 
 export
+const loginFormSetting = {
+  type: 'login',
+  title: 'Рады видеть!',
+  btnSubmitText: 'Войти',
+  transitionText: 'Ещё не зарегистрированы?',
+  transitionPath: '/register',
+  transitionLinkText: 'Регистрация',
+}
+
+export
 const cardList = [
   {
     country: 'США',

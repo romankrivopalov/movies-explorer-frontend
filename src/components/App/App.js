@@ -5,12 +5,13 @@ import Main from "../Main/Main.js";
 import Movies from '../Movies/Movies.js';
 import SavedMovies from '../SavedMovies/SavedMovies.js';
 import Profile from '../Profile/Profile.js';
+import Login from '../Login/Login.js';
 
 function App() {
   const [ currentUser, setCurrentUser ] = useState({
     name: 'Роман',
     email: 'test@mail.ru',
-    loggeIn: true
+    loggeIn: false,
   });
 
   return (
@@ -36,11 +37,12 @@ function App() {
           element={<Profile/>}
         />
 
-        {/* <Route
+        <Route
           path='/signin'
+          element={<Login/>}
         />
 
-        <Route
+        {/* <Route
           path='/signup'
         /> */}
       </Routes>

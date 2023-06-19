@@ -20,4 +20,6 @@
 
 @import url('./components/Profile/Profile.css');
 
+@import url('./components/AuthForm/AuthForm.css');
+
 @import url('./components/Footer/Footer.css');

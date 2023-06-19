@@ -21,10 +21,16 @@
   display: grid;
 }
 
-/* для страниц где нужно прижать элемент к нижнему краю */
+/* для страниц где нужно прижать элемент к нижнему краю, 2 строки */
 .layout_full-heigth {
   height: 100vh;
   grid-template-rows: auto 1fr;
+}
+
+/* для страниц где нужно прижать элемент к нижнему краю, 1 строка */
+.layout_full-heigth-1row {
+  height: 100vh;
+  grid-template-rows: 1fr;
 }
 
 @media screen and (min-width: 1280px) {

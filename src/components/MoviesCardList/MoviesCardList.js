@@ -15,6 +15,10 @@ function MoviesCardList({ cardList, typeCardBtn }) {
           />
         ))}
       </ul>
+      {cardList.length > 2 &&
+        <button className="movies-card__more-btn">
+          Ещё
+        </button>}
     </section>
   )
 }

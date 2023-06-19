@@ -1,0 +1,41 @@
+.page {
+  box-sizing: border-box;
+  position: relative;
+  width: 100%;
+  color: var(--color-white);
+  font-family: 'Inter', Arial, sans-serif;
+  font-weight: 400;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  background-color: var(--color-dark-main);
+  /* всегда показывать вертикальный скролл */
+  overflow: -moz-scrollbars-vertical;
+  overflow-y: scroll;
+}
+
+.layout {
+  display: grid;
+}
+
+/* для страниц где нужно прижать элемент к нижнему краю, 2 строки */
+.layout_full-heigth {
+  height: 100vh;
+  grid-template-rows: auto 1fr;
+}
+
+/* для страниц где нужно прижать элемент к нижнему краю, 1 строка */
+.layout_full-heigth-1row {
+  height: 100vh;
+  grid-template-rows: 1fr;
+}
+
+@media screen and (min-width: 1280px) {
+  .layout {
+    min-height: 100%;
+    grid-template-columns: minmax(20px, 1fr) 1140px minmax(20px, 1fr);
+  }
+}

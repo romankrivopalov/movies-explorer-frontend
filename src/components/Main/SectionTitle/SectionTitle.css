@@ -1,0 +1,27 @@
+.section-title {
+  position: relative;
+  margin: 0;
+  padding-bottom: 29px;
+  font-size: 18px;
+  line-height: 22px;
+  letter-spacing: -0.04em;
+  font-weight: 400;
+}
+
+.section-title::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 1px;
+  background-color: var(--color-white);
+}
+
+@media screen and (min-width: 768px) {
+  .section-title {
+    padding-bottom: 24px;
+    font-size: 22px;
+    line-height: 27px;
+  }
+}

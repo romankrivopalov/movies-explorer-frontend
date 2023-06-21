@@ -1,13 +1,12 @@
 import MoviesCard from "../MoviesCard/MoviesCard.js"
 
 function MoviesCardList({ cardList, typeCardBtn }) {
-
   return(
     <section className="movies-card">
       <ul className="movies-card__list">
         {cardList.map(card => (
           <MoviesCard
-            key={card.movieId}
+            key={card.id}
             movieId={card.movieId}
             duration={card.duration}
             image={card.image}

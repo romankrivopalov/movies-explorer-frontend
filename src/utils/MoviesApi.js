@@ -2,20 +2,20 @@ import { moviesApiSetting } from './constants.js'
 
 class MoviesApi {
   constructor(options) {
-    this.baseUrl = options.baseUrl;
-    this.headers = options.headers;
+    this._baseUrl = options.baseUrl;
+    this._headers = options.headers;
   }
 
   _checkStatusRequest(res) {
     if(res.ok) {
-      return res.json()
+      return res.json();
     }
 
     return Promise.reject(res.status)
   }
 
   getMovies() {
-    return fetch(`${this._baseUrl}/movies`, {
+    return fetch(`${this._baseUrl}/beatfilm-movies`, {
       headers: this._headers
     })
     .then(res => this._checkStatusRequest(res));

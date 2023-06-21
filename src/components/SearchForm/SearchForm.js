@@ -1,13 +1,34 @@
-function SearchForm() {
+import { useState } from 'react';
+
+function SearchForm({ onSubmit }) {
+  const [ searchQuery, setSearchQuery ] = useState({})
+
+  function handleChange({ target }) {
+    const { value } = target
+
+    setSearchQuery(value);
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+
+    onSubmit(searchQuery);
+  }
+
   return(
-    <form className="search-form">
+    <form
+      className="search-form"
+      onSubmit={handleSubmit}>
       <label className="search-form__wrapper">
         <input
           type="text"
           placeholder="Фильм"
           className="search-form__input"
+          onChange={handleChange}
           required />
-        <button className="search-form__submit-btn">
+        <button
+          type="submit"
+          className="search-form__submit-btn">
           Найти
         </button>
       </label>

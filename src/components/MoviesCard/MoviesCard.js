@@ -1,5 +1,6 @@
 import { saveCardList } from '../../utils/constants';
 import { durationTitles } from '../../utils/constants.js';
+import { moviesApiSetting } from '../../utils/constants';
 import getEndLine from '../../utils/getEndLine.js';
 
 function MoviesCard({ movieId, duration, image, name, typeCardBtn }) {
@@ -20,7 +21,7 @@ function MoviesCard({ movieId, duration, image, name, typeCardBtn }) {
         </p>
       </div>
       <img
-        src={image}
+        src={`${moviesApiSetting.baseUrl}${image.url}`}
         alt={name}
         className="card__img"
         />

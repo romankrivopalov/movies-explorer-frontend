@@ -21,7 +21,7 @@ function App() {
     const token = localStorage.getItem('userId');
 
     if (token) {
-      mainApi.checkValidityUser()
+      mainApi.getUserInfo()
         .then((data) => {
           setCurrentUser({ ...data, loggeIn: true });
         })

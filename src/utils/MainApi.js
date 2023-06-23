@@ -40,18 +40,6 @@ class MainApi {
     .then(res => this._checkStatusRequest(res))
   }
 
-  checkValidityUser() {
-    return fetch(`${this._baseUrl}/users/me`, {
-      method: 'GET',
-      credentials: 'include',
-      headers: {
-        "Accept": "application/json",
-        "Content-Type": "application/json",
-      }
-    })
-    .then(res => this._checkStatusRequest(res))
-  }
-
   // getLogoutUser() {
   //   return fetch(`${this._baseUrl}/signout`, {
   //     method: 'GET',
@@ -62,6 +50,7 @@ class MainApi {
 
   getUserInfo() {
     return fetch(`${this._baseUrl}/users/me`, {
+      credentials: 'include',
       headers: this._headers
     })
     .then(res => this._checkStatusRequest(res));
@@ -71,6 +60,7 @@ class MainApi {
     return fetch(`${this._baseUrl}/users/me`, {
       method: 'PATCH',
       headers: this._headers,
+      credentials: 'include',
       body: JSON.stringify({
         name: name,
         email: email,

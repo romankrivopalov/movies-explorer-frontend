@@ -3,7 +3,7 @@ import { registerFormSetting } from '../../utils/constants.js';
 import mainApi from '../../utils/MainApi.js';
 
 function Register({ navigate }) {
-  function handleRegistrationUser(userData) {
+  const handleRegistrationUser = (userData) => {
     mainApi.getRegistrationUser(userData)
       .then(data => {
         navigate("/signin");

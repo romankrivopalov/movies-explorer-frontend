@@ -82,6 +82,7 @@
 }
 
 .auth-form__submit-btn:disabled {
+  color: #8B8B8B;
   background-color: var(--color-gray);
   cursor: default;
 }

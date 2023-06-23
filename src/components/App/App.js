@@ -41,7 +41,9 @@ function App() {
 
         <Route
           path='/signin'
-          element={<Login/>}
+          element={<Login
+            setLoggedIn={setCurrentUser}
+          />}
         />
 
         <Route

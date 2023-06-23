@@ -27,18 +27,18 @@ class MainApi {
     .then(res => this._checkStatusRequest(res))
   }
 
-  // getAuthorizationUser({ password, email }) {
-  //   return fetch(`${this._baseUrl}/signin`, {
-  //     method: 'POST',
-  //     headers: this._headers,
-  //     credentials: 'include',
-  //     body: JSON.stringify({
-  //       password: password,
-  //       email: email
-  //     })
-  //   })
-  //   .then(res => this._checkStatusRequest(res))
-  // }
+  getAuthorizationUser({ email, password }) {
+    return fetch(`${this._baseUrl}/signin`, {
+      method: 'POST',
+      headers: this._headers,
+      credentials: 'include',
+      body: JSON.stringify({
+        email: email,
+        password: password,
+      })
+    })
+    .then(res => this._checkStatusRequest(res))
+  }
 
   // checkValidityUser(jwt) {
   //   return fetch(`${this._baseUrl}/users/me`, {

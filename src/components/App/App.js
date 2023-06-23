@@ -51,7 +51,11 @@ function App() {
 
         <Route
           path='/profile'
-          element={<Profile/>}
+          element={<Profile
+            currentUser={currentUser}
+            setCurrentUser={currentUser}
+            navigate={navigate}
+          />}
         />
 
         <Route

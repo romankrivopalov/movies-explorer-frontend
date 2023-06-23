@@ -40,13 +40,13 @@ class MainApi {
     .then(res => this._checkStatusRequest(res))
   }
 
-  // getLogoutUser() {
-  //   return fetch(`${this._baseUrl}/signout`, {
-  //     method: 'GET',
-  //     credentials: 'include',
-  //   })
-  //   .then(res => this._checkStatusRequest(res))
-  // }
+  getLogoutUser() {
+    return fetch(`${this._baseUrl}/signout`, {
+      method: 'GET',
+      credentials: 'include',
+    })
+    .then(res => this._checkStatusRequest(res))
+  }
 
   getUserInfo() {
     return fetch(`${this._baseUrl}/users/me`, {

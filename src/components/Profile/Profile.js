@@ -1,23 +1,28 @@
-import { useContext } from 'react';
-import { CurrentUserContext } from '../../context/CurrentUserContext.js';
-import { Link } from 'react-router-dom';
 import Header from '../Header/Header';
+import mainApi from '../../utils/MainApi';
 
-function Profile() {
-  const { name, email } = useContext(CurrentUserContext);
+function Profile({ currentUser, setCurrentUser, navigate }) {
+  const { name, email } = currentUser;
 
-  function handleSubmit(e) {
+  const handleSubmit = (e) => {
     e.preventDefault();
 
     console.log(1);
   }
 
-  function handleChange() {
+  const handleChange = () => {
     console.log(2);
   }
 
-  function handleLogout() {
-    console.log(3);
+  const handleLogout = () => {
+    mainApi.getLogoutUser();
+    localStorage.clear('userId');
+    setCurrentUser({
+      name: '',
+      email: '',
+      loggeIn: false,
+    });
+    navigate("/signin", {replace: true});
   }
 
   return (

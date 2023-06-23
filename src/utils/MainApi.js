@@ -14,6 +14,52 @@ class MainApi {
     return Promise.reject(res.status)
   };
 
+  getRegistrationUser({ name, email, password }) {
+    return fetch(`${this._baseUrl}/signup`, {
+      method: 'POST',
+      headers: this._headers,
+      body: JSON.stringify({
+        name: name,
+        email: email,
+        password: password,
+      })
+    })
+    .then(res => this._checkStatusRequest(res))
+  }
+
+  // getAuthorizationUser({ password, email }) {
+  //   return fetch(`${this._baseUrl}/signin`, {
+  //     method: 'POST',
+  //     headers: this._headers,
+  //     credentials: 'include',
+  //     body: JSON.stringify({
+  //       password: password,
+  //       email: email
+  //     })
+  //   })
+  //   .then(res => this._checkStatusRequest(res))
+  // }
+
+  // checkValidityUser(jwt) {
+  //   return fetch(`${this._baseUrl}/users/me`, {
+  //     method: 'GET',
+  //     credentials: 'include',
+  //     headers: {
+  //       "Accept": "application/json",
+  //       "Content-Type": "application/json",
+  //     }
+  //   })
+  //   .then(res => this._checkStatusRequest(res))
+  // }
+
+  // getLogoutUser() {
+  //   return fetch(`${this._baseUrl}/signout`, {
+  //     method: 'GET',
+  //     credentials: 'include',
+  //   })
+  //   .then(res => this._checkStatusRequest(res))
+  // }
+
   getUserInfo() {
     return fetch(`${this._baseUrl}/users/me`, {
       headers: this._headers

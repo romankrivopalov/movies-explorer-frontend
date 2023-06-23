@@ -45,6 +45,13 @@ const moviesApiSetting = {
 }
 
 export
+const inputErrorNameList = {
+  name: 'Имя не должно быть короче 2 букв',
+  email: 'Введите корректный email',
+  password: 'Пароль должен быть не короче 8 символов',
+}
+
+export
 const saveCardList = [
   {
     country: 'США',

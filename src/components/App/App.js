@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useNavigate } from 'react-router-dom';
 import { CurrentUserContext } from '../../context/CurrentUserContext.js';
 import Main from '../Main/Main.js';
 import Movies from '../Movies/Movies.js';
@@ -9,10 +9,11 @@ import Login from '../Login/Login.js';
 import Register from '../Register/Register.js';
 
 function App() {
-  const [ currentUser, setCurrentUser ] = useState({
-    name: 'Роман',
-    email: 'test@mail.ru',
-    loggeIn: true,
+  const navigate = useNavigate(),
+        [ currentUser, setCurrentUser ] = useState({
+          name: 'Роман',
+          email: 'test@mail.ru',
+          loggeIn: false,
   });
 
   return (
@@ -45,7 +46,9 @@ function App() {
 
         <Route
           path='/signup'
-          element={<Register/>}
+          element={<Register
+            navigate={navigate}
+          />}
         />
       </Routes>
     </CurrentUserContext.Provider>

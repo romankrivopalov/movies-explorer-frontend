@@ -40,17 +40,17 @@ class MainApi {
     .then(res => this._checkStatusRequest(res))
   }
 
-  // checkValidityUser(jwt) {
-  //   return fetch(`${this._baseUrl}/users/me`, {
-  //     method: 'GET',
-  //     credentials: 'include',
-  //     headers: {
-  //       "Accept": "application/json",
-  //       "Content-Type": "application/json",
-  //     }
-  //   })
-  //   .then(res => this._checkStatusRequest(res))
-  // }
+  checkValidityUser() {
+    return fetch(`${this._baseUrl}/users/me`, {
+      method: 'GET',
+      credentials: 'include',
+      headers: {
+        "Accept": "application/json",
+        "Content-Type": "application/json",
+      }
+    })
+    .then(res => this._checkStatusRequest(res))
+  }
 
   // getLogoutUser() {
   //   return fetch(`${this._baseUrl}/signout`, {

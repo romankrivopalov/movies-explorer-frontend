@@ -14,7 +14,7 @@ function App() {
         [ currentUser, setCurrentUser ] = useState({
           name: 'Роман',
           email: 'test@mail.ru',
-          loggeIn: false,
+          loggeIn: true,
   });
 
   useEffect(() => {
@@ -53,7 +53,7 @@ function App() {
           path='/profile'
           element={<Profile
             currentUser={currentUser}
-            setCurrentUser={currentUser}
+            setCurrentUser={setCurrentUser}
             navigate={navigate}
           />}
         />

@@ -13,7 +13,9 @@ function Movies({ toggleShortMovie, onToggleShortMovie }) {
   const handleSearch = (searchQuery) => {
     moviesApi.getMovies()
       .then(arrMovies => {
-        setCards(findMovies(arrMovies, searchQuery))
+        setCards(findMovies(arrMovies, searchQuery));
+        localStorage.setItem('searchQuery', searchQuery);
+        localStorage.setItem('toggleShortMovie', toggleShortMovie);
       })
   }
 

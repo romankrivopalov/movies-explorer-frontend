@@ -1,18 +1,22 @@
 import { useState } from 'react';
 
-function SearchForm({ onSubmit }) {
+function SearchForm({ onSubmit, toggleShortMovie, onToggleShortMovie }) {
   const [ searchQuery, setSearchQuery ] = useState({})
 
-  function handleChange({ target }) {
+  const handleChange = ({ target }) => {
     const { value } = target
 
     setSearchQuery(value);
   }
 
-  function handleSubmit(e) {
+  const handleSubmit = (e) => {
     e.preventDefault();
 
     onSubmit(searchQuery);
+  }
+
+  const handleChecked = () => {
+    onToggleShortMovie();
   }
 
   return(
@@ -40,7 +44,9 @@ function SearchForm({ onSubmit }) {
           type="checkbox"
           name="short-film-toggle"
           id="short-film-toggle"
-          className="search-form__checkbox"/>
+          className="search-form__checkbox"
+          checked={toggleShortMovie}
+          onChange={handleChecked}/>
         <label
           className="search-form__checkbox-label"
           htmlFor="short-film-toggle"/>

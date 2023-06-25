@@ -16,7 +16,8 @@ function App() {
           name: '',
           email: '',
           loggeIn: false,
-  });
+        }),
+        [ toggleShortMovie, setToggleShortMovie ] = useState(false)
 
   useEffect(() => {
     const token = localStorage.getItem('userId');
@@ -28,6 +29,11 @@ function App() {
         })
     }
   }, []);
+
+  const handleToggleShortMovie = () => {
+    setToggleShortMovie(!toggleShortMovie);
+    console.log(1)
+  }
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
@@ -42,6 +48,8 @@ function App() {
           element={<ProtectedRouteElement
             element={Movies}
             currentUser={currentUser}
+            toggleShortMovie={toggleShortMovie}
+            onToggleShortMovie={handleToggleShortMovie}
           />}
         />
 
@@ -50,6 +58,8 @@ function App() {
           element={<ProtectedRouteElement
             element={SavedMovies}
             currentUser={currentUser}
+            toggleShortMovie={toggleShortMovie}
+            onToggleShortMovie={handleToggleShortMovie}
           />}
         />
 

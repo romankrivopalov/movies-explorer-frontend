@@ -1,4 +1,4 @@
-import { mainApiSetting } from './constants.js'
+import { mainApiSetting, moviesApiSetting } from './constants.js'
 
 class MainApi {
   constructor(options) {
@@ -77,10 +77,36 @@ class MainApi {
   };
 
   postNewSavedMovie(movieData) {
+    const {
+      country,
+      director,
+      duration,
+      year,
+      description,
+      image,
+      trailerLink,
+      id,
+      nameRU,
+      nameEN,
+    } = movieData;
+
     return fetch(`${this._baseUrl}/movies`, {
       method: 'POST',
       headers: this._headers,
-      body: JSON.stringify(movieData)
+      credentials: 'include',
+      body: JSON.stringify({
+        country,
+        director,
+        duration,
+        year,
+        description,
+        image: moviesApiSetting.baseUrl + image.url,
+        trailerLink,
+        thumbnail: moviesApiSetting.baseUrl + image.formats.thumbnail.url,
+        movieId: id,
+        nameRU,
+        nameEN,
+      })
     })
     .then(res => this._checkStatusRequest(res));
   };

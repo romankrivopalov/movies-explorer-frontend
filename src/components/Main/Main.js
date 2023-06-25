@@ -18,7 +18,7 @@ function Main() {
       <Portfolio/>
       <Footer/>
     </div>
-  )
-}
+  );
+};
 
 export default Main;

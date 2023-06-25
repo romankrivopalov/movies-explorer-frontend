@@ -17,7 +17,7 @@ function AuthForm({ setting, handleSubmit }) {
     e.preventDefault();
 
     handleSubmit(values);
-  }
+  };
 
   return (
     <section className="auth-form">
@@ -31,7 +31,7 @@ function AuthForm({ setting, handleSubmit }) {
         id="auth-form"
         className="auth-form__form"
         onSubmit={handleSubmitForm}>
-        { setting.type === 'register'
+        { setting.type === "register"
           &&
           <div
             className="auth-form__input-row">
@@ -42,7 +42,7 @@ function AuthForm({ setting, handleSubmit }) {
             <input
               type="text"
               name="name"
-              className={`auth-form__input ${errors.name ? 'auth-form__input_error' : ''}`}
+              className={`auth-form__input ${errors.name ? "auth-form__input_error" : ""}`}
               minLength={2}
               maxLength={30}
               onChange={handleChange}
@@ -59,7 +59,7 @@ function AuthForm({ setting, handleSubmit }) {
           <input
             type="email"
             name="email"
-            className={`auth-form__input ${errors.email ? 'auth-form__input_error' : ''}`}
+            className={`auth-form__input ${errors.email ? "auth-form__input_error" : ""}`}
             onChange={handleChange}
             required />
         </div>
@@ -73,12 +73,12 @@ function AuthForm({ setting, handleSubmit }) {
           <input
             type="password"
             name="password"
-            className={`auth-form__input ${errors.password ? 'auth-form__input_error' : ''}`}
+            className={`auth-form__input ${errors.password ? "auth-form__input_error" : ""}`}
             minLength={8}
             onChange={handleChange}
             required />
-          <span className='auth-form__span-error'>
-            {errors[currentInputName] ? inputErrorNameList[currentInputName] : ''}
+          <span className="auth-form__span-error">
+            {errors[currentInputName] ? inputErrorNameList[currentInputName] : ""}
           </span>
         </div>
 
@@ -105,7 +105,7 @@ function AuthForm({ setting, handleSubmit }) {
         </div>
       </div>
     </section>
-  )
-}
+  );
+};
 
 export default AuthForm;

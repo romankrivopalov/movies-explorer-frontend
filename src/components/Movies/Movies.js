@@ -16,13 +16,13 @@ function Movies({ toggleShortMovie, onToggleShortMovie }) {
         setCards(findMovies(arrMovies, searchQuery));
         localStorage.setItem('searchQuery', searchQuery);
         localStorage.setItem('toggleShortMovie', toggleShortMovie);
-      })
-  }
+      });
+  };
 
   const handleSaveMovie = (movieData) => {
     console.log(movieData)
     mainApi.postNewSavedMovie(movieData);
-  }
+  };
 
   return(
     <div className="layout">
@@ -39,7 +39,7 @@ function Movies({ toggleShortMovie, onToggleShortMovie }) {
       />
       <Footer/>
     </div>
-  )
-}
+  );
+};
 
 export default Movies;

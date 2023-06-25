@@ -1,4 +1,4 @@
-import MoviesCard from "../MoviesCard/MoviesCard.js"
+import MoviesCard from "../MoviesCard/MoviesCard.js";
 
 function MoviesCardList({ cardList, typeCardBtn, handleActionBtn }) {
 
@@ -19,7 +19,7 @@ function MoviesCardList({ cardList, typeCardBtn, handleActionBtn }) {
           Ещё
         </button>}
     </section>
-  )
-}
+  );
+};
 
-export default MoviesCardList
+export default MoviesCardList;

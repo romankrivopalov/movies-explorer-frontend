@@ -12,7 +12,7 @@ function Login({ setCurrentUser, navigate }) {
           localStorage.setItem('userId', data._id);
           setCurrentUser(oldState => ({ name, email, loggeIn: true }));
           navigate('/movies');
-        }
+        };
       })
       .catch((err) => console.log(err));
   }
@@ -23,7 +23,7 @@ function Login({ setCurrentUser, navigate }) {
         setting={loginFormSetting}
         handleSubmit={handleRegistrationUser}/>
     </div>
-  )
-}
+  );
+};
 
 export default Login;

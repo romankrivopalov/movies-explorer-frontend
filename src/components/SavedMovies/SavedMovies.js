@@ -6,7 +6,7 @@ import SearchForm from '../SearchForm/SearchForm.js';
 import { CurrentUserContext } from '../../context/CurrentUserContext.js';
 import { saveCardList } from '../../utils/constants';
 
-function SavedMovies() {
+function SavedMovies({ toggleShortMovie, onToggleShortMovie }) {
   const { loggeIn } = useContext(CurrentUserContext);
   const [ saveCards, setSaveCards ] = useState([]);
 
@@ -16,11 +16,19 @@ function SavedMovies() {
     }
   }, [loggeIn])
 
+  const handleSubmit = (searchQuery) => {
+    console.log(2)
+  }
+
   return (
     <div className="layout">
       <Header
         theme={{ default: false }}/>
-      <SearchForm/>
+      <SearchForm
+        onSubmit={handleSubmit}
+        toggleShortMovie={toggleShortMovie}
+        onToggleShortMovie={onToggleShortMovie}
+      />
       <MoviesCardList
         cardList={saveCards}
         typeCardBtn={{save: false}}

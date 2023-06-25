@@ -2,14 +2,16 @@ import AuthForm from '../AuthForm/AuthForm.js';
 import { loginFormSetting } from '../../utils/constants.js';
 import mainApi from '../../utils/MainApi.js';
 
-function Login({ setLoggedIn, navigate }) {
+function Login({ setCurrentUser, navigate }) {
   const handleRegistrationUser = (userData) => {
     mainApi.getAuthorizationUser(userData)
       .then(data => {
-        if (data._id) {
+        const { name, email, _id } = data;
+
+        if (_id) {
           localStorage.setItem('userId', data._id);
-          setLoggedIn(oldState => ({ ...oldState, loggeIn: true }));
-          navigate('/');
+          setCurrentUser(oldState => ({ name, email, loggeIn: true }));
+          navigate('/movies');
         }
       })
       .catch((err) => console.log(err));

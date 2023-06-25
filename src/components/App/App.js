@@ -12,8 +12,8 @@ import mainApi from '../../utils/MainApi.js';
 function App() {
   const navigate = useNavigate(),
         [ currentUser, setCurrentUser ] = useState({
-          name: 'Роман',
-          email: 'test@mail.ru',
+          name: '',
+          email: '',
           loggeIn: false,
   });
 
@@ -58,8 +58,8 @@ function App() {
         <Route
           path='/signin'
           element={<Login
+            setCurrentUser={setCurrentUser}
             navigate={navigate}
-            setLoggedIn={setCurrentUser}
           />}
         />
 

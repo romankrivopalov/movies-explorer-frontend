@@ -112,9 +112,10 @@ class MainApi {
     .then(res => this._checkStatusRequest(res));
   };
 
-  deleteSavedMovie(movieId) {
-    return fetch(`${this._baseUrl}/cards/${movieId}`, {
+  deleteSavedMovie(movie) {
+    return fetch(`${this._baseUrl}/movies/${movie._id}`, {
       method: 'DELETE',
+      credentials: 'include',
       headers: this._headers,
     })
     .then(err => this._checkStatusRequest(err));

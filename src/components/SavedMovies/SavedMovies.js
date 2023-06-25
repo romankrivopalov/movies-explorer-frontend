@@ -15,11 +15,16 @@ function SavedMovies({ toggleShortMovie, onToggleShortMovie }) {
       mainApi.getAllSavedMovies()
         .then(res => setSaveCards(res));
     }
-  }, [loggeIn])
+  }, [loggeIn, setSaveCards]);
 
   const handleSubmit = (searchQuery) => {
     console.log(2)
-  }
+  };
+
+  const handleDeleteSaveMovie = (movie) => {
+    mainApi.deleteSavedMovie(movie)
+      .then(setSaveCards(saveCards.filter(c => c._id !== movie._id)));
+  };
 
   return (
     <div className="layout">
@@ -33,10 +38,11 @@ function SavedMovies({ toggleShortMovie, onToggleShortMovie }) {
       <MoviesCardList
         cardList={saveCards}
         typeCardBtn={{save: false}}
+        handleActionBtn={handleDeleteSaveMovie}
       />
       <Footer/>
     </div>
-  )
-}
+  );
+};
 
 export default SavedMovies;

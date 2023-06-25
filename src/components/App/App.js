@@ -25,11 +25,8 @@ function App() {
         .then((data) => {
           setCurrentUser({ ...data, loggeIn: true });
         })
-        .then(() => {
-          navigate("/", {replace: true});
-        });
     }
-  }, [navigate])
+  }, []);
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
@@ -61,6 +58,7 @@ function App() {
         <Route
           path='/signin'
           element={<Login
+            navigate={navigate}
             setLoggedIn={setCurrentUser}
           />}
         />

@@ -1,11 +1,12 @@
-import { useEffect } from 'react';
+import { useContext, useEffect } from 'react';
 import Header from '../Header/Header';
 import mainApi from '../../utils/MainApi';
 import useFormValidation from '../../hooks/useFormValidator.js';
-import { inputErrorNameList } from '../../utils/constants';
+import { CurrentUserContext } from '../../context/CurrentUserContext.js';
+import { inputErrorNameList } from '../../utils/constants.js';
 
-function Profile({ currentUser, setCurrentUser, navigate }) {
-  const { name, email } = currentUser;
+function Profile({ setCurrentUser, navigate }) {
+  const { name, email } = useContext(CurrentUserContext);
   const {
     values,
     setValues,
@@ -15,13 +16,13 @@ function Profile({ currentUser, setCurrentUser, navigate }) {
   } = useFormValidation();
 
   useEffect(() => {
-    if (currentUser) {
+    if (name && email) {
       setValues({
         name: name,
         email: email,
       });
     }
-  }, [navigate]);
+  }, [name, email, setValues]);
 
   const handleSubmit = (e) => {
     e.preventDefault();

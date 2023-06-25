@@ -13,8 +13,8 @@ import mainApi from '../../utils/MainApi.js';
 function App() {
   const navigate = useNavigate(),
         [ currentUser, setCurrentUser ] = useState({
-          name: '',
-          email: '',
+          name: null,
+          email: null,
           loggeIn: false,
         }),
         [ toggleShortMovie, setToggleShortMovie ] = useState(false)
@@ -47,7 +47,6 @@ function App() {
           path='/movies'
           element={<ProtectedRouteElement
             element={Movies}
-            currentUser={currentUser}
             toggleShortMovie={toggleShortMovie}
             onToggleShortMovie={handleToggleShortMovie}
           />}
@@ -57,7 +56,6 @@ function App() {
           path='/saved-movies'
           element={<ProtectedRouteElement
             element={SavedMovies}
-            currentUser={currentUser}
             toggleShortMovie={toggleShortMovie}
             onToggleShortMovie={handleToggleShortMovie}
           />}
@@ -67,7 +65,6 @@ function App() {
           path='/profile'
           element={<ProtectedRouteElement
             element={Profile}
-            currentUser={currentUser}
             setCurrentUser={setCurrentUser}
             navigate={navigate}
           />}

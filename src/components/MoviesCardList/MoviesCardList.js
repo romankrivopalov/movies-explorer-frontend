@@ -7,7 +7,7 @@ function MoviesCardList({ cardList, typeCardBtn, handleActionBtn }) {
       <ul className="movies-card__list">
         {cardList.map(card => (
           <MoviesCard
-            key={card.id}
+            key={card.id || card.movieId}
             movie={card}
             handleActionBtn={handleActionBtn}
             typeCardBtn={typeCardBtn}

@@ -71,6 +71,7 @@ class MainApi {
 
   getAllSavedMovies() {
     return fetch(`${this._baseUrl}/movies`, {
+      credentials: 'include',
       headers: this._headers
     })
     .then(res => this._checkStatusRequest(res));

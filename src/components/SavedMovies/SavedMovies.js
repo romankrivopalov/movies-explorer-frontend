@@ -4,7 +4,7 @@ import Header from '../Header/Header.js';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import SearchForm from '../SearchForm/SearchForm.js';
 import { CurrentUserContext } from '../../context/CurrentUserContext.js';
-import { saveCardList } from '../../utils/constants';
+import mainApi from '../../utils/MainApi.js'
 
 function SavedMovies({ toggleShortMovie, onToggleShortMovie }) {
   const { loggeIn } = useContext(CurrentUserContext);
@@ -12,7 +12,8 @@ function SavedMovies({ toggleShortMovie, onToggleShortMovie }) {
 
   useEffect(() => {
     if (loggeIn) {
-      setSaveCards(saveCardList);
+      mainApi.getAllSavedMovies()
+        .then(res => setSaveCards(res));
     }
   }, [loggeIn])
 

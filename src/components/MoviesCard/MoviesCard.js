@@ -1,4 +1,3 @@
-import { saveCardList } from '../../utils/constants';
 import { durationTitles } from '../../utils/constants.js';
 import { moviesApiSetting } from '../../utils/constants';
 import getEndLine from '../../utils/getEndLine.js';
@@ -11,7 +10,8 @@ function MoviesCard({ movie, handleActionBtn, typeCardBtn }) {
     nameRU,
     movieId
   } = movie
-  const isSavedMovieCard = saveCardList.some(i => i.movieId === movieId);
+  // const isSavedMovieCard = saveCardList.some(i => i.movieId === movieId);
+    const isSavedMovieCard = false;
 
   const getDuration = (duration, durationTitles) => {
     return getEndLine(duration, durationTitles);
@@ -32,7 +32,10 @@ function MoviesCard({ movie, handleActionBtn, typeCardBtn }) {
         </p>
       </div>
       <img
-        src={`${moviesApiSetting.baseUrl}${image.url}`}
+        src={image.url
+          ? `${moviesApiSetting.baseUrl}${image.url}`
+          : image
+        }
         alt={nameRU}
         className="card__img"
         />

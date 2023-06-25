@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Routes, Route, useNavigate } from 'react-router-dom';
 import { CurrentUserContext } from '../../context/CurrentUserContext.js';
+import ProtectedRouteElement from '../ProtectedRoute/ProtectedRoute.js';
 import Main from '../Main/Main.js';
 import Movies from '../Movies/Movies.js';
 import SavedMovies from '../SavedMovies/SavedMovies.js';
@@ -38,17 +39,24 @@ function App() {
 
         <Route
           path='/movies'
-          element={<Movies/>}
+          element={<ProtectedRouteElement
+            element={Movies}
+            currentUser={currentUser}
+          />}
         />
 
         <Route
           path='/saved-movies'
-          element={<SavedMovies/>}
+          element={<ProtectedRouteElement
+            element={SavedMovies}
+            currentUser={currentUser}
+          />}
         />
 
         <Route
           path='/profile'
-          element={<Profile
+          element={<ProtectedRouteElement
+            element={Profile}
             currentUser={currentUser}
             setCurrentUser={setCurrentUser}
             navigate={navigate}

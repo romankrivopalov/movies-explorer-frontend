@@ -12,27 +12,25 @@ import mainApi from '../../utils/MainApi.js';
 
 function App() {
   const navigate = useNavigate(),
+        userIdInLocalStorage = localStorage.getItem('userId'),
         [ currentUser, setCurrentUser ] = useState({
           name: null,
           email: null,
-          loggeIn: false,
+          loggeIn: !!userIdInLocalStorage,
         }),
         [ toggleShortMovie, setToggleShortMovie ] = useState(false)
 
   useEffect(() => {
-    const token = localStorage.getItem('userId');
-
-    if (token) {
+    if (userIdInLocalStorage) {
       mainApi.getUserInfo()
         .then((data) => {
           setCurrentUser({ ...data, loggeIn: true });
         })
     }
-  }, []);
+  }, [userIdInLocalStorage]);
 
   const handleToggleShortMovie = () => {
     setToggleShortMovie(!toggleShortMovie);
-    console.log(1)
   }
 
   return (

@@ -1,6 +1,6 @@
 import MoviesCard from "../MoviesCard/MoviesCard.js";
 
-function MoviesCardList({ cardList, typeCardBtn, handleActionBtn, handleDeleteSaveMovie }) {
+function MoviesCardList({ cardList, savedCardBtn, handleActionBtn, handleDeleteSaveMovie }) {
 
   return(
     <section className="movies-card">
@@ -10,7 +10,7 @@ function MoviesCardList({ cardList, typeCardBtn, handleActionBtn, handleDeleteSa
             key={card.id || card.movieId}
             movie={card}
             handleActionBtn={handleActionBtn}
-            typeCardBtn={typeCardBtn}
+            savedCardBtn={savedCardBtn}
           />
         ))}
       </ul>

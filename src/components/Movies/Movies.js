@@ -17,21 +17,38 @@ function Movies({
   const [ cards, setCards ] = useState([]);
 
   const handleSearch = (searchQuery) => {
-    moviesApi.getMovies()
-      .then(arrMovies => {
-        setCards(findMovies(arrMovies, searchQuery));
+    Promise.all([moviesApi.getMovies(), mainApi.getAllSavedMovies()])
+      .then(res => {
+        const [ allMoviesArr, savedMoviesArr ] = res;
+
+        const moviesList = allMoviesArr.map(movie => {
+          const savedMovie = savedMoviesArr.find(savedMovie => savedMovie.movieId === movie.id);
+
+          savedMovie ? movie.isLiked = true : movie.isLiked = false;
+
+          return movie;
+        });
+
+        return moviesList;
+      })
+      .then(moviesList => {
+        setCards(findMovies(moviesList, searchQuery));
         localStorage.setItem('searchQuery', searchQuery);
         localStorage.setItem('toggleShortMovie', toggleShortMovie);
-      });
+      })
   };
 
   const handleMovieBtnClick = (movieData) => {
-    const isSavedMovieCard = saveCards.find(i => i.movieId === movieData.id);
+    if (movieData.isLiked) {
+      const isSavedMovieCard = saveCards.find(i => i.movieId === movieData.id);
 
-    if (isSavedMovieCard) {
       handleDeleteSaveMovie(isSavedMovieCard);
     } else {
-      mainApi.postNewSavedMovie(movieData);
+      mainApi.postNewSavedMovie(movieData)
+        .then(() => {
+          movieData.isLiked = true;
+          setCards((state) => state.map((movie) => movie.id === movieData.id ? movieData : movie));
+        });
     }
   };
 
@@ -45,7 +62,7 @@ function Movies({
         onToggleShortMovie={onToggleShortMovie}/>
       <MoviesCardList
         cardList={cards}
-        typeCardBtn={{save: true}}
+        savedCardBtn={false}
         handleActionBtn={handleMovieBtnClick}
       />
       <Footer/>

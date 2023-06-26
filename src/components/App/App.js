@@ -19,7 +19,7 @@ function App() {
           loggeIn: !!userIdInLocalStorage,
         }),
         [ toggleShortMovie, setToggleShortMovie ] = useState(false),
-        [ saveCards, setSaveCards ] = useState([]); // пробросить ы сейвмуви
+        [ saveCards, setSaveCards ] = useState([]);
 
 
   useEffect(() => {
@@ -32,9 +32,10 @@ function App() {
     }
   }, [userIdInLocalStorage]);
 
-  const handleDeleteSaveMovie = (movie) => {  // пробросить ы сейвмуви
+  const handleDeleteSaveMovie = (movie) => {
+    console.log(movie)
     mainApi.deleteSavedMovie(movie)
-      .then(setSaveCards(saveCards.filter(c => c._id !== movie._id)));
+      .then(setSaveCards(saveCards.filter(c => c._id !== movie._id)))
   };
 
   const handleToggleShortMovie = () => {

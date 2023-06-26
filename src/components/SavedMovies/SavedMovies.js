@@ -37,7 +37,7 @@ function SavedMovies({
       />
       <MoviesCardList
         cardList={saveCards}
-        typeCardBtn={{save: false}}
+        savedCardBtn={true}
         handleActionBtn={handleDeleteSaveMovie}
       />
       <Footer/>

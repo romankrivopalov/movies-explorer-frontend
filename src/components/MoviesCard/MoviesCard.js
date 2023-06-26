@@ -1,17 +1,22 @@
-import { useState } from 'react';
 import { durationTitles } from '../../utils/constants.js';
 import { moviesApiSetting } from '../../utils/constants';
 import getEndLine from '../../utils/getEndLine.js';
 
-function MoviesCard({ movie, handleActionBtn, typeCardBtn }) {
+function MoviesCard({ movie, handleActionBtn, savedCardBtn }) {
   const {
           duration,
           image,
           trailer,
           nameRU,
-          movieId
+          isLiked
         } = movie,
-        [ stateBtnSaved, setStateBtnSaved ] = useState(false);
+        btnClassName = `card__btn ${
+          savedCardBtn
+            ? 'card__btn_type_delete'
+            : isLiked
+              ? 'card__btn_type_saved'
+              : 'card__btn_type_save'
+        }`
 
   const getDuration = (duration, durationTitles) => {
     return getEndLine(duration, durationTitles);
@@ -19,8 +24,6 @@ function MoviesCard({ movie, handleActionBtn, typeCardBtn }) {
 
   const handleAction = () => {
     handleActionBtn(movie); // если сохранен удалить и наоборот, проверка
-
-    if (typeCardBtn.save) setStateBtnSaved(!stateBtnSaved);
   }
 
   return (
@@ -41,19 +44,11 @@ function MoviesCard({ movie, handleActionBtn, typeCardBtn }) {
         alt={nameRU}
         className="card__img"
         />
-      { typeCardBtn.save
-        ?
-          <button
-            onClick={handleAction}
-            className={`card__btn ${stateBtnSaved ? "card__btn_type_saved" : "card__btn_type_save"}`}>
-            {!stateBtnSaved ? "Сохранить" : ""}
-          </button>
-        :
-        <button
-          onClick={handleAction}
-          className={"card__btn card__btn_type_delete"}/>
-      }
-
+      <button
+        onClick={handleAction}
+        className={btnClassName}>
+        {savedCardBtn ? "" : isLiked ? "" : "Сохранить"}
+      </button>
     </li>
   )
 }

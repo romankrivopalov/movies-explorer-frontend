@@ -26,6 +26,7 @@ function App() {
         .then((data) => {
           setCurrentUser({ ...data, loggeIn: true });
         })
+        .catch(() => localStorage.removeItem(userIdInLocalStorage));
     }
   }, [userIdInLocalStorage]);
 

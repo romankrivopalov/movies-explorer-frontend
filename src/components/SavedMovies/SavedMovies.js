@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect } from 'react';
 import Footer from '../Footer/Footer';
 import Header from '../Header/Header.js';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
@@ -6,9 +6,14 @@ import SearchForm from '../SearchForm/SearchForm.js';
 import { CurrentUserContext } from '../../context/CurrentUserContext.js';
 import mainApi from '../../utils/MainApi.js'
 
-function SavedMovies({ toggleShortMovie, onToggleShortMovie }) {
+function SavedMovies({
+  saveCards,
+  setSaveCards,
+  handleDeleteSaveMovie,
+  toggleShortMovie,
+  onToggleShortMovie
+}) {
   const { loggeIn } = useContext(CurrentUserContext);
-  const [ saveCards, setSaveCards ] = useState([]);
 
   useEffect(() => {
     if (loggeIn) {
@@ -18,12 +23,7 @@ function SavedMovies({ toggleShortMovie, onToggleShortMovie }) {
   }, [loggeIn, setSaveCards]);
 
   const handleSubmit = (searchQuery) => {
-    console.log(2)
-  };
-
-  const handleDeleteSaveMovie = (movie) => {
-    mainApi.deleteSavedMovie(movie)
-      .then(setSaveCards(saveCards.filter(c => c._id !== movie._id)));
+    console.log(2) // результат поиска
   };
 
   return (

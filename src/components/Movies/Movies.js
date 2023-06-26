@@ -7,7 +7,13 @@ import moviesApi from '../../utils/MoviesApi.js';
 import mainApi from '../../utils/MainApi.js'
 import findMovies from '../../utils/findMovies.js';
 
-function Movies({ toggleShortMovie, onToggleShortMovie }) {
+function Movies({
+  saveCards,
+  setSaveCards,
+  handleDeleteSaveMovie,
+  toggleShortMovie,
+  onToggleShortMovie
+}) {
   const [ cards, setCards ] = useState([]);
 
   const handleSearch = (searchQuery) => {
@@ -19,9 +25,14 @@ function Movies({ toggleShortMovie, onToggleShortMovie }) {
       });
   };
 
-  const handleSaveMovie = (movieData) => {
-    console.log(movieData)
-    mainApi.postNewSavedMovie(movieData);
+  const handleMovieBtnClick = (movieData) => {
+    const isSavedMovieCard = saveCards.find(i => i.movieId === movieData.id);
+
+    if (isSavedMovieCard) {
+      handleDeleteSaveMovie(isSavedMovieCard);
+    } else {
+      mainApi.postNewSavedMovie(movieData);
+    }
   };
 
   return(
@@ -35,7 +46,7 @@ function Movies({ toggleShortMovie, onToggleShortMovie }) {
       <MoviesCardList
         cardList={cards}
         typeCardBtn={{save: true}}
-        handleActionBtn={handleSaveMovie}
+        handleActionBtn={handleMovieBtnClick}
       />
       <Footer/>
     </div>

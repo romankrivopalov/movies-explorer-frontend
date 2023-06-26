@@ -18,7 +18,9 @@ function App() {
           email: null,
           loggeIn: !!userIdInLocalStorage,
         }),
-        [ toggleShortMovie, setToggleShortMovie ] = useState(false)
+        [ toggleShortMovie, setToggleShortMovie ] = useState(false),
+        [ saveCards, setSaveCards ] = useState([]); // пробросить ы сейвмуви
+
 
   useEffect(() => {
     if (userIdInLocalStorage) {
@@ -29,6 +31,11 @@ function App() {
         .catch(() => localStorage.removeItem(userIdInLocalStorage));
     }
   }, [userIdInLocalStorage]);
+
+  const handleDeleteSaveMovie = (movie) => {  // пробросить ы сейвмуви
+    mainApi.deleteSavedMovie(movie)
+      .then(setSaveCards(saveCards.filter(c => c._id !== movie._id)));
+  };
 
   const handleToggleShortMovie = () => {
     setToggleShortMovie(!toggleShortMovie);
@@ -46,6 +53,9 @@ function App() {
           path='/movies'
           element={<ProtectedRouteElement
             element={Movies}
+            saveCards={saveCards}
+            setSaveCards={setSaveCards}
+            handleDeleteSaveMovie={handleDeleteSaveMovie}
             toggleShortMovie={toggleShortMovie}
             onToggleShortMovie={handleToggleShortMovie}
           />}
@@ -55,6 +65,9 @@ function App() {
           path='/saved-movies'
           element={<ProtectedRouteElement
             element={SavedMovies}
+            saveCards={saveCards}
+            setSaveCards={setSaveCards}
+            handleDeleteSaveMovie={handleDeleteSaveMovie}
             toggleShortMovie={toggleShortMovie}
             onToggleShortMovie={handleToggleShortMovie}
           />}

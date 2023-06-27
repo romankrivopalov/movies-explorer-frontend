@@ -57,14 +57,13 @@ function Movies({
 
   const handleMovieBtnClick = (movieData) => {
     if (movieData.isLiked) {
-      const isSavedMovieCard = saveCards.find(i => i.movieId === movieData.id);
-
-      handleDeleteSaveMovie(isSavedMovieCard);
+      handleDeleteSaveMovie(movieData);
     } else {
       mainApi.postNewSavedMovie(movieData)
         .then(() => {
           movieData.isLiked = true;
           setCards((state) => state.map((movie) => movie.id === movieData.id ? movieData : movie));
+          setSaveCards([...saveCards, movieData]);
         });
     }
   };

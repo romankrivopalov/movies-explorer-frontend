@@ -13,6 +13,7 @@ import mainApi from '../../utils/MainApi.js';
 function App() {
   const navigate = useNavigate(),
         userIdInLocalStorage = localStorage.getItem('userId'),
+        [ appIsLoad, setAppIsLoad ] = useState(false),
         [ currentUser, setCurrentUser ] = useState({
           name: null,
           email: null,
@@ -29,8 +30,14 @@ function App() {
           setCurrentUser({ ...data, loggeIn: true });
         })
         .catch(() => localStorage.removeItem(userIdInLocalStorage));
+
+      mainApi.getAllSavedMovies()
+        .then(res => setSaveCards(res))
+        .finally(setAppIsLoad(true))
+    } else {
+      setAppIsLoad(true);
     }
-  }, [userIdInLocalStorage]);
+  }, []);
 
   const handleDeleteSaveMovie = (movie) => {
     mainApi.deleteSavedMovie(movie)
@@ -42,62 +49,64 @@ function App() {
   }
 
   return (
-    <CurrentUserContext.Provider value={currentUser}>
-      <Routes>
-        <Route
-          path='/'
-          element={<Main/>}
-        />
+    ( appIsLoad &&
+      <CurrentUserContext.Provider value={currentUser}>
+        <Routes>
+          <Route
+            path='/'
+            element={<Main/>}
+          />
 
-        <Route
-          path='/movies'
-          element={<ProtectedRouteElement
-            element={Movies}
-            saveCards={saveCards}
-            setSaveCards={setSaveCards}
-            handleDeleteSaveMovie={handleDeleteSaveMovie}
-            toggleShortMovie={toggleShortMovie}
-            onToggleShortMovie={handleToggleShortMovie}
-          />}
-        />
+          <Route
+            path='/movies'
+            element={<ProtectedRouteElement
+              element={Movies}
+              saveCards={saveCards}
+              setSaveCards={setSaveCards}
+              handleDeleteSaveMovie={handleDeleteSaveMovie}
+              toggleShortMovie={toggleShortMovie}
+              onToggleShortMovie={handleToggleShortMovie}
+            />}
+          />
 
-        <Route
-          path='/saved-movies'
-          element={<ProtectedRouteElement
-            element={SavedMovies}
-            saveCards={saveCards}
-            setSaveCards={setSaveCards}
-            handleDeleteSaveMovie={handleDeleteSaveMovie}
-            toggleShortMovie={toggleShortMovie}
-            onToggleShortMovie={handleToggleShortMovie}
-          />}
-        />
+          <Route
+            path='/saved-movies'
+            element={<ProtectedRouteElement
+              element={SavedMovies}
+              saveCards={saveCards}
+              setSaveCards={setSaveCards}
+              handleDeleteSaveMovie={handleDeleteSaveMovie}
+              toggleShortMovie={toggleShortMovie}
+              onToggleShortMovie={handleToggleShortMovie}
+            />}
+          />
 
-        <Route
-          path='/profile'
-          element={<ProtectedRouteElement
-            element={Profile}
-            setCurrentUser={setCurrentUser}
-            navigate={navigate}
-          />}
-        />
+          <Route
+            path='/profile'
+            element={<ProtectedRouteElement
+              element={Profile}
+              setCurrentUser={setCurrentUser}
+              navigate={navigate}
+            />}
+          />
 
-        <Route
-          path='/signin'
-          element={<Login
-            setCurrentUser={setCurrentUser}
-            navigate={navigate}
-          />}
-        />
+          <Route
+            path='/signin'
+            element={<Login
+              setCurrentUser={setCurrentUser}
+              navigate={navigate}
+            />}
+          />
 
-        <Route
-          path='/signup'
-          element={<Register
-            navigate={navigate}
-          />}
-        />
-      </Routes>
-    </CurrentUserContext.Provider>
+          <Route
+            path='/signup'
+            element={<Register
+              navigate={navigate}
+            />}
+          />
+        </Routes>
+      </CurrentUserContext.Provider>
+    )
   );
 }
 

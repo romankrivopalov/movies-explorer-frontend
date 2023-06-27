@@ -8,23 +8,22 @@ import mainApi from '../../utils/MainApi.js'
 import findMovies from '../../utils/findMovies.js';
 
 function Movies({
+  movies,
+  setMovies,
   saveMovies,
   setSaveMovies,
   handleDeleteSaveMovie,
   toggleShortMovie,
   onToggleShortMovie
 }) {
-  const [ movies, setMovies ] = useState([]),
-        [ savedSearchQueryInLS, setSavedSearchQueryInLS ] = useState('');
+  const [ savedSearchQueryInLS, setSavedSearchQueryInLS ] = useState('');
 
   useEffect(() => {
     const savedSearch = localStorage.getItem('searchQuery'),
-          savedToggle = localStorage.getItem('toggleShortMovie');
+          savedToggle = JSON.parse(localStorage.getItem('toggleShortMovie'));
 
-    if (savedSearch && savedToggle) {
+    if (savedSearch) {
       setSavedSearchQueryInLS(savedSearch);
-      onToggleShortMovie(JSON.parse(savedToggle));
-
       const savedMoviesInStorage = JSON.parse(localStorage.getItem('movies'));
 
       savedMoviesInStorage.forEach(movie => {
@@ -34,9 +33,13 @@ function Movies({
         savedMovie ? movie.isLiked = true : movie.isLiked = false;
       });
 
-      setMovies(savedMoviesInStorage);
-    };
-  }, [onToggleShortMovie, saveMovies]);
+      if (savedToggle) {
+        onToggleShortMovie(JSON.parse(savedToggle), savedMoviesInStorage);
+      } else {
+        setMovies(savedMoviesInStorage);
+      }
+    }
+  }, [saveMovies]);
 
   const handleSearch = (searchQuery) => {
     moviesApi.getMovies()

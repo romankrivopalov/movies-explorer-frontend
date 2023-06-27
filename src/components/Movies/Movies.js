@@ -41,14 +41,12 @@ function Movies({
   const handleSearch = (searchQuery) => {
     moviesApi.getMovies()
       .then(allMoviesArr => {
-        const moviesList = allMoviesArr.map(movie => {
+        allMoviesArr.forEach(movie => {
           const savedMovie = saveCards.find(savedMovie => savedMovie.movieId === movie.id);
           savedMovie ? movie.isLiked = true : movie.isLiked = false;
-
-          return movie;
         });
 
-        return moviesList;
+        return allMoviesArr;
       })
       .then(moviesList => {
         const filterMovies = findMovies(moviesList, searchQuery);

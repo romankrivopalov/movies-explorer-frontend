@@ -40,8 +40,11 @@ function App() {
   }, [userIdInLocalStorage]);
 
   const handleDeleteSaveMovie = (movie) => {
-    mainApi.deleteSavedMovie(movie)
-      .then(setSaveCards(saveCards.filter(c => c._id !== movie._id)))
+    const movieId = movie.movieId || movie.id;
+    const movieForDelete = saveCards.find(movie => movie.movieId || movie.id === movieId);
+
+    mainApi.deleteSavedMovie(movieForDelete)
+      .then(setSaveCards(saveCards.filter(c => c.movieId && movie.id !== movieId)))
   };
 
   const handleToggleShortMovie = (value) => {

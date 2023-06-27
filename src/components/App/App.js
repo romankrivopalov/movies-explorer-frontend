@@ -20,7 +20,7 @@ function App() {
           loggeIn: !!userIdInLocalStorage,
         }),
         [ toggleShortMovie, setToggleShortMovie ] = useState(false),
-        [ saveCards, setSaveCards ] = useState([]);
+        [ saveMovies, setSaveMovies ] = useState([]);
 
 
   useEffect(() => {
@@ -32,7 +32,7 @@ function App() {
         .catch(() => localStorage.removeItem(userIdInLocalStorage));
 
       mainApi.getAllSavedMovies()
-        .then(res => setSaveCards(res))
+        .then(res => setSaveMovies(res))
         .then(() => setAppIsLoad(true))
     } else {
       setAppIsLoad(true);
@@ -41,10 +41,10 @@ function App() {
 
   const handleDeleteSaveMovie = (movie) => {
     const movieId = movie.movieId || movie.id;
-    const movieForDelete = saveCards.find(movie => movie.movieId === movieId || movie.id === movieId);
+    const movieForDelete = saveMovies.find(movie => movie.movieId === movieId || movie.id === movieId);
 
     mainApi.deleteSavedMovie(movieForDelete)
-      .then(setSaveCards(saveCards.filter(c => c.movieId !== movieId && c.id !== movieId)))
+      .then(setSaveMovies(saveMovies.filter(c => c.movieId !== movieId && c.id !== movieId)))
   };
 
   const handleToggleShortMovie = (value) => {
@@ -64,8 +64,8 @@ function App() {
             path='/movies'
             element={<ProtectedRouteElement
               element={Movies}
-              saveCards={saveCards}
-              setSaveCards={setSaveCards}
+              saveMovies={saveMovies}
+              setSaveMovies={setSaveMovies}
               handleDeleteSaveMovie={handleDeleteSaveMovie}
               toggleShortMovie={toggleShortMovie}
               onToggleShortMovie={handleToggleShortMovie}
@@ -76,8 +76,7 @@ function App() {
             path='/saved-movies'
             element={<ProtectedRouteElement
               element={SavedMovies}
-              saveCards={saveCards}
-              setSaveCards={setSaveCards}
+              saveMovies={saveMovies}
               handleDeleteSaveMovie={handleDeleteSaveMovie}
               toggleShortMovie={toggleShortMovie}
               onToggleShortMovie={handleToggleShortMovie}

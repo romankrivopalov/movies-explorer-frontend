@@ -4,8 +4,7 @@ import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import SearchForm from '../SearchForm/SearchForm.js';
 
 function SavedMovies({
-  saveCards,
-  setSaveCards,
+  saveMovies,
   handleDeleteSaveMovie,
   toggleShortMovie,
   onToggleShortMovie
@@ -25,8 +24,8 @@ function SavedMovies({
         onToggleShortMovie={onToggleShortMovie}
       />
       <MoviesCardList
-        cardList={saveCards}
-        savedCardBtn={true}
+        moviesList={saveMovies}
+        savedMovieBtn={true}
         handleActionBtn={handleDeleteSaveMovie}
       />
       <Footer/>

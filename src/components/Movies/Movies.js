@@ -8,13 +8,13 @@ import mainApi from '../../utils/MainApi.js'
 import findMovies from '../../utils/findMovies.js';
 
 function Movies({
-  saveCards,
-  setSaveCards,
+  saveMovies,
+  setSaveMovies,
   handleDeleteSaveMovie,
   toggleShortMovie,
   onToggleShortMovie
 }) {
-  const [ cards, setCards ] = useState([]),
+  const [ movies, setMovies ] = useState([]),
         [ savedSearchQueryInLS, setSavedSearchQueryInLS ] = useState('');
 
   useEffect(() => {
@@ -28,21 +28,21 @@ function Movies({
       const savedMoviesInStorage = JSON.parse(localStorage.getItem('movies'));
 
       savedMoviesInStorage.forEach(movie => {
-        const savedMovie = saveCards.find(
+        const savedMovie = saveMovies.find(
           savedMovie => savedMovie.movieId === movie.id || savedMovie.id === movie.id
         );
         savedMovie ? movie.isLiked = true : movie.isLiked = false;
       });
 
-      setCards(savedMoviesInStorage);
+      setMovies(savedMoviesInStorage);
     };
-  }, [onToggleShortMovie, saveCards]);
+  }, [onToggleShortMovie, saveMovies]);
 
   const handleSearch = (searchQuery) => {
     moviesApi.getMovies()
       .then(allMoviesArr => {
         allMoviesArr.forEach(movie => {
-          const savedMovie = saveCards.find(savedMovie => savedMovie.movieId === movie.id);
+          const savedMovie = saveMovies.find(savedMovie => savedMovie.movieId === movie.id);
           savedMovie ? movie.isLiked = true : movie.isLiked = false;
         });
 
@@ -51,7 +51,7 @@ function Movies({
       .then(moviesList => {
         const filterMovies = findMovies(moviesList, searchQuery);
 
-        setCards(filterMovies);
+        setMovies(filterMovies);
         localStorage.setItem('searchQuery', searchQuery);
         localStorage.setItem('toggleShortMovie', toggleShortMovie);
         localStorage.setItem('movies', JSON.stringify(filterMovies));
@@ -63,13 +63,11 @@ function Movies({
       handleDeleteSaveMovie(movieData);
     } else {
       mainApi.postNewSavedMovie(movieData)
-        .then(savedCard => {
-          savedCard.isLiked = true;
-          setCards(movies => movies.map(movie => movie.id === savedCard.movieId ? savedCard : movie));
-          setSaveCards([...saveCards, savedCard]);
+        .then(savedMovie => {
+          savedMovie.isLiked = true;
+          setMovies(movies => movies.map(movie => movie.id === savedMovie.movieId ? savedMovie : movie));
+          setSaveMovies([...saveMovies, savedMovie]);
         });
-
-        console.log(saveCards)
     }
   };
 
@@ -83,8 +81,8 @@ function Movies({
         toggleShortMovie={toggleShortMovie}
         onToggleShortMovie={onToggleShortMovie}/>
       <MoviesCardList
-        cardList={cards}
-        savedCardBtn={false}
+        moviesList={movies}
+        savedMovieBtn={false}
         handleActionBtn={handleMovieBtnClick}
       />
       <Footer/>

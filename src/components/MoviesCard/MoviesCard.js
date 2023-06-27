@@ -2,7 +2,7 @@ import { durationTitles } from '../../utils/constants.js';
 import { moviesApiSetting } from '../../utils/constants';
 import getEndLine from '../../utils/getEndLine.js';
 
-function MoviesCard({ movie, handleActionBtn, savedCardBtn }) {
+function MoviesCard({ movie, handleActionBtn, savedMovieBtn }) {
   const {
           duration,
           image,
@@ -11,7 +11,7 @@ function MoviesCard({ movie, handleActionBtn, savedCardBtn }) {
           isLiked
         } = movie,
         btnClassName = `card__btn ${
-          savedCardBtn
+          savedMovieBtn
             ? 'card__btn_type_delete'
             : isLiked
               ? 'card__btn_type_saved'
@@ -23,7 +23,7 @@ function MoviesCard({ movie, handleActionBtn, savedCardBtn }) {
   }
 
   const handleAction = () => {
-    handleActionBtn(movie); // если сохранен удалить и наоборот, проверка
+    handleActionBtn(movie);
   }
 
   return (
@@ -47,7 +47,7 @@ function MoviesCard({ movie, handleActionBtn, savedCardBtn }) {
       <button
         onClick={handleAction}
         className={btnClassName}>
-        {savedCardBtn ? "" : isLiked ? "" : "Сохранить"}
+        {savedMovieBtn ? "" : isLiked ? "" : "Сохранить"}
       </button>
     </li>
   )

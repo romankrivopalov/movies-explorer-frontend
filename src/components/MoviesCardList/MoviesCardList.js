@@ -1,20 +1,20 @@
 import MoviesCard from "../MoviesCard/MoviesCard.js";
 
-function MoviesCardList({ cardList, savedCardBtn, handleActionBtn, handleDeleteSaveMovie }) {
+function MoviesCardList({ moviesList, savedMovieBtn, handleActionBtn }) {
 
   return(
     <section className="movies-card">
       <ul className="movies-card__list">
-        {cardList.map(card => (
+        {moviesList.map(movie => (
           <MoviesCard
-            key={card.id || card.movieId}
-            movie={card}
+            key={movie.id || movie.movieId}
+            movie={movie}
             handleActionBtn={handleActionBtn}
-            savedCardBtn={savedCardBtn}
+            savedMovieBtn={savedMovieBtn}
           />
         ))}
       </ul>
-      {cardList.length > 2 &&
+      {moviesList.length > 2 &&
         <button className="movies-card__more-btn">
           Ещё
         </button>}

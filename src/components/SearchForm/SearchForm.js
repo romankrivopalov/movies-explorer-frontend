@@ -1,23 +1,27 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
-function SearchForm({ onSubmit, toggleShortMovie, onToggleShortMovie }) {
-  const [ searchQuery, setSearchQuery ] = useState({})
+function SearchForm({ onSubmit, savedSearch, toggleShortMovie, onToggleShortMovie }) {
+  const [ searchQuery, setSearchQuery ] = useState(savedSearch);
+
+  useEffect(() => {
+    setSearchQuery(savedSearch);
+  }, [savedSearch]);
 
   const handleChange = ({ target }) => {
     const { value } = target
 
     setSearchQuery(value);
-  }
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
     onSubmit(searchQuery);
-  }
+  };
 
   const handleChecked = () => {
-    onToggleShortMovie();
-  }
+    onToggleShortMovie(!toggleShortMovie);
+  };
 
   return(
     <form
@@ -29,6 +33,7 @@ function SearchForm({ onSubmit, toggleShortMovie, onToggleShortMovie }) {
           placeholder="Фильм"
           className="search-form__input"
           onChange={handleChange}
+          value={searchQuery}
           required />
         <button
           type="submit"
@@ -52,7 +57,7 @@ function SearchForm({ onSubmit, toggleShortMovie, onToggleShortMovie }) {
           htmlFor="short-film-toggle"/>
       </label>
     </form>
-  )
-}
+  );
+};
 
 export default SearchForm;

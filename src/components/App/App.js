@@ -33,13 +33,12 @@ function App() {
   }, [userIdInLocalStorage]);
 
   const handleDeleteSaveMovie = (movie) => {
-    console.log(movie)
     mainApi.deleteSavedMovie(movie)
       .then(setSaveCards(saveCards.filter(c => c._id !== movie._id)))
   };
 
-  const handleToggleShortMovie = () => {
-    setToggleShortMovie(!toggleShortMovie);
+  const handleToggleShortMovie = (value) => {
+    setToggleShortMovie(value);
   }
 
   return (

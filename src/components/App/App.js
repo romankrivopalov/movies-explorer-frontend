@@ -37,7 +37,7 @@ function App() {
     } else {
       setAppIsLoad(true);
     }
-  }, []);
+  }, [userIdInLocalStorage]);
 
   const handleDeleteSaveMovie = (movie) => {
     mainApi.deleteSavedMovie(movie)

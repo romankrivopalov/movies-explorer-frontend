@@ -36,7 +36,7 @@ function Movies({
 
       setCards(savedMoviesInStorage);
     };
-  }, []);
+  }, [onToggleShortMovie, saveCards]);
 
   const handleSearch = (searchQuery) => {
     moviesApi.getMovies()

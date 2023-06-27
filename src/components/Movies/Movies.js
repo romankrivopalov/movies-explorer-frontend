@@ -27,17 +27,22 @@ function Movies({
 
       const savedMoviesInStorage = JSON.parse(localStorage.getItem('movies'));
 
+      savedMoviesInStorage.forEach(movie => {
+        const savedMovie = saveCards.find(
+          savedMovie => savedMovie.movieId === movie.id || savedMovie.id === movie.id
+        );
+        savedMovie ? movie.isLiked = true : movie.isLiked = false;
+      });
+
       setCards(savedMoviesInStorage);
     };
   }, []);
 
   const handleSearch = (searchQuery) => {
-    Promise.all([moviesApi.getMovies(), mainApi.getAllSavedMovies()])
-      .then(res => {
-        const [ allMoviesArr, savedMoviesArr ] = res;
-
+    moviesApi.getMovies()
+      .then(allMoviesArr => {
         const moviesList = allMoviesArr.map(movie => {
-          const savedMovie = savedMoviesArr.find(savedMovie => savedMovie.movieId === movie.id);
+          const savedMovie = saveCards.find(savedMovie => savedMovie.movieId === movie.id);
           savedMovie ? movie.isLiked = true : movie.isLiked = false;
 
           return movie;

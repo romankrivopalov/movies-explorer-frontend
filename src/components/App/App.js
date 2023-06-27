@@ -26,14 +26,14 @@ function App() {
   useEffect(() => {
     if (userIdInLocalStorage) {
       mainApi.getUserInfo()
-        .then((data) => {
+        .then(data => {
           setCurrentUser({ ...data, loggeIn: true });
         })
         .catch(() => localStorage.removeItem(userIdInLocalStorage));
 
       mainApi.getAllSavedMovies()
         .then(res => setSaveCards(res))
-        .finally(setAppIsLoad(true))
+        .then(() => setAppIsLoad(true))
     } else {
       setAppIsLoad(true);
     }

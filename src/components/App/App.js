@@ -41,10 +41,10 @@ function App() {
 
   const handleDeleteSaveMovie = (movie) => {
     const movieId = movie.movieId || movie.id;
-    const movieForDelete = saveCards.find(movie => movie.movieId || movie.id === movieId);
+    const movieForDelete = saveCards.find(movie => movie.movieId === movieId || movie.id === movieId);
 
     mainApi.deleteSavedMovie(movieForDelete)
-      .then(setSaveCards(saveCards.filter(c => c.movieId && movie.id !== movieId)))
+      .then(setSaveCards(saveCards.filter(c => c.movieId !== movieId && c.id !== movieId)))
   };
 
   const handleToggleShortMovie = (value) => {

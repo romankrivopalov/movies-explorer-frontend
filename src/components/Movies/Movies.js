@@ -63,11 +63,13 @@ function Movies({
       handleDeleteSaveMovie(movieData);
     } else {
       mainApi.postNewSavedMovie(movieData)
-        .then(() => {
-          movieData.isLiked = true;
-          setCards((state) => state.map((movie) => movie.id === movieData.id ? movieData : movie));
-          setSaveCards([...saveCards, movieData]);
+        .then(savedCard => {
+          savedCard.isLiked = true;
+          setCards(movies => movies.map(movie => movie.id === savedCard.movieId ? savedCard : movie));
+          setSaveCards([...saveCards, savedCard]);
         });
+
+        console.log(saveCards)
     }
   };
 

@@ -6,7 +6,7 @@ function SearchForm({ onSubmit, savedSearch, toggleShortMovie, onToggleShortMovi
 
   useEffect(() => {
     setSearchQuery(savedSearch);;
-  }, []);
+  }, [savedSearch]);
 
   useEffect(() => {
     setToggleState(toggleShortMovie);

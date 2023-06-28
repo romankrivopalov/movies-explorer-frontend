@@ -1,27 +1,28 @@
 import { useEffect, useState } from 'react';
+import useFormValidation from '../../hooks/useFormValidator.js';
 
 function SearchForm({ onSubmit, savedSearch, toggleShortMovie, onToggleShortMovie }) {
-  const [ searchQuery, setSearchQuery ] = useState(savedSearch),
-        [ toggleState, setToggleState ] = useState(savedSearch);
+  const [ toggleState, setToggleState ] = useState(savedSearch),
+        {
+          values,
+          setValues,
+          handleChange,
+        } = useFormValidation();
 
   useEffect(() => {
-    setSearchQuery(savedSearch);;
-  }, [savedSearch]);
+    const name = 'search-movies'
+
+    setValues({ [name]: savedSearch });
+  }, [setValues, savedSearch]);
 
   useEffect(() => {
     setToggleState(toggleShortMovie);
   }, [toggleShortMovie]);
 
-  const handleChange = ({ target }) => {
-    const { value } = target
-
-    setSearchQuery(value);
-  };
-
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    onSubmit(searchQuery);
+    onSubmit(values['search-movies']);
   };
 
   const handleChecked = () => {
@@ -35,10 +36,11 @@ function SearchForm({ onSubmit, savedSearch, toggleShortMovie, onToggleShortMovi
       <label className="search-form__wrapper">
         <input
           type="text"
+          name="search-movies"
           placeholder="Фильм"
           className="search-form__input"
           onChange={handleChange}
-          value={searchQuery}
+          value={values["search-movies"] || ""}
           required />
         <button
           type="submit"

@@ -35,11 +35,7 @@ function Movies({
         savedMovie ? movie.isLiked = true : movie.isLiked = false;
       });
 
-      if (toggleShortMovie) {
-        setMovies(selectShortMovies(savedMoviesInStorage));
-      } else {
-        setMovies(savedMoviesInStorage);
-      }
+      setMovies(savedMoviesInStorage);
     }
   }, [saveMovies]);
 
@@ -53,13 +49,12 @@ function Movies({
 
         return allMoviesArr;
       })
-      .then(moviesList => {
-        const filterMovies = findMovies(moviesList, searchQuery);
+      .then(async moviesList => {
+        await setMovies(findMovies(moviesList, searchQuery))
 
-        setMovies(filterMovies);
         localStorage.setItem('searchQuery', searchQuery);
         localStorage.setItem('toggleShortMovie', toggleShortMovie);
-        localStorage.setItem('movies', JSON.stringify(filterMovies));
+        localStorage.setItem('movies', JSON.stringify(movies));
       })
   };
 
@@ -76,6 +71,10 @@ function Movies({
     }
   };
 
+  const renderListMovies = () => {
+    return toggleShortMovie ? selectShortMovies(movies) : movies
+  }
+
   return(
     <div className="layout">
       <Header
@@ -86,7 +85,7 @@ function Movies({
         toggleShortMovie={toggleShortMovie}
         onToggleShortMovie={onToggleShortMovie}/>
       <MoviesCardList
-        moviesList={movies}
+        moviesList={renderListMovies()}
         savedMovieBtn={false}
         handleActionBtn={handleMovieBtnClick}
       />

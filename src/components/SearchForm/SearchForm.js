@@ -5,9 +5,12 @@ function SearchForm({ onSubmit, savedSearch, toggleShortMovie, onToggleShortMovi
         [ toggleState, setToggleState ] = useState(savedSearch);
 
   useEffect(() => {
-    setSearchQuery(savedSearch);
+    setSearchQuery(savedSearch);;
+  }, []);
+
+  useEffect(() => {
     setToggleState(toggleShortMovie);
-  }, [savedSearch, toggleShortMovie]);
+  }, [toggleShortMovie]);
 
   const handleChange = ({ target }) => {
     const { value } = target

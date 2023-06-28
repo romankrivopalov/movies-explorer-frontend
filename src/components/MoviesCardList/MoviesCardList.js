@@ -1,6 +1,18 @@
+import { useState, useEffect } from "react";
 import MoviesCard from "../MoviesCard/MoviesCard.js";
+import getWindowDimensions from "../../utils/getWindowDimensions.js";
 
 function MoviesCardList({ moviesList, savedMovieBtn, handleActionBtn }) {
+  const [ windowDimensions, setWindowDimensions ] = useState(getWindowDimensions());
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowDimensions(getWindowDimensions());
+    }
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   return(
     <section className="movies-card">

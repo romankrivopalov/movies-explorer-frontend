@@ -1,9 +1,13 @@
 import { useState, useEffect } from "react";
 import MoviesCard from "../MoviesCard/MoviesCard.js";
 import getWindowDimensions from "../../utils/getWindowDimensions.js";
+import getTypeCardList from "../../utils/getTypeCardList.js";
 
 function MoviesCardList({ moviesList, savedMovieBtn, handleActionBtn }) {
-  const [ windowDimensions, setWindowDimensions ] = useState(getWindowDimensions());
+  const [ windowDimensions, setWindowDimensions ] = useState(getWindowDimensions()),
+        [ loadList, setLoadList ] = useState([]),
+        [ filterList, setFilterList ] = useState([]),
+        typeConteiner = getTypeCardList(windowDimensions);
 
   useEffect(() => {
     const handleResize = () => {
@@ -14,10 +18,26 @@ function MoviesCardList({ moviesList, savedMovieBtn, handleActionBtn }) {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
+  useEffect(() => {
+    if (!savedMovieBtn) {
+      setLoadList(moviesList.slice(0, typeConteiner.loadCards));
+      setFilterList(loadList);
+    } else {
+      setFilterList(moviesList);
+    }
+  }, [moviesList, setFilterList, savedMovieBtn, windowDimensions])
+
+  const handleButtonClick = () => {
+    const loadedMovies = moviesList.slice(loadList.length, loadList.length + typeConteiner.moreCards);
+
+    setLoadList([...filterList, ...loadedMovies]);
+    setFilterList([...filterList, ...loadedMovies]);
+  }
+
   return(
     <section className="movies-card">
       <ul className="movies-card__list">
-        {moviesList.map(movie => (
+        {filterList.map(movie => (
           <MoviesCard
             key={movie.id || movie.movieId}
             movie={movie}
@@ -26,10 +46,13 @@ function MoviesCardList({ moviesList, savedMovieBtn, handleActionBtn }) {
           />
         ))}
       </ul>
-      {moviesList.length > 2 &&
-        <button className="movies-card__more-btn">
+      {!savedMovieBtn && moviesList.length > loadList.length &&
+        <button
+          className="movies-card__more-btn"
+          onClick={handleButtonClick}>
           Ещё
-        </button>}
+        </button>
+      }
     </section>
   );
 };

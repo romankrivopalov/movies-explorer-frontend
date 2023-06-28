@@ -1,11 +1,13 @@
 import { useEffect, useState } from 'react';
 
 function SearchForm({ onSubmit, savedSearch, toggleShortMovie, onToggleShortMovie }) {
-  const [ searchQuery, setSearchQuery ] = useState(savedSearch);
+  const [ searchQuery, setSearchQuery ] = useState(savedSearch),
+        [ toggleState, setToggleState ] = useState(savedSearch);
 
   useEffect(() => {
     setSearchQuery(savedSearch);
-  }, [savedSearch]);
+    setToggleState(toggleShortMovie);
+  }, [savedSearch, toggleShortMovie]);
 
   const handleChange = ({ target }) => {
     const { value } = target
@@ -20,7 +22,7 @@ function SearchForm({ onSubmit, savedSearch, toggleShortMovie, onToggleShortMovi
   };
 
   const handleChecked = () => {
-    onToggleShortMovie(!toggleShortMovie);
+    onToggleShortMovie(!toggleState);
   };
 
   return(
@@ -50,7 +52,7 @@ function SearchForm({ onSubmit, savedSearch, toggleShortMovie, onToggleShortMovi
           name="short-film-toggle"
           id="short-film-toggle"
           className="search-form__checkbox"
-          checked={toggleShortMovie}
+          checked={toggleState}
           onChange={handleChecked}/>
         <label
           className="search-form__checkbox-label"

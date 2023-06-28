@@ -9,7 +9,6 @@ import Profile from '../Profile/Profile.js';
 import Login from '../Login/Login.js';
 import Register from '../Register/Register.js';
 import mainApi from '../../utils/MainApi.js';
-import selectShortMovies from '../../utils/selectShortMovies.js';
 
 function App() {
   const navigate = useNavigate(),
@@ -22,7 +21,6 @@ function App() {
         }),
         [ movies, setMovies ] = useState([]),
         [ toggleShortMovie, setToggleShortMovie ] = useState(false),
-        [ shortMovies, setShortMovies ] = useState([]),
         [ saveMovies, setSaveMovies ] = useState([]);
 
 
@@ -50,10 +48,8 @@ function App() {
       .then(setSaveMovies(saveMovies.filter(c => c.movieId !== movieId && c.id !== movieId)))
   };
 
-  const handleToggleShortMovie = (value, moviesArr) => {
+  const handleToggleShortMovie = (value) => {
     setToggleShortMovie(value);
-
-    if (moviesArr) setMovies(selectShortMovies(moviesArr));
   }
 
   return (

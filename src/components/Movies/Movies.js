@@ -6,6 +6,7 @@ import Footer from '../Footer/Footer.js'
 import moviesApi from '../../utils/MoviesApi.js';
 import mainApi from '../../utils/MainApi.js'
 import findMovies from '../../utils/findMovies.js';
+import selectShortMovies from '../../utils/selectShortMovies.js';
 
 function Movies({
   movies,
@@ -19,11 +20,12 @@ function Movies({
   const [ savedSearchQueryInLS, setSavedSearchQueryInLS ] = useState('');
 
   useEffect(() => {
-    const savedSearch = localStorage.getItem('searchQuery'),
-          savedToggle = JSON.parse(localStorage.getItem('toggleShortMovie'));
+    const savedSearch = localStorage.getItem('searchQuery');
 
     if (savedSearch) {
       setSavedSearchQueryInLS(savedSearch);
+      onToggleShortMovie(JSON.parse(localStorage.getItem('toggleShortMovie')));
+
       const savedMoviesInStorage = JSON.parse(localStorage.getItem('movies'));
 
       savedMoviesInStorage.forEach(movie => {
@@ -33,8 +35,8 @@ function Movies({
         savedMovie ? movie.isLiked = true : movie.isLiked = false;
       });
 
-      if (savedToggle) {
-        onToggleShortMovie(JSON.parse(savedToggle), savedMoviesInStorage);
+      if (toggleShortMovie) {
+        setMovies(selectShortMovies(savedMoviesInStorage));
       } else {
         setMovies(savedMoviesInStorage);
       }

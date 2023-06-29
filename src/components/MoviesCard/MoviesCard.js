@@ -11,7 +11,7 @@ function MoviesCard({ movie, handleActionBtn, savedMovieBtn }) {
           isLiked
         } = movie,
         btnClassName = `card__btn ${
-          savedMovieBtn
+          !savedMovieBtn
             ? 'card__btn_type_delete'
             : isLiked
               ? 'card__btn_type_saved'
@@ -47,7 +47,7 @@ function MoviesCard({ movie, handleActionBtn, savedMovieBtn }) {
       <button
         onClick={handleAction}
         className={btnClassName}>
-        {savedMovieBtn ? "" : isLiked ? "" : "Сохранить"}
+        {!savedMovieBtn ? "" : isLiked ? "" : "Сохранить"}
       </button>
     </li>
   )

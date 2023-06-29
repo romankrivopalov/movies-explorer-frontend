@@ -121,8 +121,8 @@ function Movies({
       <MoviesCardList
         moviesList={renderListMovies()}
         setMoviesList={setMovies}
+        loadList={loadList}
         handleBtnMore={handleBtnMore}
-        savedMovieBtn={false}
         handleActionBtn={handleMovieBtnClick}
       />
       <Footer/>

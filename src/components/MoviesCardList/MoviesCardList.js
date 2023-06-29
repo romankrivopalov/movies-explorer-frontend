@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import MoviesCard from "../MoviesCard/MoviesCard.js";
 
 // на рендер пробросить moviesList
-function MoviesCardList({ moviesList, setMoviesList, handleBtnMore, savedMovieBtn, handleActionBtn }) {
+function MoviesCardList({ moviesList, setMoviesList, loadList, handleBtnMore, handleActionBtn }) {
 
   useEffect(() => {
     setMoviesList(moviesList);
@@ -18,13 +18,13 @@ function MoviesCardList({ moviesList, setMoviesList, handleBtnMore, savedMovieBt
               key={movie.id || movie.movieId}
               movie={movie}
               handleActionBtn={handleActionBtn}
-              savedMovieBtn={savedMovieBtn}
+              savedMovieBtn={!!loadList}
             />
           ))}
         </ul>
       }
 
-      {!savedMovieBtn && moviesList.length &&
+      {(!!loadList && moviesList.length < loadList.length) &&
         <button
           className="movies-card__more-btn"
           onClick={handleBtnMore}>

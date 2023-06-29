@@ -22,6 +22,7 @@ function Movies({
   const [ windowDimensions, setWindowDimensions ] = useState(getWindowDimensions()),
         [ searchQuery, setSearchQuery ] = useState(null),
         [ loadList, setLoadList ] = useState([]),
+        [ findMovie, setFindMovie ] = useState([]),
         typeConteiner = getTypeCardList(windowDimensions),
         [ savedSearchQueryInLS, setSavedSearchQueryInLS ] = useState(null);
 
@@ -57,12 +58,17 @@ function Movies({
         savedMovie ? movie.isLiked = true : movie.isLiked = false;
       });
 
-      if (savedMoviesInStorage.length > typeConteiner.loadCards) {
-        setMovies(savedMoviesInStorage.slice(0, typeConteiner.loadCards));
+      setLoadList(savedMoviesInStorage);
+      const shortMovieLoadList = selectShortMovies(savedMoviesInStorage);
 
-        setLoadList(savedMoviesInStorage);
-      } else {
-        setMovies(savedMoviesInStorage);
+      if (!toggleShortMovie && savedMoviesInStorage.length > typeConteiner.loadCards) {
+        setMovies(savedMoviesInStorage.slice(0, typeConteiner.loadCards));
+      } else if (!toggleShortMovie && savedMoviesInStorage.length < typeConteiner.loadCards) {
+        setMovies(savedMoviesInStorage.slice(0, typeConteiner.loadCards));
+      } else if (toggleShortMovie && shortMovieLoadList.length > typeConteiner.loadCards) {
+        setMovies(selectShortMovies(savedMoviesInStorage.slice(0, typeConteiner.loadCards)));
+      } else if (toggleShortMovie && shortMovieLoadList.length < typeConteiner.loadCards) {
+        setMovies(selectShortMovies(savedMoviesInStorage));
       }
     }
   }, [setMovies, typeConteiner.loadCards, saveMovies, toggleShortMovie, savedSearchQueryInLS]);
@@ -71,22 +77,27 @@ function Movies({
     if (searchQuery) {
       moviesApi.getMovies()
         .then(allMoviesArr => {
-          console.log(22)
           return findMovies(allMoviesArr, searchQuery);
         })
         .then(findMoviesList => {
           findMoviesList.forEach(movie => {
-            console.log(saveMovies)
             const savedMovie = saveMovies.find(savedMovie => savedMovie.movieId === movie.id);
             savedMovie ? movie.isLiked = true : movie.isLiked = false;
           });
 
-          if (findMoviesList.length > typeConteiner.loadCards) {
-            setMovies(findMoviesList.slice(0, typeConteiner.loadCards));
+          setFindMovie(findMoviesList);
 
-            setLoadList(findMoviesList);
-          } else {
-            setMovies(findMoviesList);
+          setLoadList(findMoviesList);
+          const shortMovieLoadList = selectShortMovies(findMoviesList);
+
+          if (!toggleShortMovie && findMoviesList.length > typeConteiner.loadCards) {
+            setMovies(findMoviesList.slice(0, typeConteiner.loadCards));
+          } else if (!toggleShortMovie && findMoviesList.length < typeConteiner.loadCards) {
+            setMovies(findMoviesList.slice(0, typeConteiner.loadCards));
+          } else if (toggleShortMovie && shortMovieLoadList.length > typeConteiner.loadCards) {
+            setMovies(selectShortMovies(findMoviesList.slice(0, typeConteiner.loadCards)));
+          } else if (toggleShortMovie && shortMovieLoadList.length < typeConteiner.loadCards) {
+            setMovies(selectShortMovies(findMoviesList));
           }
 
           sessionStorage.setItem('searchQuery', searchQuery);

@@ -35,13 +35,13 @@ function Movies({
   }, [windowDimensions]);
 
   useEffect(() => {
-    const savedSearch = localStorage.getItem('searchQuery');
+    const savedSearch = sessionStorage.getItem('searchQuery');
 
     if (savedSearch) {
       setSavedSearchQueryInLS(savedSearch);
-      onToggleShortMovie(JSON.parse(localStorage.getItem('toggleShortMovie')));
+      onToggleShortMovie(JSON.parse(sessionStorage.getItem('toggleShortMovie')));
 
-      const savedMoviesInStorage = JSON.parse(localStorage.getItem('movies'));
+      const savedMoviesInStorage = JSON.parse(sessionStorage.getItem('movies'));
 
       savedMoviesInStorage.forEach(movie => {
         const savedMovie = saveMovies.find(
@@ -81,9 +81,9 @@ function Movies({
             setMovies(findMoviesList);
           }
 
-          localStorage.setItem('searchQuery', searchQuery);
-          localStorage.setItem('toggleShortMovie', toggleShortMovie);
-          localStorage.setItem('movies', JSON.stringify(findMoviesList));
+          sessionStorage.setItem('searchQuery', searchQuery);
+          sessionStorage.setItem('toggleShortMovie', toggleShortMovie);
+          sessionStorage.setItem('movies', JSON.stringify(findMoviesList));
         })
     }
   }, [searchQuery, typeConteiner.loadCards])

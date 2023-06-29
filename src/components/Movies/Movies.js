@@ -23,7 +23,7 @@ function Movies({
         [ searchQuery, setSearchQuery ] = useState(null),
         [ loadList, setLoadList ] = useState([]),
         typeConteiner = getTypeCardList(windowDimensions),
-        [ savedSearchQueryInLS, setSavedSearchQueryInLS ] = useState('');
+        [ savedSearchQueryInLS, setSavedSearchQueryInLS ] = useState(null);
 
   useEffect(() => {
     function handleResize() {
@@ -35,11 +35,18 @@ function Movies({
   }, [windowDimensions]);
 
   useEffect(() => {
-    const savedSearch = sessionStorage.getItem('searchQuery');
+    setSavedSearchQueryInLS(sessionStorage.getItem('searchQuery'));
+  }, []);
 
-    if (savedSearch) {
-      setSavedSearchQueryInLS(savedSearch);
+  useEffect(() => {
+    if (savedSearchQueryInLS) {
       onToggleShortMovie(JSON.parse(sessionStorage.getItem('toggleShortMovie')));
+    }
+  }, [savedSearchQueryInLS]);
+
+  useEffect(() => {
+    if (savedSearchQueryInLS) {
+      setSavedSearchQueryInLS(savedSearchQueryInLS);
 
       const savedMoviesInStorage = JSON.parse(sessionStorage.getItem('movies'));
 
@@ -58,7 +65,7 @@ function Movies({
         setMovies(savedMoviesInStorage);
       }
     }
-  }, [setMovies, typeConteiner.loadCards, saveMovies]);
+  }, [setMovies, typeConteiner.loadCards, saveMovies, toggleShortMovie, savedSearchQueryInLS]);
 
   useEffect(() => {
     if (searchQuery) {
@@ -69,6 +76,7 @@ function Movies({
         })
         .then(findMoviesList => {
           findMoviesList.forEach(movie => {
+            console.log(saveMovies)
             const savedMovie = saveMovies.find(savedMovie => savedMovie.movieId === movie.id);
             savedMovie ? movie.isLiked = true : movie.isLiked = false;
           });
@@ -86,7 +94,7 @@ function Movies({
           sessionStorage.setItem('movies', JSON.stringify(findMoviesList));
         })
     }
-  }, [searchQuery, typeConteiner.loadCards, saveMovies])
+  }, [searchQuery, typeConteiner.loadCards, saveMovies, toggleShortMovie])
 
   const handleMovieBtnClick = (movieData) => {
     if (movieData.isLiked) {
@@ -102,11 +110,9 @@ function Movies({
   };
 
   const handleBtnMore = () => {
-    console.log(2)
-    // const loadedMovies = moviesList.slice(loadList.length, loadList.length + typeConteiner.moreCards);
+    const loadedMovies = loadList.slice(movies.length, movies.length + typeConteiner.moreCards);
 
-    // setLoadList([...filterList, ...loadedMovies]);
-    // setFilterList([...filterList, ...loadedMovies]);
+    setMovies([...movies, ...loadedMovies]);
   }
 
   const renderListMovies = () => {

@@ -1,9 +1,8 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import useFormValidation from '../../hooks/useFormValidator.js';
 
 function SearchForm({ onSubmit, savedSearch, toggleShortMovie, onToggleShortMovie }) {
-  const [ toggleState, setToggleState ] = useState(savedSearch),
-        {
+  const {
           values,
           setValues,
           handleChange,
@@ -16,8 +15,8 @@ function SearchForm({ onSubmit, savedSearch, toggleShortMovie, onToggleShortMovi
   }, [setValues, savedSearch]);
 
   useEffect(() => {
-    setToggleState(toggleShortMovie);
-  }, [toggleShortMovie]);
+    onToggleShortMovie(toggleShortMovie);
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -26,7 +25,7 @@ function SearchForm({ onSubmit, savedSearch, toggleShortMovie, onToggleShortMovi
   };
 
   const handleChecked = () => {
-    onToggleShortMovie(!toggleState);
+    onToggleShortMovie(!toggleShortMovie);
   };
 
   return(
@@ -57,7 +56,7 @@ function SearchForm({ onSubmit, savedSearch, toggleShortMovie, onToggleShortMovi
           name="short-film-toggle"
           id="short-film-toggle"
           className="search-form__checkbox"
-          checked={toggleState}
+          checked={toggleShortMovie}
           onChange={handleChecked}/>
         <label
           className="search-form__checkbox-label"

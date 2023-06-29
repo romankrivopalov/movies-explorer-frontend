@@ -58,7 +58,7 @@ function Movies({
         setMovies(savedMoviesInStorage);
       }
     }
-  }, [setMovies, typeConteiner.loadCards]);
+  }, [setMovies, typeConteiner.loadCards, saveMovies]);
 
   useEffect(() => {
     if (searchQuery) {
@@ -86,7 +86,7 @@ function Movies({
           sessionStorage.setItem('movies', JSON.stringify(findMoviesList));
         })
     }
-  }, [searchQuery, typeConteiner.loadCards])
+  }, [searchQuery, typeConteiner.loadCards, saveMovies])
 
   const handleMovieBtnClick = (movieData) => {
     if (movieData.isLiked) {

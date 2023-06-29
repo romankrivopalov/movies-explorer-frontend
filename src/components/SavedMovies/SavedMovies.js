@@ -5,6 +5,7 @@ import SearchForm from '../SearchForm/SearchForm.js';
 
 function SavedMovies({
   saveMovies,
+  setSaveMovies,
   handleDeleteSaveMovie,
   toggleShortMovie,
   onToggleShortMovie
@@ -25,6 +26,7 @@ function SavedMovies({
       />
       <MoviesCardList
         moviesList={saveMovies}
+        setMoviesList={setSaveMovies}
         savedMovieBtn={true}
         handleActionBtn={handleDeleteSaveMovie}
       />

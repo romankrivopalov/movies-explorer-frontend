@@ -7,6 +7,8 @@ import moviesApi from '../../utils/MoviesApi.js';
 import mainApi from '../../utils/MainApi.js'
 import findMovies from '../../utils/findMovies.js';
 import selectShortMovies from '../../utils/selectShortMovies.js';
+import getWindowDimensions from '../../utils/getWindowDimensions.js';
+import getTypeCardList from '../../utils/getTypeCardList.js';
 
 function Movies({
   movies,
@@ -17,7 +19,20 @@ function Movies({
   toggleShortMovie,
   onToggleShortMovie
 }) {
-  const [ savedSearchQueryInLS, setSavedSearchQueryInLS ] = useState('');
+  const [ windowDimensions, setWindowDimensions ] = useState(getWindowDimensions()),
+        [ searchQuery, setSearchQuery ] = useState(null),
+        [ loadList, setLoadList ] = useState([]),
+        typeConteiner = getTypeCardList(windowDimensions),
+        [ savedSearchQueryInLS, setSavedSearchQueryInLS ] = useState('');
+
+  useEffect(() => {
+    function handleResize() {
+      setWindowDimensions(getWindowDimensions());
+    }
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, [windowDimensions]);
 
   useEffect(() => {
     const savedSearch = localStorage.getItem('searchQuery');
@@ -35,28 +50,43 @@ function Movies({
         savedMovie ? movie.isLiked = true : movie.isLiked = false;
       });
 
-      setMovies(savedMoviesInStorage);
+      if (savedMoviesInStorage.length > typeConteiner.loadCards) {
+        setMovies(savedMoviesInStorage.slice(0, typeConteiner.loadCards));
+
+        setLoadList(savedMoviesInStorage);
+      } else {
+        setMovies(savedMoviesInStorage);
+      }
     }
-  }, [saveMovies]);
+  }, [setMovies, typeConteiner.loadCards]);
 
-  const handleSearch = (searchQuery) => {
-    moviesApi.getMovies()
-      .then(allMoviesArr => {
-        allMoviesArr.forEach(movie => {
-          const savedMovie = saveMovies.find(savedMovie => savedMovie.movieId === movie.id);
-          savedMovie ? movie.isLiked = true : movie.isLiked = false;
-        });
+  useEffect(() => {
+    if (searchQuery) {
+      moviesApi.getMovies()
+        .then(allMoviesArr => {
+          console.log(22)
+          return findMovies(allMoviesArr, searchQuery);
+        })
+        .then(findMoviesList => {
+          findMoviesList.forEach(movie => {
+            const savedMovie = saveMovies.find(savedMovie => savedMovie.movieId === movie.id);
+            savedMovie ? movie.isLiked = true : movie.isLiked = false;
+          });
 
-        return allMoviesArr;
-      })
-      .then(async moviesList => {
-        await setMovies(findMovies(moviesList, searchQuery))
+          if (findMoviesList.length > typeConteiner.loadCards) {
+            setMovies(findMoviesList.slice(0, typeConteiner.loadCards));
 
-        localStorage.setItem('searchQuery', searchQuery);
-        localStorage.setItem('toggleShortMovie', toggleShortMovie);
-        localStorage.setItem('movies', JSON.stringify(movies));
-      })
-  };
+            setLoadList(findMoviesList);
+          } else {
+            setMovies(findMoviesList);
+          }
+
+          localStorage.setItem('searchQuery', searchQuery);
+          localStorage.setItem('toggleShortMovie', toggleShortMovie);
+          localStorage.setItem('movies', JSON.stringify(findMoviesList));
+        })
+    }
+  }, [searchQuery, typeConteiner.loadCards])
 
   const handleMovieBtnClick = (movieData) => {
     if (movieData.isLiked) {
@@ -71,6 +101,14 @@ function Movies({
     }
   };
 
+  const handleBtnMore = () => {
+    console.log(2)
+    // const loadedMovies = moviesList.slice(loadList.length, loadList.length + typeConteiner.moreCards);
+
+    // setLoadList([...filterList, ...loadedMovies]);
+    // setFilterList([...filterList, ...loadedMovies]);
+  }
+
   const renderListMovies = () => {
     return toggleShortMovie ? selectShortMovies(movies) : movies
   }
@@ -80,12 +118,14 @@ function Movies({
       <Header
         theme={{ default: false }}/>
       <SearchForm
-        onSubmit={handleSearch}
+        onSubmit={setSearchQuery}
         savedSearch={savedSearchQueryInLS}
         toggleShortMovie={toggleShortMovie}
         onToggleShortMovie={onToggleShortMovie}/>
       <MoviesCardList
         moviesList={renderListMovies()}
+        setMoviesList={setMovies}
+        handleBtnMore={handleBtnMore}
         savedMovieBtn={false}
         handleActionBtn={handleMovieBtnClick}
       />

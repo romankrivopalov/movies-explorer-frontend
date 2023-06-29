@@ -80,6 +80,7 @@ function App() {
             element={<ProtectedRouteElement
               element={SavedMovies}
               saveMovies={saveMovies}
+              setSaveMovies={setSaveMovies}
               handleDeleteSaveMovie={handleDeleteSaveMovie}
               toggleShortMovie={toggleShortMovie}
               onToggleShortMovie={handleToggleShortMovie}

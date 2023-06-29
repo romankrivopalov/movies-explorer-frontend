@@ -9,6 +9,7 @@ import findMovies from '../../utils/findMovies.js';
 import selectShortMovies from '../../utils/selectShortMovies.js';
 import getWindowDimensions from '../../utils/getWindowDimensions.js';
 import getTypeCardList from '../../utils/getTypeCardList.js';
+import getFilterMovie from '../../utils/getFilterMovie.js';
 
 function Movies({
   movies,
@@ -22,8 +23,7 @@ function Movies({
   const [ windowDimensions, setWindowDimensions ] = useState(getWindowDimensions()),
         [ searchQuery, setSearchQuery ] = useState(null),
         [ loadList, setLoadList ] = useState([]),
-        [ findMovie, setFindMovie ] = useState([]),
-        typeConteiner = getTypeCardList(windowDimensions),
+        typeContainer = getTypeCardList(windowDimensions),
         [ savedSearchQueryInLS, setSavedSearchQueryInLS ] = useState(null);
 
   useEffect(() => {
@@ -59,19 +59,10 @@ function Movies({
       });
 
       setLoadList(savedMoviesInStorage);
-      const shortMovieLoadList = selectShortMovies(savedMoviesInStorage);
 
-      if (!toggleShortMovie && savedMoviesInStorage.length > typeConteiner.loadCards) {
-        setMovies(savedMoviesInStorage.slice(0, typeConteiner.loadCards));
-      } else if (!toggleShortMovie && savedMoviesInStorage.length < typeConteiner.loadCards) {
-        setMovies(savedMoviesInStorage.slice(0, typeConteiner.loadCards));
-      } else if (toggleShortMovie && shortMovieLoadList.length > typeConteiner.loadCards) {
-        setMovies(selectShortMovies(savedMoviesInStorage.slice(0, typeConteiner.loadCards)));
-      } else if (toggleShortMovie && shortMovieLoadList.length < typeConteiner.loadCards) {
-        setMovies(selectShortMovies(savedMoviesInStorage));
-      }
+      setMovies(getFilterMovie(savedMoviesInStorage, typeContainer, toggleShortMovie));
     }
-  }, [setMovies, typeConteiner.loadCards, saveMovies, toggleShortMovie, savedSearchQueryInLS]);
+  }, [setMovies, typeContainer.loadCards, saveMovies, toggleShortMovie, savedSearchQueryInLS]);
 
   useEffect(() => {
     if (searchQuery) {
@@ -85,27 +76,15 @@ function Movies({
             savedMovie ? movie.isLiked = true : movie.isLiked = false;
           });
 
-          setFindMovie(findMoviesList);
-
           setLoadList(findMoviesList);
-          const shortMovieLoadList = selectShortMovies(findMoviesList);
-
-          if (!toggleShortMovie && findMoviesList.length > typeConteiner.loadCards) {
-            setMovies(findMoviesList.slice(0, typeConteiner.loadCards));
-          } else if (!toggleShortMovie && findMoviesList.length < typeConteiner.loadCards) {
-            setMovies(findMoviesList.slice(0, typeConteiner.loadCards));
-          } else if (toggleShortMovie && shortMovieLoadList.length > typeConteiner.loadCards) {
-            setMovies(selectShortMovies(findMoviesList.slice(0, typeConteiner.loadCards)));
-          } else if (toggleShortMovie && shortMovieLoadList.length < typeConteiner.loadCards) {
-            setMovies(selectShortMovies(findMoviesList));
-          }
+          setMovies(getFilterMovie(findMoviesList, typeContainer, toggleShortMovie));
 
           sessionStorage.setItem('searchQuery', searchQuery);
           sessionStorage.setItem('toggleShortMovie', toggleShortMovie);
           sessionStorage.setItem('movies', JSON.stringify(findMoviesList));
         })
     }
-  }, [searchQuery, typeConteiner.loadCards, saveMovies, toggleShortMovie])
+  }, [searchQuery, typeContainer.loadCards, saveMovies, toggleShortMovie])
 
   const handleMovieBtnClick = (movieData) => {
     if (movieData.isLiked) {
@@ -121,7 +100,7 @@ function Movies({
   };
 
   const handleBtnMore = () => {
-    const loadedMovies = loadList.slice(movies.length, movies.length + typeConteiner.moreCards);
+    const loadedMovies = loadList.slice(movies.length, movies.length + typeContainer.moreCards);
 
     setMovies([...movies, ...loadedMovies]);
   }

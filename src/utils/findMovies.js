@@ -1,12 +1,15 @@
 function findMovies(arrMovies, searchQuery) {
   const newArr = [];
-  const search = searchQuery.toLowerCase();
 
-  arrMovies.forEach(film => {
-    if (~film.nameEN.toLowerCase().indexOf(search) || ~film.nameRU.toLowerCase().indexOf(search)) newArr.push(film)
-  });
+  if (searchQuery) {
+    const search = searchQuery.toLowerCase();
 
-  return newArr;
+    arrMovies.forEach(film => {
+      if (~film.nameEN.toLowerCase().indexOf(search) || ~film.nameRU.toLowerCase().indexOf(search)) newArr.push(film)
+    });
+
+    return newArr;
+  }
 }
 
 export default findMovies;

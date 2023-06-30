@@ -31,9 +31,9 @@ function SavedMovies({
   useEffect(() => {
     setIsLoad(false);
 
-    const findSearchMovies = findMovies(saveMovies, searchQuery);
-
     if (searchQuery) {
+      const findSearchMovies = findMovies(saveMovies, searchQuery);
+
       setFilterList(toggleShortMovie
         ? selectShortMovies(findSearchMovies)
         : findSearchMovies);
@@ -54,7 +54,6 @@ function SavedMovies({
       <MoviesCardList
         isLoad={isLoad}
         moviesList={filterList}
-        setMoviesList={setSaveMovies}
         savedMovieBtn={true}
         handleActionBtn={handleDeleteSaveMovie}
       />

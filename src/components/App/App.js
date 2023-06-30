@@ -23,7 +23,6 @@ function App() {
         [ toggleShortMovie, setToggleShortMovie ] = useState(false),
         [ saveMovies, setSaveMovies ] = useState([]);
 
-
   useEffect(() => {
     if (userIdInLocalStorage) {
       mainApi.getUserInfo()

@@ -1,12 +1,6 @@
-import { useEffect } from "react";
 import MoviesCard from "../MoviesCard/MoviesCard.js";
 
 function MoviesCardList({ isLoad, moviesList, setMoviesList, loadList, handleBtnMore, handleActionBtn }) {
-
-  useEffect(() => {
-    setMoviesList(moviesList);
-
-  }, [setMoviesList])
 
   return(
     <section className="movies-card">

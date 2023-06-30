@@ -129,7 +129,6 @@ function Movies({
       <MoviesCardList
         isLoad={isLoad}
         moviesList={movies}
-        setMoviesList={setMovies}
         loadList={loadList}
         handleBtnMore={handleBtnMore}
         handleActionBtn={handleMovieBtnClick}

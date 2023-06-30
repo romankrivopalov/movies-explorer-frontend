@@ -12,6 +12,8 @@ import getTypeCardList from '../../utils/getTypeCardList.js';
 import getFilterMovie from '../../utils/getFilterMovie.js';
 
 function Movies({
+  isLoad,
+  setIsLoad,
   movies,
   setMovies,
   saveMovies,
@@ -46,6 +48,8 @@ function Movies({
   }, [savedSearchQueryInLS]);
 
   useEffect(() => {
+    setIsLoad(false);
+
     if (savedSearchQueryInLS) {
       setSavedSearchQueryInLS(savedSearchQueryInLS);
 
@@ -63,9 +67,13 @@ function Movies({
         : savedMoviesInStorage);
       setMovies(getFilterMovie(savedMoviesInStorage, typeContainer, toggleShortMovie));
     }
+
+    setIsLoad(true);
   }, [setMovies, typeContainer.loadCards, saveMovies, toggleShortMovie, savedSearchQueryInLS]);
 
   useEffect(() => {
+    setIsLoad(false);
+
     if (searchQuery) {
       moviesApi.getMovies()
         .then(allMoviesArr => {
@@ -86,6 +94,7 @@ function Movies({
           sessionStorage.setItem('toggleShortMovie', toggleShortMovie);
           sessionStorage.setItem('movies', JSON.stringify(findMoviesList));
         })
+        .finally(() => setIsLoad(true))
     }
   }, [searchQuery, typeContainer.loadCards, saveMovies, toggleShortMovie])
 
@@ -118,6 +127,7 @@ function Movies({
         toggleShortMovie={toggleShortMovie}
         onToggleShortMovie={onToggleShortMovie}/>
       <MoviesCardList
+        isLoad={isLoad}
         moviesList={movies}
         setMoviesList={setMovies}
         loadList={loadList}

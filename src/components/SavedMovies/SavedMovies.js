@@ -4,6 +4,8 @@ import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import SearchForm from '../SearchForm/SearchForm.js';
 
 function SavedMovies({
+  isLoad,
+  setIsLoad,
   saveMovies,
   setSaveMovies,
   handleDeleteSaveMovie,
@@ -25,6 +27,7 @@ function SavedMovies({
         onToggleShortMovie={onToggleShortMovie}
       />
       <MoviesCardList
+        isLoad={isLoad}
         moviesList={saveMovies}
         setMoviesList={setSaveMovies}
         savedMovieBtn={true}

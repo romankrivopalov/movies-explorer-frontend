@@ -32,6 +32,21 @@
   color: var(--color-white-hover);
 }
 
+.movies-card__loader {
+  margin: 0 auto;
+  display: block;
+  width: 38px;
+  height: 38px;
+  background-image: url('../../images/logo.svg');
+  background-size: 100%;
+  background-repeat: no-repeat;
+  animation-duration: .7s;
+  animation-name: loaderPulse;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  animation-timing-function: ease-in;
+}
+
 @media screen and (min-width: 768px) {
   .movies-card {
     margin: 80px 30px 80px 30px;

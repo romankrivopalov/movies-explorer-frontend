@@ -13,7 +13,7 @@ import mainApi from '../../utils/MainApi.js';
 function App() {
   const navigate = useNavigate(),
         userIdInLocalStorage = localStorage.getItem('userId'),
-        [ appIsLoad, setAppIsLoad ] = useState(false),
+        [ isLoad, setIsLoad ] = useState(null),
         [ currentUser, setCurrentUser ] = useState({
           name: null,
           email: null,
@@ -34,9 +34,6 @@ function App() {
 
       mainApi.getAllSavedMovies()
         .then(res => setSaveMovies(res))
-        .then(() => setAppIsLoad(true))
-    } else {
-      setAppIsLoad(true);
     }
   }, [userIdInLocalStorage]);
 
@@ -52,8 +49,16 @@ function App() {
     setToggleShortMovie(value);
   }
 
+  const handleToggleIsLoad = (value) => {
+    if (value) {
+      setTimeout(isLoad => setIsLoad(value), 1200);
+    } else {
+      setIsLoad(false);
+    }
+  }
+
   return (
-    ( appIsLoad &&
+    (
       <CurrentUserContext.Provider value={currentUser}>
         <Routes>
           <Route
@@ -64,6 +69,8 @@ function App() {
           <Route
             path='/movies'
             element={<ProtectedRouteElement
+              isLoad={isLoad}
+              setIsLoad={handleToggleIsLoad}
               element={Movies}
               movies={movies}
               setMovies={setMovies}
@@ -78,6 +85,8 @@ function App() {
           <Route
             path='/saved-movies'
             element={<ProtectedRouteElement
+              isLoad={isLoad}
+              setIsLoad={handleToggleIsLoad}
               element={SavedMovies}
               saveMovies={saveMovies}
               setSaveMovies={setSaveMovies}

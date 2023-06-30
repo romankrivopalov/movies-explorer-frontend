@@ -1,8 +1,7 @@
 import { useEffect } from "react";
 import MoviesCard from "../MoviesCard/MoviesCard.js";
 
-// на рендер пробросить moviesList
-function MoviesCardList({ moviesList, setMoviesList, loadList, handleBtnMore, handleActionBtn }) {
+function MoviesCardList({ isLoad, moviesList, setMoviesList, loadList, handleBtnMore, handleActionBtn }) {
 
   useEffect(() => {
     setMoviesList(moviesList);
@@ -11,17 +10,20 @@ function MoviesCardList({ moviesList, setMoviesList, loadList, handleBtnMore, ha
 
   return(
     <section className="movies-card">
-      {
-        <ul className="movies-card__list">
-          {moviesList.map(movie => (
-            <MoviesCard
-              key={movie.id || movie.movieId}
-              movie={movie}
-              handleActionBtn={handleActionBtn}
-              savedMovieBtn={!!loadList}
-            />
-          ))}
-        </ul>
+      { !isLoad
+        ?
+          <span className="movies-card__loader"/>
+        :
+          <ul className="movies-card__list">
+            {moviesList.map(movie => (
+              <MoviesCard
+                key={movie.id || movie.movieId}
+                movie={movie}
+                handleActionBtn={handleActionBtn}
+                savedMovieBtn={!!loadList}
+              />
+            ))}
+          </ul>
       }
 
       {(!!loadList && moviesList.length < loadList.length) &&

@@ -1,0 +1,9 @@
+@keyframes loaderPulse {
+  from {
+    filter: grayscale(100%);
+  }
+
+  100% {
+    filter: grayscale(0);
+  }
+}

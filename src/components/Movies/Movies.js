@@ -58,8 +58,9 @@ function Movies({
         savedMovie ? movie.isLiked = true : movie.isLiked = false;
       });
 
-      setLoadList(savedMoviesInStorage);
-
+      setLoadList(toggleShortMovie
+        ? selectShortMovies(savedMoviesInStorage)
+        : savedMoviesInStorage);
       setMovies(getFilterMovie(savedMoviesInStorage, typeContainer, toggleShortMovie));
     }
   }, [setMovies, typeContainer.loadCards, saveMovies, toggleShortMovie, savedSearchQueryInLS]);
@@ -76,7 +77,9 @@ function Movies({
             savedMovie ? movie.isLiked = true : movie.isLiked = false;
           });
 
-          setLoadList(findMoviesList);
+          setLoadList(toggleShortMovie
+            ? selectShortMovies(findMoviesList)
+            : findMoviesList);
           setMovies(getFilterMovie(findMoviesList, typeContainer, toggleShortMovie));
 
           sessionStorage.setItem('searchQuery', searchQuery);
@@ -105,10 +108,6 @@ function Movies({
     setMovies([...movies, ...loadedMovies]);
   }
 
-  const renderListMovies = () => {
-    return toggleShortMovie ? selectShortMovies(movies) : movies
-  }
-
   return(
     <div className="layout">
       <Header
@@ -119,7 +118,7 @@ function Movies({
         toggleShortMovie={toggleShortMovie}
         onToggleShortMovie={onToggleShortMovie}/>
       <MoviesCardList
-        moviesList={renderListMovies()}
+        moviesList={movies}
         setMoviesList={setMovies}
         loadList={loadList}
         handleBtnMore={handleBtnMore}

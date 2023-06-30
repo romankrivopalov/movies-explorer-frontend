@@ -13,7 +13,7 @@ import mainApi from '../../utils/MainApi.js';
 function App() {
   const navigate = useNavigate(),
         userIdInLocalStorage = localStorage.getItem('userId'),
-        [ isLoad, setIsLoad ] = useState(null),
+        [ isLoad, setIsLoad ] = useState(true),
         [ currentUser, setCurrentUser ] = useState({
           name: null,
           email: null,

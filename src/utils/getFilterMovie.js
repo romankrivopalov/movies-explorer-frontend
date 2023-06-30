@@ -9,9 +9,9 @@ const getFilterMovie = (movieArr, typeContainer, toggle) => {
   } else if (!toggle && movieArr.length < typeContainer.loadCards) {
     movieNewArr = movieArr;
   } else if (toggle && shorMovietNewArr.length > typeContainer.loadCards) {
-    movieNewArr = selectShortMovies(movieArr.slice(0, typeContainer.loadCards));
+    movieNewArr = shorMovietNewArr.slice(0, typeContainer.loadCards);
   } else if (toggle && shorMovietNewArr.length < typeContainer.loadCards) {
-    movieNewArr = selectShortMovies(movieArr);
+    movieNewArr = shorMovietNewArr;
   }
 
   return movieNewArr;

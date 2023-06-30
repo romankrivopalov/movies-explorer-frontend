@@ -69,7 +69,7 @@ function Movies({
     }
 
     setIsLoad(true);
-  }, [setMovies, typeContainer.loadCards, saveMovies, toggleShortMovie, savedSearchQueryInLS]);
+  }, [setMovies, typeContainer.loadCards, saveMovies, toggleShortMovie, savedSearchQueryInLS, setLoadList]);
 
   useEffect(() => {
     setIsLoad(false);
@@ -96,7 +96,7 @@ function Movies({
         })
         .finally(() => setIsLoad(true))
     }
-  }, [searchQuery, typeContainer.loadCards, saveMovies, toggleShortMovie])
+  }, [searchQuery, typeContainer.loadCards, saveMovies, toggleShortMovie, setLoadList])
 
   const handleMovieBtnClick = (movieData) => {
     if (movieData.isLiked) {

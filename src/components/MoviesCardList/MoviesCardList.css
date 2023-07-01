@@ -33,6 +33,9 @@
 }
 
 .movies-card__loader {
+  position: absolute;
+  left: 50%;
+  top: 50%;
   margin: 0 auto;
   display: block;
   width: 38px;
@@ -40,6 +43,7 @@
   background-image: url('../../images/logo.svg');
   background-size: 100%;
   background-repeat: no-repeat;
+  transform: translateX(-50%);
   animation-duration: .7s;
   animation-name: loaderPulse;
   animation-iteration-count: infinite;

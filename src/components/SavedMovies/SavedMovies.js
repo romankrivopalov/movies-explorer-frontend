@@ -43,7 +43,7 @@ function SavedMovies({
   }, [searchQuery]);
 
   return (
-    <div className="layout">
+    <div className="layout layout_full-heigth-4row">
       <Header
         theme={{ default: false }}/>
       <SearchForm

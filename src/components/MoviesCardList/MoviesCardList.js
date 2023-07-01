@@ -20,7 +20,7 @@ function MoviesCardList({ isLoad, moviesList, setMoviesList, loadList, handleBtn
           </ul>
       }
 
-      {(!!loadList && moviesList.length < loadList.length) &&
+      {(isLoad && !!loadList && moviesList.length < loadList.length) &&
         <button
           className="movies-card__more-btn"
           onClick={handleBtnMore}>

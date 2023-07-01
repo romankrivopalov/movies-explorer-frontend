@@ -10,6 +10,7 @@ import selectShortMovies from '../../utils/selectShortMovies.js';
 import getWindowDimensions from '../../utils/getWindowDimensions.js';
 import getTypeCardList from '../../utils/getTypeCardList.js';
 import getFilterMovie from '../../utils/getFilterMovie.js';
+import { errorMessage } from '../../utils/constants.js';
 
 function Movies({
   isLoad,
@@ -85,7 +86,7 @@ function Movies({
           findMoviesList.forEach(movie => {
             const savedMovie = saveMovies.find(savedMovie => savedMovie.movieId === movie.id);
             savedMovie ? movie.isLiked = true : movie.isLiked = false;
-          });
+          })
 
           setLoadList(toggleShortMovie
             ? selectShortMovies(findMoviesList)
@@ -96,6 +97,7 @@ function Movies({
           sessionStorage.setItem('toggleShortMovie', toggleShortMovie);
           sessionStorage.setItem('movies', JSON.stringify(findMoviesList));
         })
+        .catch(() => setError(errorMessage.tryAgainLater))
         .finally(() => setIsLoad(true))
     }
   }, [searchQuery, typeContainer.loadCards, saveMovies, toggleShortMovie, setLoadList, setError])

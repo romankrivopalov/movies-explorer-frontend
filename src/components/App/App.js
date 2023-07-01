@@ -21,7 +21,8 @@ function App() {
         }),
         [ movies, setMovies ] = useState([]),
         [ toggleShortMovie, setToggleShortMovie ] = useState(false),
-        [ saveMovies, setSaveMovies ] = useState([]);
+        [ saveMovies, setSaveMovies ] = useState([]),
+        [ error, setError ] = useState(null);
 
   useEffect(() => {
     if (userIdInLocalStorage) {
@@ -78,6 +79,8 @@ function App() {
               handleDeleteSaveMovie={handleDeleteSaveMovie}
               toggleShortMovie={toggleShortMovie}
               onToggleShortMovie={handleToggleShortMovie}
+              error={error}
+              setError={setError}
             />}
           />
 

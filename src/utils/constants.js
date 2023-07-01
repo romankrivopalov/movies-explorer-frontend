@@ -52,3 +52,8 @@ const inputErrorNameList = {
   password: 'Пароль должен быть не короче 8 символов',
   searchMovies: 'Нужно ввести ключевое слово',
 }
+
+export
+const errorMessage = {
+  notFound: 'Ничего не найдено',
+}

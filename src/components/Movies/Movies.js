@@ -10,6 +10,7 @@ import selectShortMovies from '../../utils/selectShortMovies.js';
 import getWindowDimensions from '../../utils/getWindowDimensions.js';
 import getTypeCardList from '../../utils/getTypeCardList.js';
 import getFilterMovie from '../../utils/getFilterMovie.js';
+import { errorMessage } from '../../utils/constants.js';
 
 function Movies({
   isLoad,
@@ -20,7 +21,9 @@ function Movies({
   setSaveMovies,
   handleDeleteSaveMovie,
   toggleShortMovie,
-  onToggleShortMovie
+  onToggleShortMovie,
+  error,
+  setError,
 }) {
   const [ windowDimensions, setWindowDimensions ] = useState(getWindowDimensions()),
         [ searchQuery, setSearchQuery ] = useState(null),
@@ -65,7 +68,7 @@ function Movies({
       setLoadList(toggleShortMovie
         ? selectShortMovies(savedMoviesInStorage)
         : savedMoviesInStorage);
-      setMovies(getFilterMovie(savedMoviesInStorage, typeContainer, toggleShortMovie));
+      setMovies(getFilterMovie(savedMoviesInStorage, typeContainer, toggleShortMovie, setError));
     }
 
     setIsLoad(true);
@@ -88,15 +91,25 @@ function Movies({
           setLoadList(toggleShortMovie
             ? selectShortMovies(findMoviesList)
             : findMoviesList);
-          setMovies(getFilterMovie(findMoviesList, typeContainer, toggleShortMovie));
+          setMovies(getFilterMovie(findMoviesList, typeContainer, toggleShortMovie, setError));
 
           sessionStorage.setItem('searchQuery', searchQuery);
           sessionStorage.setItem('toggleShortMovie', toggleShortMovie);
           sessionStorage.setItem('movies', JSON.stringify(findMoviesList));
+
+          // return loadList
         })
+        // .then(loadList => {
+        //   console.log(loadList)
+        //   if (loadList) {
+        //     setError(errorMessage.notFound);
+        //   } else {
+        //     setError(null);
+        //   }
+        // })
         .finally(() => setIsLoad(true))
     }
-  }, [searchQuery, typeContainer.loadCards, saveMovies, toggleShortMovie, setLoadList])
+  }, [searchQuery, typeContainer.loadCards, saveMovies, toggleShortMovie, setLoadList, setError])
 
   const handleMovieBtnClick = (movieData) => {
     if (movieData.isLiked) {
@@ -130,6 +143,7 @@ function Movies({
         isLoad={isLoad}
         moviesList={movies}
         loadList={loadList}
+        error={error}
         handleBtnMore={handleBtnMore}
         handleActionBtn={handleMovieBtnClick}
       />

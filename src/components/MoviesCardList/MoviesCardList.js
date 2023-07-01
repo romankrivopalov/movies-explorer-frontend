@@ -1,12 +1,15 @@
 import MoviesCard from "../MoviesCard/MoviesCard.js";
 
-function MoviesCardList({ isLoad, moviesList, setMoviesList, loadList, handleBtnMore, handleActionBtn }) {
-
+function MoviesCardList({ isLoad, moviesList, loadList, error, handleBtnMore, handleActionBtn }) {
+console.log(moviesList)
   return(
     <section className="movies-card">
       { !isLoad
         ?
           <span className="movies-card__loader"/>
+        : isLoad && error
+        ?
+          <p className="movies-card__error">{error}</p>
         :
           <ul className="movies-card__list">
             {moviesList.map(movie => (

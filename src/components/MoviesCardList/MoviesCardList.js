@@ -1,7 +1,7 @@
 import MoviesCard from "../MoviesCard/MoviesCard.js";
 
 function MoviesCardList({ isLoad, moviesList, loadList, error, handleBtnMore, handleActionBtn }) {
-console.log(moviesList)
+
   return(
     <section className="movies-card">
       { !isLoad

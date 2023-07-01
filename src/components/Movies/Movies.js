@@ -10,7 +10,6 @@ import selectShortMovies from '../../utils/selectShortMovies.js';
 import getWindowDimensions from '../../utils/getWindowDimensions.js';
 import getTypeCardList from '../../utils/getTypeCardList.js';
 import getFilterMovie from '../../utils/getFilterMovie.js';
-import { errorMessage } from '../../utils/constants.js';
 
 function Movies({
   isLoad,
@@ -96,17 +95,7 @@ function Movies({
           sessionStorage.setItem('searchQuery', searchQuery);
           sessionStorage.setItem('toggleShortMovie', toggleShortMovie);
           sessionStorage.setItem('movies', JSON.stringify(findMoviesList));
-
-          // return loadList
         })
-        // .then(loadList => {
-        //   console.log(loadList)
-        //   if (loadList) {
-        //     setError(errorMessage.notFound);
-        //   } else {
-        //     setError(null);
-        //   }
-        // })
         .finally(() => setIsLoad(true))
     }
   }, [searchQuery, typeContainer.loadCards, saveMovies, toggleShortMovie, setLoadList, setError])

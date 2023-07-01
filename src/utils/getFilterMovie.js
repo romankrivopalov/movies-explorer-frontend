@@ -11,6 +11,20 @@ const getFilterMovie = (movieArr, typeContainer, toggle, setError) => {
     return movieNewArr = [];
   };
 
+  if (!typeContainer) {
+    if (toggle) {
+      movieNewArr = shorMovietNewArr;
+      setError(null);
+    } else {
+      movieNewArr = movieArr;
+      setError(null);
+    }
+  } else {
+    setError(errorMessage.notFound);
+
+    return movieNewArr;
+  };
+
   if (!toggle && movieArr.length > typeContainer.loadCards) {
     movieNewArr = movieArr.slice(0, typeContainer.loadCards);
     setError(null);
@@ -28,7 +42,7 @@ const getFilterMovie = (movieArr, typeContainer, toggle, setError) => {
     } else if (toggle && shorMovietNewArr.length < typeContainer.loadCards) {
       movieNewArr = shorMovietNewArr;
       setError(null);
-    };
+    }
   };
 
   return movieNewArr;

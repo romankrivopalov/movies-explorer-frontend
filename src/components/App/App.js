@@ -95,6 +95,8 @@ function App() {
               handleDeleteSaveMovie={handleDeleteSaveMovie}
               toggleShortMovie={toggleShortMovie}
               onToggleShortMovie={handleToggleShortMovie}
+              error={error}
+              setError={setError}
             />}
           />
 

@@ -1,7 +1,7 @@
 export
 const mainApiSetting = {
-  // baseUrl: 'https://api.krivo.nomoredomains.rocks',
-  baseUrl: 'http://localhost:3000',
+  baseUrl: 'https://api.krivo.nomoredomains.rocks',
+  // baseUrl: 'http://localhost:3000',
   headers: {
     authorization: 'bdecdc76-75a5-40e2-94d6-35ac4e7b5bcc',
     'Content-Type': 'application/json'

@@ -59,6 +59,7 @@ function AuthForm({ setting, handleSubmit, requestError }) {
           <input
             type="email"
             name="email"
+            pattern="[^@\s]+@[^@\s]+\.[^@\s]+"
             className={`auth-form__input ${errors.email ? "auth-form__input_error" : ""}`}
             onChange={handleChange}
             required />

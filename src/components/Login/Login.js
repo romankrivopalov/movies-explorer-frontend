@@ -1,11 +1,8 @@
 import AuthForm from '../AuthForm/AuthForm.js';
 import { errorMessage, loginFormSetting } from '../../utils/constants.js';
 import mainApi from '../../utils/MainApi.js';
-import { useState } from 'react';
 
-function Login({ setCurrentUser, navigate }) {
-  const [ requestError, setRequestError ] = useState(null);
-
+function Login({ setCurrentUser, navigate, requestError, setRequestError }) {
   const handleRegistrationUser = (userData) => {
     mainApi.getAuthorizationUser(userData)
       .then(data => {

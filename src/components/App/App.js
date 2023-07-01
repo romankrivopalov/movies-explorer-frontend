@@ -22,7 +22,8 @@ function App() {
         [ movies, setMovies ] = useState([]),
         [ toggleShortMovie, setToggleShortMovie ] = useState(false),
         [ saveMovies, setSaveMovies ] = useState([]),
-        [ error, setError ] = useState(null);
+        [ error, setError ] = useState(null),
+        [ requestError, setRequestError ] = useState(null);
 
   useEffect(() => {
     if (userIdInLocalStorage) {
@@ -114,6 +115,8 @@ function App() {
             element={<Login
               setCurrentUser={setCurrentUser}
               navigate={navigate}
+              requestError={requestError}
+              setRequestError={setRequestError}
             />}
           />
 
@@ -121,6 +124,8 @@ function App() {
             path='/signup'
             element={<Register
               navigate={navigate}
+              requestError={requestError}
+              setRequestError={setRequestError}
             />}
           />
         </Routes>

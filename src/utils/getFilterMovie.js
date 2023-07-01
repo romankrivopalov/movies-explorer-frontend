@@ -15,14 +15,14 @@ const getFilterMovie = (movieArr, typeContainer, toggle, setError) => {
     if (toggle) {
       movieNewArr = shorMovietNewArr;
       setError(null);
-    } else {
+    } else if (!toggle) {
       movieNewArr = movieArr;
       setError(null);
-    }
-  } else {
-    setError(errorMessage.notFound);
+    } else {
+      setError(errorMessage.notFound);
 
-    return movieNewArr;
+      return movieNewArr;
+    }
   };
 
   if (!toggle && movieArr.length > typeContainer.loadCards) {

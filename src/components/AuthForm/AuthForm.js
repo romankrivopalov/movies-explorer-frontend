@@ -3,7 +3,7 @@ import Header from '../Header/Header.js';
 import useFormValidation from '../../hooks/useFormValidator.js';
 import { inputErrorNameList } from '../../utils/constants.js';
 
-function AuthForm({ setting, handleSubmit }) {
+function AuthForm({ setting, handleSubmit, requestError }) {
   const {
     values,
     errors,
@@ -78,7 +78,12 @@ function AuthForm({ setting, handleSubmit }) {
             onChange={handleChange}
             required />
           <span className="auth-form__span-error">
-            {errors[currentInputName] ? inputErrorNameList[currentInputName] : ""}
+            {errors[currentInputName]
+              ? inputErrorNameList[currentInputName]
+              : ""
+              ? requestError
+              : requestError
+            }
           </span>
         </div>
 

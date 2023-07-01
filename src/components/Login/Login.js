@@ -1,8 +1,11 @@
 import AuthForm from '../AuthForm/AuthForm.js';
-import { loginFormSetting } from '../../utils/constants.js';
+import { errorMessage, loginFormSetting } from '../../utils/constants.js';
 import mainApi from '../../utils/MainApi.js';
+import { useState } from 'react';
 
 function Login({ setCurrentUser, navigate }) {
+  const [ requestError, setRequestError ] = useState(null);
+
   const handleRegistrationUser = (userData) => {
     mainApi.getAuthorizationUser(userData)
       .then(data => {
@@ -13,15 +16,18 @@ function Login({ setCurrentUser, navigate }) {
           setCurrentUser(oldState => ({ name, email, loggeIn: true }));
           navigate('/movies');
         };
+
+        setCurrentUser(null);
       })
-      .catch((err) => console.log(err));
+      .catch(() => setRequestError(errorMessage.errorRequest));
   }
 
   return (
     <div className="layout layout_full-heigth-1row">
       <AuthForm
         setting={loginFormSetting}
-        handleSubmit={handleRegistrationUser}/>
+        handleSubmit={handleRegistrationUser}
+        requestError={requestError}/>
     </div>
   );
 };

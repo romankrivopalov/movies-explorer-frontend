@@ -39,7 +39,7 @@ function Profile({ setCurrentUser, navigate }) {
       email: '',
       loggeIn: false,
     });
-    navigate("/signin", {replace: true});
+    navigate("/", {replace: true});
   }
 
   return (

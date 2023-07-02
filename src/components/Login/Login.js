@@ -13,8 +13,6 @@ function Login({ setCurrentUser, navigate, requestError, setRequestError }) {
           setCurrentUser(oldState => ({ name, email, loggeIn: true }));
           navigate('/movies');
         };
-
-        setCurrentUser(null);
       })
       .catch(() => setRequestError(errorMessage.errorRequest));
   }

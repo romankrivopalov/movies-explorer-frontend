@@ -6,7 +6,7 @@ function MoviesCard({ movie, handleActionBtn, savedMovieBtn }) {
   const {
           duration,
           image,
-          trailer,
+          trailerLink,
           nameRU,
           isLiked
         } = movie,
@@ -36,14 +36,20 @@ function MoviesCard({ movie, handleActionBtn, savedMovieBtn }) {
           {getDuration(duration, durationTitles)}
         </p>
       </div>
-      <img
-        src={image.url
-          ? `${moviesApiSetting.baseUrl}${image.url}`
-          : image
-        }
-        alt={nameRU}
-        className="card__img"
-        />
+      <a
+        className='card__link'
+        href={trailerLink}
+        target="_blank"
+        rel="noreferrer">
+        <img
+          src={image.url
+            ? `${moviesApiSetting.baseUrl}${image.url}`
+            : image
+          }
+          alt={nameRU}
+          className="card__img"
+          />
+      </a>
       <button
         onClick={handleAction}
         className={btnClassName}>

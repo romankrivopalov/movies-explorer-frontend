@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Routes, Route, useNavigate } from 'react-router-dom';
+import { Routes, Route, useNavigate, Navigate } from 'react-router-dom';
 import { CurrentUserContext } from '../../context/CurrentUserContext.js';
 import ProtectedRouteElement from '../ProtectedRoute/ProtectedRoute.js';
 import Main from '../Main/Main.js';
@@ -113,21 +113,31 @@ function App() {
 
           <Route
             path='/signin'
-            element={<Login
-              setCurrentUser={setCurrentUser}
-              navigate={navigate}
-              requestError={requestError}
-              setRequestError={setRequestError}
-            />}
+            element={!currentUser.loggeIn
+              ?
+                <Login
+                  setCurrentUser={setCurrentUser}
+                  navigate={navigate}
+                  requestError={requestError}
+                  setRequestError={setRequestError}
+                />
+              :
+                <Navigate to='/movies'/>
+            }
           />
 
           <Route
             path='/signup'
-            element={<Register
-              navigate={navigate}
-              requestError={requestError}
-              setRequestError={setRequestError}
-            />}
+            element={!currentUser.loggeIn
+              ?
+                <Register
+                  navigate={navigate}
+                  requestError={requestError}
+                  setRequestError={setRequestError}
+                />
+              :
+                <Navigate to='/movies'/>
+            }
           />
 
           <Route

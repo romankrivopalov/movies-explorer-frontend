@@ -9,6 +9,7 @@ import Profile from '../Profile/Profile.js';
 import Login from '../Login/Login.js';
 import Register from '../Register/Register.js';
 import mainApi from '../../utils/MainApi.js';
+import NotFound from '../NotFound/NotFound.js';
 
 function App() {
   const navigate = useNavigate(),
@@ -127,6 +128,11 @@ function App() {
               requestError={requestError}
               setRequestError={setRequestError}
             />}
+          />
+
+          <Route
+            path='*'
+            element={<NotFound/>}
           />
         </Routes>
       </CurrentUserContext.Provider>

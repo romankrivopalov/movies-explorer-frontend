@@ -6,7 +6,7 @@ const ProtectedRouteElement = ({ element: Component, ...props }) => {
   const { loggeIn } = useContext(CurrentUserContext);
 
   return (
-    loggeIn ? <Component {...props} /> : <Navigate to="/signin" replace />
+    loggeIn ? <Component {...props} /> : <Navigate to="/" replace />
 )};
 
 export default ProtectedRouteElement;

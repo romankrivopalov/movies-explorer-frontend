@@ -1,8 +1,6 @@
-function NotFound ({ navigate }) {
-  const handleGoBack = () => {
-    navigate(-1);
-  }
+import { Link } from "react-router-dom";
 
+function NotFound () {
   return (
     <section className="not-found">
       <h2 className="not-found__title">
@@ -12,11 +10,11 @@ function NotFound ({ navigate }) {
         className="not-found__text">
         Страница не найдена
       </p>
-      <button
-        className="not-found__btn"
-        onClick={handleGoBack}>
+      <Link
+        className="not-found__link"
+        to={-1}>
         Назад
-      </button>
+      </Link>
     </section>
   )
 }

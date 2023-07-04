@@ -14,7 +14,7 @@ import NotFound from '../NotFound/NotFound.js';
 function App() {
   const navigate = useNavigate(),
         userIdInLocalStorage = localStorage.getItem('userId'),
-        [ isLoad, setIsLoad ] = useState(true),
+        [ isLoad, setIsLoad ] = useState(false),
         [ currentUser, setCurrentUser ] = useState({
           name: null,
           email: null,
@@ -52,11 +52,7 @@ function App() {
   }
 
   const handleToggleIsLoad = (value) => {
-    if (value) {
-      setIsLoad(true);
-    } else {
-      setIsLoad(true);
-    }
+    setIsLoad(value);
   }
 
   return (

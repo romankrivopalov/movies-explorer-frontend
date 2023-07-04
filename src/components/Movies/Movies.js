@@ -51,7 +51,7 @@ function Movies({
   }, [savedSearchQueryInLS]);
 
   useEffect(() => {
-    setIsLoad(false);
+    setIsLoad(true);
 
     if (savedSearchQueryInLS) {
       setSavedSearchQueryInLS(savedSearchQueryInLS);
@@ -71,11 +71,11 @@ function Movies({
       setMovies(getFilterMovie(savedMoviesInStorage, typeContainer, toggleShortMovie, setError));
     }
 
-    setIsLoad(true);
+    setIsLoad(false);
   }, [setMovies, typeContainer.loadCards, saveMovies, toggleShortMovie, savedSearchQueryInLS, setLoadList]);
 
   useEffect(() => {
-    setIsLoad(false);
+    setIsLoad(true);
 
     if (searchQuery) {
       moviesApi.getMovies()
@@ -98,7 +98,7 @@ function Movies({
           sessionStorage.setItem('movies', JSON.stringify(findMoviesList));
         })
         .catch(() => setError(errorMessage.tryAgainLater))
-        .finally(() => setIsLoad(true))
+        .finally(() => setIsLoad(false))
     }
   }, [searchQuery, typeContainer.loadCards, saveMovies, toggleShortMovie, setLoadList, setError])
 

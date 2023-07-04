@@ -33,7 +33,12 @@ function Profile({ setCurrentUser, navigate }) {
 
   const handleLogout = () => {
     mainApi.getLogoutUser();
+
     localStorage.clear('userId');
+    sessionStorage.clear('movies');
+    sessionStorage.clear('searchQuery');
+    sessionStorage.clear('toggleShortMovie');
+
     setCurrentUser({
       name: '',
       email: '',

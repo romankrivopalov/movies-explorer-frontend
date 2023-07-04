@@ -53,9 +53,9 @@ function App() {
 
   const handleToggleIsLoad = (value) => {
     if (value) {
-      setTimeout(isLoad => setIsLoad(value), 1200);
+      setIsLoad(true);
     } else {
-      setIsLoad(false);
+      setIsLoad(true);
     }
   }
 

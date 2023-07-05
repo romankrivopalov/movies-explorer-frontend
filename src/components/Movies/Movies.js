@@ -42,6 +42,7 @@ function Movies({
 
   useEffect(() => {
     setSearchQuery(sessionStorage.getItem('searchQuery'));
+    onToggleShortMovie(JSON.parse(sessionStorage.getItem('toggleShortMovie')));
   }, []);
 
   useEffect(() => {

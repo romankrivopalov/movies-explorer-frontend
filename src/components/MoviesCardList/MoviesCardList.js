@@ -4,7 +4,7 @@ function MoviesCardList({ isLoad, moviesList, loadList, error, handleBtnMore, ha
 
   return(
     <section className="movies-card">
-      { isLoad
+      { isLoad && !moviesList
         ?
           <span className="movies-card__loader"/>
         : error

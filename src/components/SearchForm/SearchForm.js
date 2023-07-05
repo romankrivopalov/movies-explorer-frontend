@@ -56,7 +56,7 @@ function SearchForm({ onSubmit, savedSearch, toggleShortMovie, onToggleShortMovi
           name="short-film-toggle"
           id="short-film-toggle"
           className="search-form__checkbox"
-          checked={toggleShortMovie}
+          checked={!!toggleShortMovie}
           onChange={handleChecked}/>
         <label
           className="search-form__checkbox-label"

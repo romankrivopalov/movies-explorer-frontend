@@ -1,4 +1,4 @@
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import Header from '../Header/Header';
 import mainApi from '../../utils/MainApi';
 import useFormValidation from '../../hooks/useFormValidator.js';
@@ -6,14 +6,15 @@ import { CurrentUserContext } from '../../context/CurrentUserContext.js';
 import { inputErrorNameList } from '../../utils/constants.js';
 
 function Profile({ setCurrentUser, navigate }) {
-  const { name, email } = useContext(CurrentUserContext);
-  const {
-    values,
-    setValues,
-    errors,
-    isValid,
-    handleChange,
-  } = useFormValidation();
+  const { name, email } = useContext(CurrentUserContext),
+        { values,
+          setValues,
+          errors,
+          isValid,
+          handleChange,
+        } = useFormValidation(),
+        [ responseError, setResponseError ] = useState(null),
+        [ responseSuccess, setResponseSuccess ] = useState(null);
 
   useEffect(() => {
     if (name && email) {
@@ -28,7 +29,11 @@ function Profile({ setCurrentUser, navigate }) {
     e.preventDefault();
 
     mainApi.setUserInfo({ name: values['name'], email: values['email'], })
-      .then(data => setCurrentUser({ ...data, loggeIn: true }))
+      .then(data => {
+        setCurrentUser({ ...data, loggeIn: true })
+        setResponseSuccess('Данные успешно изменены')
+      })
+      .catch(err => setResponseError('Пользователь с таким E-mail уже зарегистрирован'))
   }
 
   const handleLogout = () => {
@@ -81,7 +86,9 @@ function Profile({ setCurrentUser, navigate }) {
               }`}
             />
           </label>
+
           <span className="profile__divider"/>
+
           <label className="profile__input-container">
             <span
               className={`profile__input-label ${
@@ -100,6 +107,10 @@ function Profile({ setCurrentUser, navigate }) {
               }`}
             />
           </label>
+
+          <span className={`profile__info ${responseSuccess ? 'profile__info_type_success' : responseError ? 'profile__info_type_error' : ''}`}>
+            {(responseSuccess ?? '') || (responseError ?? '')}
+          </span>
         </form>
 
         <div className="profile__wrapper">

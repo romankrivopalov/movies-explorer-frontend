@@ -4,7 +4,7 @@ function MoviesCardList({ isLoad, moviesList, loadList, error, handleBtnMore, ha
 
   return(
     <section className="movies-card">
-      { !isLoad
+      { isLoad
         ?
           <span className="movies-card__loader"/>
         : error
@@ -23,7 +23,7 @@ function MoviesCardList({ isLoad, moviesList, loadList, error, handleBtnMore, ha
           </ul>
       }
 
-      {(isLoad && !!loadList && moviesList.length < loadList.length) &&
+      {(!isLoad && !!loadList && moviesList.length < loadList.length) &&
         <button
           className="movies-card__more-btn"
           onClick={handleBtnMore}>

@@ -47,7 +47,6 @@
   animation-duration: .7s;
   animation-name: loaderPulse;
   animation-iteration-count: infinite;
-  /* animation-direction: alternate; */
   animation-timing-function: ease-in;
 }
 

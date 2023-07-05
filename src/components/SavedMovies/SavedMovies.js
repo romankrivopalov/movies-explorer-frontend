@@ -21,15 +21,15 @@ function SavedMovies({
         [ searchQuery, setSearchQuery ] = useState(null);
 
   useEffect(() => {
-    setIsLoad(false);
+    setIsLoad(true);
 
     setFilterList(getFilterMovie(saveMovies, false, toggleShortMovie, setError));
 
-    setIsLoad(true);
+    setIsLoad(false);
   }, [saveMovies, toggleShortMovie]);
 
   useEffect(() => {
-    setIsLoad(false);
+    setIsLoad(true);
 
     if (searchQuery) {
       const findSearchMovies = findMovies(saveMovies, searchQuery);
@@ -39,7 +39,7 @@ function SavedMovies({
       setFilterList(getFilterMovie(saveMovies, false, toggleShortMovie, setError));
     }
 
-    setIsLoad(true);
+    setIsLoad(false);
   }, [searchQuery]);
 
   return (

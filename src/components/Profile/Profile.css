@@ -98,6 +98,7 @@
 
 .profile__btn-submit:disabled {
   color: #8B8B8B;
+  cursor: auto;
 }
 
 .profile__btn-exit {

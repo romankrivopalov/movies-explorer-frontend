@@ -76,7 +76,6 @@ function Profile({ setCurrentUser, navigate }) {
               onChange={handleChange}
               minLength={2}
               maxLength={30}
-              required={true}
               className={`profile__input ${
                 errors.name ? 'profile__input_error' : ''
               }`}
@@ -96,7 +95,6 @@ function Profile({ setCurrentUser, navigate }) {
               id="profile-input-email"
               value={values?.email || ''}
               onChange={handleChange}
-              required={true}
               className={`profile__input ${
                 errors.email ? 'profile__input_error' : ''
               }`}

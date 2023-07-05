@@ -89,6 +89,8 @@ function Movies({
   }
 
   const handleSubmit = (search) => {
+    setIsLoad(true);
+
     if (!savedMoviesInLS) {
       moviesApi.getMovies()
         .then(allMoviesArr => {
@@ -107,6 +109,8 @@ function Movies({
       setSearchQuery(search)
 
       sessionStorage.setItem('toggleShortMovie', toggleShortMovie);
+
+      setIsLoad(false);
     }
   }
 

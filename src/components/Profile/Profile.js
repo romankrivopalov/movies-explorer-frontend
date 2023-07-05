@@ -11,6 +11,7 @@ function Profile({ setCurrentUser, navigate }) {
           setValues,
           errors,
           isValid,
+          setIsValid,
           handleChange,
         } = useFormValidation(),
         [ responseError, setResponseError ] = useState(null),
@@ -25,16 +26,25 @@ function Profile({ setCurrentUser, navigate }) {
     }
   }, [name, email, setValues]);
 
+  useEffect(() => {
+    if (name === values['name'] && email === values['email']) {
+      setIsValid(false);
+    }
+  }, [values])
+
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    setIsValid(false)
 
     mainApi.setUserInfo({ name: values['name'], email: values['email'], })
       .then(data => {
         setCurrentUser({ ...data, loggeIn: true })
         setResponseSuccess('Данные успешно изменены')
+        setIsValid(true)
       })
       .catch(err => setResponseError('Пользователь с таким E-mail уже зарегистрирован'))
-  }
+  };
 
   const handleLogout = () => {
     mainApi.getLogoutUser();

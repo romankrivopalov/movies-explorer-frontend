@@ -43,15 +43,14 @@ function Movies({
   useEffect(() => {
     setSearchQuery(sessionStorage.getItem('searchQuery'));
     onToggleShortMovie(JSON.parse(sessionStorage.getItem('toggleShortMovie')));
+    setSavedMoviesInLS(JSON.parse(localStorage.getItem('movies')));
   }, []);
 
   useEffect(() => {
     setIsLoad(true);
 
     if (searchQuery) {
-      const savedMoviesInStorage = JSON.parse(localStorage.getItem('movies'));
-
-      const findMoviesList = findMovies(savedMoviesInStorage, searchQuery);
+      const findMoviesList = findMovies(savedMoviesInLS, searchQuery);
 
       findMoviesList.forEach(movie => {
         const savedMovie = saveMovies.find(

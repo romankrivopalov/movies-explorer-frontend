@@ -36,6 +36,7 @@ function App() {
 
       mainApi.getAllSavedMovies()
         .then(res => setSaveMovies(res))
+        .catch(err => console.log(err))
     }
   }, [userIdInLocalStorage]);
 
@@ -45,6 +46,7 @@ function App() {
 
     mainApi.deleteSavedMovie(movieForDelete)
       .then(setSaveMovies(saveMovies.filter(c => c.movieId !== movieId && c.id !== movieId)))
+      .catch(err => console.log(err))
   };
 
   const handleToggleShortMovie = (value) => {

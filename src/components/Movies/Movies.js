@@ -85,7 +85,8 @@ function Movies({
           savedMovie.isLiked = true;
           setMovies(movies => movies.map(movie => movie.id === savedMovie.movieId ? savedMovie : movie));
           setSaveMovies([...saveMovies, savedMovie]);
-        });
+        })
+        .catch(err => console.log(err))
     }
   };
 

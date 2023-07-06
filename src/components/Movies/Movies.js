@@ -66,11 +66,18 @@ function Movies({
     }
 
     setIsLoad(false);
-  }, [savedMoviesInLS, searchQuery, typeContainer.loadCards, toggleShortMovie, saveMovies]);
+  }, [savedMoviesInLS, searchQuery, typeContainer.loadCards, toggleShortMovie]);
 
   const handleMovieBtnClick = (movieData) => {
+    const movieId = movieData.id || movieData.movieId;
+
     if (movieData.isLiked) {
+      movieData.isLiked = false;
+
       handleDeleteSaveMovie(movieData);
+
+      const findMovie = savedMoviesInLS.find(movie => movie.id === movieId)
+      setMovies(movies => movies.map(movie => movie.movieId === movieId ? findMovie : movie));
     } else {
       mainApi.postNewSavedMovie(movieData)
         .then(savedMovie => {

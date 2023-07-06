@@ -13,6 +13,7 @@ import getFilterMovie from '../../utils/getFilterMovie.js';
 import { errorMessage } from '../../utils/constants.js';
 
 function Movies({
+  currentUser,
   isLoad,
   setIsLoad,
   movies,
@@ -66,7 +67,7 @@ function Movies({
     }
 
     setIsLoad(false);
-  }, [savedMoviesInLS, searchQuery, typeContainer.loadCards, toggleShortMovie]);
+  }, [currentUser, searchQuery, typeContainer.loadCards, toggleShortMovie]);
 
   const handleMovieBtnClick = (movieData) => {
     const movieId = movieData.id || movieData.movieId;

@@ -67,6 +67,7 @@ function App() {
           <Route
             path='/movies'
             element={<ProtectedRouteElement
+              currentUser={currentUser}
               isLoad={isLoad}
               setIsLoad={handleToggleIsLoad}
               element={Movies}

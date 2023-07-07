@@ -46,6 +46,7 @@ function SavedMovies({
       <Header
         theme={{ default: false }}/>
       <SearchForm
+        isLoad={isLoad}
         onSubmit={setSearchQuery}
         toggleShortMovie={toggleShortMovie}
         onToggleShortMovie={onToggleShortMovie}

@@ -128,6 +128,7 @@ function Movies({
       <Header
         theme={{ default: false }}/>
       <SearchForm
+        isLoad={isLoad}
         onSubmit={handleSubmit}
         savedSearch={searchQuery}
         toggleShortMovie={toggleShortMovie}

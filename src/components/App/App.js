@@ -57,6 +57,24 @@ function App() {
     setIsLoad(value);
   }
 
+  const setClearValues = () => {
+    const movieArrs = [ setMovies, setSaveMovies ],
+          valueArrs = [ setIsLoad, setToggleShortMovie, setError, setRequestError ]
+
+    movieArrs.forEach(i => i([]));
+    valueArrs.forEach(i => i(null));
+    setCurrentUser({
+      name: '',
+      email: '',
+      loggeIn: false,
+    });
+
+    localStorage.clear('userId');
+    sessionStorage.clear('movies');
+    sessionStorage.clear('searchQuery');
+    sessionStorage.clear('toggleShortMovie');
+  }
+
   return (
     (
       <CurrentUserContext.Provider value={currentUser}>
@@ -107,6 +125,7 @@ function App() {
               element={Profile}
               setCurrentUser={setCurrentUser}
               navigate={navigate}
+              setClearValues={setClearValues}
             />}
           />
 

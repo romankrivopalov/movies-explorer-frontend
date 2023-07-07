@@ -5,7 +5,7 @@ import useFormValidation from '../../hooks/useFormValidator.js';
 import { CurrentUserContext } from '../../context/CurrentUserContext.js';
 import { inputErrorNameList } from '../../utils/constants.js';
 
-function Profile({ setCurrentUser, navigate }) {
+function Profile({ setCurrentUser, navigate, setClearValues }) {
   const { name, email } = useContext(CurrentUserContext),
         { values,
           setValues,
@@ -47,19 +47,12 @@ function Profile({ setCurrentUser, navigate }) {
   };
 
   const handleLogout = () => {
-    mainApi.getLogoutUser();
-
-    localStorage.clear('userId');
-    sessionStorage.clear('movies');
-    sessionStorage.clear('searchQuery');
-    sessionStorage.clear('toggleShortMovie');
-
-    setCurrentUser({
-      name: '',
-      email: '',
-      loggeIn: false,
-    });
-    navigate("/", {replace: true});
+    mainApi.getLogoutUser()
+      .then(() => {
+        setClearValues();
+        navigate("/", {replace: true});
+      })
+      .catch(err => console.log(err))
   }
 
   return (

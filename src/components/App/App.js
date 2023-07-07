@@ -10,10 +10,11 @@ import Login from '../Login/Login.js';
 import Register from '../Register/Register.js';
 import mainApi from '../../utils/MainApi.js';
 import NotFound from '../NotFound/NotFound.js';
+import { STORAGE_DATA_NAME } from '../../utils/constants.js';
 
 function App() {
   const navigate = useNavigate(),
-        userIdInLocalStorage = localStorage.getItem('userId'),
+        userIdInLocalStorage = localStorage.getItem(STORAGE_DATA_NAME.userId),
         [ isLoad, setIsLoad ] = useState(false),
         [ currentUser, setCurrentUser ] = useState({
           name: null,
@@ -69,10 +70,10 @@ function App() {
       loggeIn: false,
     });
 
-    localStorage.clear('userId');
-    sessionStorage.clear('movies');
-    sessionStorage.clear('searchQuery');
-    sessionStorage.clear('toggleShortMovie');
+    localStorage.clear(STORAGE_DATA_NAME.userId);
+    sessionStorage.clear(STORAGE_DATA_NAME.movies);
+    sessionStorage.clear(STORAGE_DATA_NAME.searchQuery);
+    sessionStorage.clear(STORAGE_DATA_NAME.toggleShortMovie);
   }
 
   return (

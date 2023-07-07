@@ -1,4 +1,4 @@
-import { moviesApiSetting } from './constants.js'
+import { MOVIES_API_SETTING } from './constants.js'
 
 class MoviesApi {
   constructor(options) {
@@ -22,6 +22,6 @@ class MoviesApi {
   };
 }
 
-const moviesApi = new MoviesApi(moviesApiSetting);
+const moviesApi = new MoviesApi(MOVIES_API_SETTING);
 
 export default moviesApi;

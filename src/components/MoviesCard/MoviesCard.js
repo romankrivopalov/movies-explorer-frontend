@@ -1,5 +1,5 @@
-import { durationTitles } from '../../utils/constants.js';
-import { moviesApiSetting } from '../../utils/constants';
+import { DURATION_TITLES } from '../../utils/constants.js';
+import { MOVIES_API_SETTING } from '../../utils/constants';
 import getEndLine from '../../utils/getEndLine.js';
 
 function MoviesCard({ movie, handleActionBtn, savedMovieBtn }) {
@@ -33,7 +33,7 @@ function MoviesCard({ movie, handleActionBtn, savedMovieBtn }) {
           {nameRU}
         </h2>
         <p className="card__duration">
-          {getDuration(duration, durationTitles)}
+          {getDuration(duration, DURATION_TITLES)}
         </p>
       </div>
       <a
@@ -43,7 +43,7 @@ function MoviesCard({ movie, handleActionBtn, savedMovieBtn }) {
         rel="noreferrer">
         <img
           src={image.url
-            ? `${moviesApiSetting.baseUrl}${image.url}`
+            ? `${MOVIES_API_SETTING.baseUrl}${image.url}`
             : image
           }
           alt={nameRU}

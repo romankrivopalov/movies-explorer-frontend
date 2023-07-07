@@ -3,7 +3,7 @@ import Header from '../Header/Header';
 import mainApi from '../../utils/MainApi';
 import useFormValidation from '../../hooks/useFormValidator.js';
 import { CurrentUserContext } from '../../context/CurrentUserContext.js';
-import { inputErrorNameList } from '../../utils/constants.js';
+import { INPUT_ERROR_NAME, ERROR_MESSAGE } from '../../utils/constants.js';
 
 function Profile({ setCurrentUser, navigate, setClearValues }) {
   const { name, email } = useContext(CurrentUserContext),
@@ -43,7 +43,7 @@ function Profile({ setCurrentUser, navigate, setClearValues }) {
         setResponseSuccess('Данные успешно изменены')
         setIsValid(true)
       })
-      .catch(err => setResponseError('Пользователь с таким E-mail уже зарегистрирован'))
+      .catch(err => setResponseError(ERROR_MESSAGE.repeatedEmail))
   };
 
   const handleLogout = () => {
@@ -74,7 +74,7 @@ function Profile({ setCurrentUser, navigate, setClearValues }) {
               className={`profile__input-label ${
                 errors.name ? 'profile__input-label_error' : ''}`
               }>
-              {errors.name ? inputErrorNameList.name : 'Имя'}
+              {errors.name ? INPUT_ERROR_NAME.name : 'Имя'}
             </span>
             <input
               type="text"
@@ -97,7 +97,7 @@ function Profile({ setCurrentUser, navigate, setClearValues }) {
               className={`profile__input-label ${
                 errors.email ? 'profile__input-label_error' : ''
               }`}>
-              {errors.email ? inputErrorNameList.email : 'E-mail'}
+              {errors.email ? INPUT_ERROR_NAME.email : 'E-mail'}
             </span>
             <input
               type="email"

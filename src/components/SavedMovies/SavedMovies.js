@@ -10,7 +10,6 @@ function SavedMovies({
   isLoad,
   setIsLoad,
   saveMovies,
-  setSaveMovies,
   handleDeleteSaveMovie,
   toggleShortMovie,
   onToggleShortMovie,

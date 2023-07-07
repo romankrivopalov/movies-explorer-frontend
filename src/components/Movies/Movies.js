@@ -10,7 +10,8 @@ import selectShortMovies from '../../utils/selectShortMovies.js';
 import getWindowDimensions from '../../utils/getWindowDimensions.js';
 import getTypeCardList from '../../utils/getTypeCardList.js';
 import getFilterMovie from '../../utils/getFilterMovie.js';
-import { errorMessage } from '../../utils/constants.js';
+import { ERROR_MESSAGE } from '../../utils/constants.js';
+import { STORAGE_DATA_NAME } from '../../utils/constants.js';
 
 function Movies({
   currentUser,
@@ -42,9 +43,9 @@ function Movies({
   }, [windowDimensions]);
 
   useEffect(() => {
-    setSearchQuery(sessionStorage.getItem('searchQuery'));
-    onToggleShortMovie(JSON.parse(sessionStorage.getItem('toggleShortMovie')));
-    setSavedMoviesInLS(JSON.parse(localStorage.getItem('movies')));
+    setSearchQuery(sessionStorage.getItem(STORAGE_DATA_NAME.searchQuery));
+    onToggleShortMovie(JSON.parse(sessionStorage.getItem(STORAGE_DATA_NAME.toggleShortMovie)));
+    setSavedMoviesInLS(JSON.parse(localStorage.getItem(STORAGE_DATA_NAME.movies)));
   }, []);
 
   useEffect(() => {
@@ -102,21 +103,21 @@ function Movies({
     if (!savedMoviesInLS) {
       moviesApi.getMovies()
         .then(allMoviesArr => {
-          sessionStorage.setItem('searchQuery', search);
+          sessionStorage.setItem(STORAGE_DATA_NAME.searchQuery, search);
           setSearchQuery(search)
 
-          sessionStorage.setItem('toggleShortMovie', toggleShortMovie);
+          sessionStorage.setItem(STORAGE_DATA_NAME.toggleShortMovie, toggleShortMovie);
 
-          localStorage.setItem('movies', JSON.stringify(allMoviesArr));
+          localStorage.setItem(STORAGE_DATA_NAME.movies, JSON.stringify(allMoviesArr));
           setSavedMoviesInLS(allMoviesArr);
         })
-        .catch(() => setError(errorMessage.tryAgainLater))
+        .catch(() => setError(ERROR_MESSAGE.tryAgainLater))
         .finally(() => setIsLoad(false))
     } else {
-      sessionStorage.setItem('searchQuery', search);
+      sessionStorage.setItem(STORAGE_DATA_NAME.searchQuery, search);
       setSearchQuery(search)
 
-      sessionStorage.setItem('toggleShortMovie', toggleShortMovie);
+      sessionStorage.setItem(STORAGE_DATA_NAME.toggleShortMovie, toggleShortMovie);
 
       setIsLoad(false);
     }

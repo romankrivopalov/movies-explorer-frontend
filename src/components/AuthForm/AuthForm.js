@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import Header from '../Header/Header.js';
 import useFormValidation from '../../hooks/useFormValidator.js';
-import { inputErrorNameList } from '../../utils/constants.js';
+import { INPUT_ERROR_NAME } from '../../utils/constants.js';
 
 function AuthForm({ setting, handleSubmit, requestError }) {
   const {
@@ -80,7 +80,7 @@ function AuthForm({ setting, handleSubmit, requestError }) {
             required />
           <span className="auth-form__span-error">
             {errors[currentInputName]
-              ? inputErrorNameList[currentInputName]
+              ? INPUT_ERROR_NAME[currentInputName]
               : ""
               ? requestError
               : requestError

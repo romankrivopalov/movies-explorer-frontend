@@ -1,4 +1,4 @@
-import { mainApiSetting, moviesApiSetting } from './constants.js'
+import { MAIN_API_SETTING, MOVIES_API_SETTING } from './constants.js'
 
 class MainApi {
   constructor(options) {
@@ -101,9 +101,9 @@ class MainApi {
         duration,
         year,
         description,
-        image: moviesApiSetting.baseUrl + image.url,
+        image: MOVIES_API_SETTING.baseUrl + image.url,
         trailerLink,
-        thumbnail: moviesApiSetting.baseUrl + image.formats.thumbnail.url,
+        thumbnail: MOVIES_API_SETTING.baseUrl + image.formats.thumbnail.url,
         movieId: id,
         nameRU,
         nameEN,
@@ -122,6 +122,6 @@ class MainApi {
   };
 }
 
-const mainApi = new MainApi(mainApiSetting);
+const mainApi = new MainApi(MAIN_API_SETTING);
 
 export default mainApi;

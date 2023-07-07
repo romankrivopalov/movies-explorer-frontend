@@ -1,12 +1,12 @@
 import selectShortMovies from './selectShortMovies.js';
-import { errorMessage } from '../utils/constants.js';
+import { ERROR_MESSAGE } from '../utils/constants.js';
 
 const getFilterMovie = (movieArr, typeContainer, toggle, setError) => {
   let movieNewArr,
       shorMovietNewArr = selectShortMovies(movieArr);
 
   if (!movieArr.length) {
-    setError(errorMessage.notFound);
+    setError(ERROR_MESSAGE.notFound);
 
     return movieNewArr = [];
   };
@@ -19,7 +19,7 @@ const getFilterMovie = (movieArr, typeContainer, toggle, setError) => {
       movieNewArr = movieArr;
       setError(null);
     } else {
-      setError(errorMessage.notFound);
+      setError(ERROR_MESSAGE.notFound);
 
       return movieNewArr;
     }
@@ -33,7 +33,7 @@ const getFilterMovie = (movieArr, typeContainer, toggle, setError) => {
     setError(null);
   } else if (toggle) {
     if (!shorMovietNewArr.length) {
-      setError(errorMessage.notFound);
+      setError(ERROR_MESSAGE.notFound);
 
       return movieNewArr = [];
     } else if (toggle && shorMovietNewArr.length > typeContainer.loadCards) {

@@ -1,5 +1,5 @@
 import AuthForm from '../AuthForm/AuthForm.js';
-import { errorMessage, loginFormSetting } from '../../utils/constants.js';
+import { ERROR_MESSAGE, LOGIN_FORM_SETTING } from '../../utils/constants.js';
 import mainApi from '../../utils/MainApi.js';
 
 function Login({ setCurrentUser, navigate, requestError, setRequestError }) {
@@ -14,13 +14,13 @@ function Login({ setCurrentUser, navigate, requestError, setRequestError }) {
           navigate('/movies');
         };
       })
-      .catch(() => setRequestError(errorMessage.errorRequest));
+      .catch(() => setRequestError(ERROR_MESSAGE.errorRequest));
   }
 
   return (
     <div className="layout layout_full-heigth-1row">
       <AuthForm
-        setting={loginFormSetting}
+        setting={LOGIN_FORM_SETTING}
         handleSubmit={handleRegistrationUser}
         requestError={requestError}/>
     </div>

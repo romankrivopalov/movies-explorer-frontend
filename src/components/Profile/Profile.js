@@ -5,7 +5,7 @@ import useFormValidation from '../../hooks/useFormValidator.js';
 import { CurrentUserContext } from '../../context/CurrentUserContext.js';
 import { INPUT_ERROR_NAME, ERROR_MESSAGE } from '../../utils/constants.js';
 
-function Profile({ setCurrentUser, navigate, setClearValues }) {
+function Profile({ isLoad, setIsLoad, setCurrentUser, navigate, setClearValues }) {
   const { name, email } = useContext(CurrentUserContext),
         { values,
           setValues,
@@ -35,7 +35,7 @@ function Profile({ setCurrentUser, navigate, setClearValues }) {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    setIsValid(false)
+    setIsLoad(true)
 
     mainApi.setUserInfo({ name: values['name'], email: values['email'], })
       .then(data => {
@@ -44,6 +44,7 @@ function Profile({ setCurrentUser, navigate, setClearValues }) {
         setIsValid(true)
       })
       .catch(err => setResponseError(ERROR_MESSAGE.repeatedEmail))
+      .finally(() => setIsLoad(false))
   };
 
   const handleLogout = () => {
@@ -121,7 +122,7 @@ function Profile({ setCurrentUser, navigate, setClearValues }) {
             type="submit"
             form="profile__form"
             className="profile__btn-submit"
-            disabled={!isValid ? true : false}>
+            disabled={(isLoad || !isValid) ? true : false}>
             Редактировать
           </button>
           <button

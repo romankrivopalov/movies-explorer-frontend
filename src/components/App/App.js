@@ -123,6 +123,8 @@ function App() {
           <Route
             path='/profile'
             element={<ProtectedRouteElement
+              isLoad={isLoad}
+              setIsLoad={setIsLoad}
               element={Profile}
               setCurrentUser={setCurrentUser}
               navigate={navigate}
@@ -135,6 +137,8 @@ function App() {
             element={!currentUser.loggeIn
               ?
                 <Login
+                  isLoad={isLoad}
+                  setIsLoad={setIsLoad}
                   setCurrentUser={setCurrentUser}
                   navigate={navigate}
                   requestError={requestError}
@@ -150,6 +154,8 @@ function App() {
             element={!currentUser.loggeIn
               ?
                 <Register
+                  isLoad={isLoad}
+                  setIsLoad={setIsLoad}
                   navigate={navigate}
                   requestError={requestError}
                   setRequestError={setRequestError}

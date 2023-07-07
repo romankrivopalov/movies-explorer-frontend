@@ -2,8 +2,10 @@ import AuthForm from '../AuthForm/AuthForm.js';
 import { ERROR_MESSAGE, LOGIN_FORM_SETTING } from '../../utils/constants.js';
 import mainApi from '../../utils/MainApi.js';
 
-function Login({ setCurrentUser, navigate, requestError, setRequestError }) {
-  const handleRegistrationUser = (userData) => {
+function Login({ isLoad, setIsLoad, setCurrentUser, navigate, requestError, setRequestError }) {
+  const handleAuthorizationUser = (userData) => {
+    setIsLoad(true);
+
     mainApi.getAuthorizationUser(userData)
       .then(data => {
         const { name, email, _id } = data;
@@ -14,14 +16,16 @@ function Login({ setCurrentUser, navigate, requestError, setRequestError }) {
           navigate('/movies');
         };
       })
-      .catch(() => setRequestError(ERROR_MESSAGE.errorRequest));
+      .catch(() => setRequestError(ERROR_MESSAGE.errorRequest))
+      .finally(() => setIsLoad(false));
   }
 
   return (
     <div className="layout layout_full-heigth-1row">
       <AuthForm
+        isLoad={isLoad}
         setting={LOGIN_FORM_SETTING}
-        handleSubmit={handleRegistrationUser}
+        handleSubmit={handleAuthorizationUser}
         requestError={requestError}/>
     </div>
   );

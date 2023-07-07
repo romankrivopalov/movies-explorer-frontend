@@ -3,7 +3,7 @@ import Header from '../Header/Header.js';
 import useFormValidation from '../../hooks/useFormValidator.js';
 import { INPUT_ERROR_NAME } from '../../utils/constants.js';
 
-function AuthForm({ setting, handleSubmit, requestError }) {
+function AuthForm({ isLoad, setting, handleSubmit, requestError }) {
   const {
     values,
     errors,
@@ -96,7 +96,7 @@ function AuthForm({ setting, handleSubmit, requestError }) {
           type="submit"
           form="auth-form"
           className="auth-form__submit-btn"
-          disabled={!isValid ? true : false}>
+          disabled={(isLoad || !isValid) ? true : false}>
           {setting.btnSubmitText}
         </button>
         <div className="auth-form__transition">

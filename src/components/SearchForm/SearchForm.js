@@ -14,10 +14,6 @@ function SearchForm({ isLoad, onSubmit, savedSearch, toggleShortMovie, onToggleS
     setValues({ [name]: savedSearch });
   }, [setValues, savedSearch]);
 
-  useEffect(() => {
-    onToggleShortMovie(toggleShortMovie);
-  }, []);
-
   const handleSubmit = (e) => {
     e.preventDefault();
 

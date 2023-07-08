@@ -5,14 +5,15 @@ import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import SearchForm from '../SearchForm/SearchForm.js';
 import findMovies from '../../utils/findMovies.js';
 import getFilterMovie from '../../utils/getFilterMovie.js';
+import selectShortMovies from '../../utils/selectShortMovies';
 
 function SavedMovies({
   isLoad,
   setIsLoad,
   saveMovies,
   handleDeleteSaveMovie,
-  toggleShortMovie,
-  onToggleShortMovie,
+  toggleShortSavedMovie,
+  onToggleShortSavedMovie,
   error,
   setError,
 }) {
@@ -22,10 +23,10 @@ function SavedMovies({
   useEffect(() => {
     setIsLoad(true);
 
-    setFilterList(getFilterMovie(saveMovies, false, toggleShortMovie, setError));
+    setFilterList(getFilterMovie(saveMovies, false, toggleShortSavedMovie, setError));
 
     setIsLoad(false);
-  }, [saveMovies, toggleShortMovie]);
+  }, [saveMovies]);
 
   useEffect(() => {
     setIsLoad(true);
@@ -33,13 +34,15 @@ function SavedMovies({
     if (searchQuery) {
       const findSearchMovies = findMovies(saveMovies, searchQuery);
 
-      setFilterList(getFilterMovie(findSearchMovies, false, toggleShortMovie, setError));
+      setFilterList(toggleShortSavedMovie
+        ? selectShortMovies(findSearchMovies)
+        : findSearchMovies);
     } else {
-      setFilterList(getFilterMovie(saveMovies, false, toggleShortMovie, setError));
+      setFilterList(getFilterMovie(saveMovies, false, toggleShortSavedMovie, setError));
     }
 
     setIsLoad(false);
-  }, [searchQuery]);
+  }, [searchQuery, toggleShortSavedMovie]);
 
   return (
     <div className="layout layout_full-heigth-4row">
@@ -48,8 +51,8 @@ function SavedMovies({
       <SearchForm
         isLoad={isLoad}
         onSubmit={setSearchQuery}
-        toggleShortMovie={toggleShortMovie}
-        onToggleShortMovie={onToggleShortMovie}
+        toggleShortMovie={toggleShortSavedMovie}
+        onToggleShortMovie={onToggleShortSavedMovie}
       />
       <MoviesCardList
         isLoad={isLoad}

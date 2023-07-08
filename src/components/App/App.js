@@ -23,6 +23,7 @@ function App() {
         }),
         [ movies, setMovies ] = useState([]),
         [ toggleShortMovie, setToggleShortMovie ] = useState(false),
+        [ toggleShortSavedMovie, setToggleShortSavedMovie ] = useState(false),
         [ saveMovies, setSaveMovies ] = useState([]),
         [ error, setError ] = useState(null),
         [ requestError, setRequestError ] = useState(null);
@@ -58,6 +59,10 @@ function App() {
 
   const handleToggleShortMovie = (value) => {
     setToggleShortMovie(value);
+  }
+
+  const handleToggleShortSavedMovie = (value) => {
+    setToggleShortSavedMovie(value);
   }
 
   const handleToggleIsLoad = (value) => {
@@ -119,8 +124,8 @@ function App() {
               saveMovies={saveMovies}
               setSaveMovies={setSaveMovies}
               handleDeleteSaveMovie={handleDeleteSaveMovie}
-              toggleShortMovie={toggleShortMovie}
-              onToggleShortMovie={handleToggleShortMovie}
+              toggleShortSavedMovie={toggleShortSavedMovie}
+              onToggleShortSavedMovie={handleToggleShortSavedMovie}
               error={error}
               setError={setError}
             />}

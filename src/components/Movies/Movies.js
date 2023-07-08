@@ -48,7 +48,7 @@ function Movies({
     setSavedMoviesInLS(JSON.parse(localStorage.getItem(STORAGE_DATA_NAME.movies)));
   }, []);
 
-  useEffect(() => setError(null))
+  useEffect(() => setError(null), []);
 
   useEffect(() => {
     if (searchQuery) {

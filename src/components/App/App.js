@@ -29,15 +29,21 @@ function App() {
 
   useEffect(() => {
     if (userIdInLocalStorage) {
-      mainApi.getUserInfo()
-        .then(data => {
-          setCurrentUser({ ...data, loggeIn: true });
-        })
-        .catch(() => localStorage.removeItem(userIdInLocalStorage));
+      setIsLoad(true)
 
-      mainApi.getAllSavedMovies()
-        .then(res => setSaveMovies(res))
-        .catch(err => console.log(err))
+      Promise.all([mainApi.getAllSavedMovies(), mainApi.getUserInfo()])
+        .then(res => {
+          const [ apiSavedMovie, apiCurrentUser ] = res;
+
+          setSaveMovies(apiSavedMovie);
+
+          return apiCurrentUser
+        })
+      .then(apiCurrentUser => {
+        setCurrentUser({ ...apiCurrentUser, loggeIn: true });
+      })
+      .catch(() => localStorage.removeItem(STORAGE_DATA_NAME.userId))
+      .finally(() => setIsLoad(false))
     }
   }, [userIdInLocalStorage]);
 

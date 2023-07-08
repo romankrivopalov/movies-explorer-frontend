@@ -59,6 +59,8 @@ function App() {
 
   const handleToggleShortMovie = (value) => {
     setToggleShortMovie(value);
+
+    sessionStorage.setItem(STORAGE_DATA_NAME.toggleShortMovie, value)
   }
 
   const handleToggleShortSavedMovie = (value) => {

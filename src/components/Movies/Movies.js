@@ -49,9 +49,9 @@ function Movies({
   }, []);
 
   useEffect(() => {
-    setIsLoad(true);
-
     if (searchQuery) {
+      setIsLoad(true);
+
       const findMoviesList = findMovies(savedMoviesInLS, searchQuery);
 
       findMoviesList.forEach(movie => {
@@ -65,10 +65,10 @@ function Movies({
         ? selectShortMovies(findMoviesList)
         : findMoviesList);
       setMovies(getFilterMovie(findMoviesList, typeContainer, toggleShortMovie, setError));
-    }
 
-    setIsLoad(false);
-  }, [currentUser, searchQuery, typeContainer.loadCards, toggleShortMovie, saveMovies]);
+      setIsLoad(false);
+    }
+  }, [currentUser, searchQuery, typeContainer.loadCards, toggleShortMovie]);
 
   const handleMovieBtnClick = (movieData) => {
     const movieId = movieData.id || movieData.movieId;

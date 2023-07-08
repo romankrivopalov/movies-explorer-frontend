@@ -156,6 +156,7 @@ function App() {
                 <Register
                   isLoad={isLoad}
                   setIsLoad={setIsLoad}
+                  setCurrentUser={setCurrentUser}
                   navigate={navigate}
                   requestError={requestError}
                   setRequestError={setRequestError}

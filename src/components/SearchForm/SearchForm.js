@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import useFormValidation from '../../hooks/useFormValidator.js';
 
-function SearchForm({ isLoad, onSubmit, savedSearch, toggleShortMovie, onToggleShortMovie }) {
+function SearchForm({ isLoad, savedMoviesType, onSubmit, savedSearch, toggleShortMovie, onToggleShortMovie }) {
   const {
           values,
           setValues,
@@ -36,7 +36,7 @@ function SearchForm({ isLoad, onSubmit, savedSearch, toggleShortMovie, onToggleS
           className="search-form__input"
           onChange={handleChange}
           value={values["search-movies"] || ""}
-          required />
+          required={!savedMoviesType?? false} />
         <button
           type="submit"
           className="search-form__submit-btn"

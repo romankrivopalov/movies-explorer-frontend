@@ -23,7 +23,13 @@ function SavedMovies({
   useEffect(() => {
     setIsLoad(true);
 
-    setFilterList(getFilterMovie(saveMovies, false, toggleShortSavedMovie, setError));
+    if (searchQuery) {
+      const findSearchMovies = findMovies(saveMovies, searchQuery);
+
+      setFilterList(getFilterMovie(findSearchMovies, false, toggleShortSavedMovie, setError));
+    } else {
+      setFilterList(getFilterMovie(saveMovies, false, toggleShortSavedMovie, setError));
+    }
 
     setIsLoad(false);
   }, [saveMovies]);
@@ -51,6 +57,7 @@ function SavedMovies({
         theme={{ default: false }}/>
       <SearchForm
         isLoad={isLoad}
+        savedMoviesType={true}
         onSubmit={setSearchQuery}
         toggleShortMovie={toggleShortSavedMovie}
         onToggleShortMovie={onToggleShortSavedMovie}

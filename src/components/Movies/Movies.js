@@ -68,7 +68,7 @@ function Movies({
     }
 
     setIsLoad(false);
-  }, [currentUser, searchQuery, typeContainer.loadCards, toggleShortMovie]);
+  }, [currentUser, searchQuery, typeContainer.loadCards, toggleShortMovie, saveMovies]);
 
   const handleMovieBtnClick = (movieData) => {
     const movieId = movieData.id || movieData.movieId;

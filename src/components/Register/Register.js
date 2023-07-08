@@ -1,5 +1,5 @@
 import AuthForm from '../AuthForm/AuthForm.js';
-import { ERROR_MESSAGE, REGISTER_FORM_SETTING } from '../../utils/constants.js';
+import { ERROR_MESSAGE, REGISTER_FORM_SETTING, STORAGE_DATA_NAME } from '../../utils/constants.js';
 import mainApi from '../../utils/MainApi.js';
 
 function Register({ isLoad, setCurrentUser, setIsLoad, navigate, requestError, setRequestError }) {
@@ -14,7 +14,7 @@ function Register({ isLoad, setCurrentUser, setIsLoad, navigate, requestError, s
         const { name, email, _id } = data;
 
         if (_id) {
-          localStorage.setItem('userId', data._id);
+          localStorage.setItem(STORAGE_DATA_NAME.userId, data._id);
           setCurrentUser(oldState => ({ name, email, loggeIn: true }));
           navigate('/movies');
         };

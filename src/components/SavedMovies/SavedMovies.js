@@ -30,13 +30,14 @@ function SavedMovies({
 
   useEffect(() => {
     setIsLoad(true);
+    setError(false);
 
     if (searchQuery) {
       const findSearchMovies = findMovies(saveMovies, searchQuery);
 
       setFilterList(toggleShortSavedMovie
-        ? selectShortMovies(findSearchMovies)
-        : findSearchMovies);
+        ? selectShortMovies(getFilterMovie(findSearchMovies, false, toggleShortSavedMovie, setError))
+        : getFilterMovie(findSearchMovies, false, toggleShortSavedMovie, setError));
     } else {
       setFilterList(getFilterMovie(saveMovies, false, toggleShortSavedMovie, setError));
     }

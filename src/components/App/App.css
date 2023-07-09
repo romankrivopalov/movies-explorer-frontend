@@ -19,6 +19,7 @@
 
 .layout {
   display: grid;
+  height: 100vh;
 }
 
 /* для страниц где нужно прижать элемент к нижнему краю, 2 строки */
@@ -32,6 +33,13 @@
   height: 100vh;
   grid-template-rows: 1fr;
 }
+
+/* для страниц где нужно прижать элемент к нижнему краю, 1 строка */
+.layout_full-heigth-4row {
+  height: 100vh;
+  grid-template-rows: auto auto 1fr auto;
+}
+
 
 @media screen and (min-width: 1280px) {
   .layout {

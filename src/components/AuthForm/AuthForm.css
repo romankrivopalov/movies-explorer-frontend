@@ -49,6 +49,14 @@
   outline-offset: -1px;
 }
 
+.auth-form__input_error {
+  color: var(--color-pink);
+}
+
+.auth-form__input_error:focus {
+  outline: 1px solid var(--color-pink);
+}
+
 .auth-form__wrapper {
   margin: auto 0 0 0;
   width: 100%;
@@ -71,6 +79,12 @@
 
 .auth-form__submit-btn:hover {
   background-color: var(--color-green);
+}
+
+.auth-form__submit-btn:disabled {
+  color: #8B8B8B;
+  background-color: var(--color-gray);
+  cursor: default;
 }
 
 .auth-form__transition {
@@ -100,6 +114,14 @@
 
 .auth-form__transition-link:hover {
   color: var(--color-white);
+}
+
+.auth-form__span-error {
+  margin: 10px 0 0 0;
+  padding: 0;
+  font-size: 10px;
+  line-height: 12px;
+  color: var(--color-pink);
 }
 
 @media screen and (min-width: 768px) {

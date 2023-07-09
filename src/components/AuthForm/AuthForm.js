@@ -1,7 +1,24 @@
 import { Link } from 'react-router-dom';
 import Header from '../Header/Header.js';
+import useFormValidation from '../../hooks/useFormValidator.js';
+import { INPUT_ERROR_NAME } from '../../utils/constants.js';
 
-function AuthForm({ setting }) {
+function AuthForm({ isLoad, setting, handleSubmit, requestError }) {
+  const {
+    values,
+    errors,
+    isValid,
+    handleChange,
+    currentInputName,
+  } = useFormValidation();
+
+
+  const handleSubmitForm = (e) => {
+    e.preventDefault();
+
+    handleSubmit(values);
+  };
+
   return (
     <section className="auth-form">
       <Header
@@ -11,8 +28,10 @@ function AuthForm({ setting }) {
         {setting.title}
       </h2>
       <form
-        className="auth-form__form">
-        { setting.type === 'register'
+        id="auth-form"
+        className="auth-form__form"
+        onSubmit={handleSubmitForm}>
+        { setting.type === "register"
           &&
           <div
             className="auth-form__input-row">
@@ -22,7 +41,11 @@ function AuthForm({ setting }) {
             </label>
             <input
               type="text"
-              className="auth-form__input"
+              name="name"
+              className={`auth-form__input ${errors.name ? "auth-form__input_error" : ""}`}
+              minLength={2}
+              maxLength={30}
+              onChange={handleChange}
               required />
           </div>
         }
@@ -35,7 +58,10 @@ function AuthForm({ setting }) {
           </label>
           <input
             type="email"
-            className="auth-form__input"
+            name="email"
+            pattern="[^@\s]+@[^@\s]+\.[^@\s]+"
+            className={`auth-form__input ${errors.email ? "auth-form__input_error" : ""}`}
+            onChange={handleChange}
             required />
         </div>
 
@@ -47,15 +73,30 @@ function AuthForm({ setting }) {
           </label>
           <input
             type="password"
-            className="auth-form__input"
+            name="password"
+            className={`auth-form__input ${errors.password ? "auth-form__input_error" : ""}`}
+            minLength={8}
+            onChange={handleChange}
             required />
+          <span className="auth-form__span-error">
+            {errors[currentInputName]
+              ? INPUT_ERROR_NAME[currentInputName]
+              : ""
+              ? requestError
+              : requestError
+            }
+          </span>
         </div>
+
+
       </form>
 
       <div className="auth-form__wrapper">
         <button
           type="submit"
-          className="auth-form__submit-btn">
+          form="auth-form"
+          className="auth-form__submit-btn"
+          disabled={(isLoad || !isValid) ? true : false}>
           {setting.btnSubmitText}
         </button>
         <div className="auth-form__transition">
@@ -70,7 +111,7 @@ function AuthForm({ setting }) {
         </div>
       </div>
     </section>
-  )
-}
+  );
+};
 
 export default AuthForm;

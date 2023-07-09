@@ -7,7 +7,7 @@ function Header({ theme }) {
   const { loggeIn } = useContext(CurrentUserContext);
   const [ openBurger, setOpenBurger ] = useState(false);
 
-  function handleToggleBurger() {
+  const handleToggleBurger = () => {
     setOpenBurger(!openBurger);
   }
 
@@ -16,12 +16,12 @@ function Header({ theme }) {
       <Link to="/" className="header__logo"/>
       { !theme.default && ( loggeIn
         ? <div>
-            <div className={`header__overlay ${openBurger ? 'header__overlay_active' : ''}`}/>
+            <div className={`header__overlay ${openBurger ? "header__overlay_active" : ""}`}/>
             <button
               className="header__burger"
               onClick={handleToggleBurger}>
               <div
-                className={`header__burger-inner ${openBurger ? 'header__burger-inner_active' : ''}`}/>
+                className={`header__burger-inner ${openBurger ? "header__burger-inner_active" : ""}`}/>
             </button>
             <Navigation
               isOpenBurger={openBurger}/>
@@ -38,7 +38,7 @@ function Header({ theme }) {
       }
 
     </header>
-  )
-}
+  );
+};
 
 export default Header;

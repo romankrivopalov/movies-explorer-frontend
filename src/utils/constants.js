@@ -1,14 +1,32 @@
 export
-const birthDate = {
+const MAIN_API_SETTING = {
+  baseUrl: 'https://api.krivo.nomoredomains.rocks',
+  // baseUrl: 'http://localhost:3000',
+  headers: {
+    authorization: 'bdecdc76-75a5-40e2-94d6-35ac4e7b5bcc',
+    'Content-Type': 'application/json'
+  }
+}
+
+export
+const MOVIES_API_SETTING = {
+  baseUrl: 'https://api.nomoreparties.co',
+  headers: {
+    'Content-Type': 'application/json'
+  }
+}
+
+export
+const DATE_BIRTH = {
   birthDate: new Date(1992, 6, 28),
   dateTitles: ['год', 'года', 'лет'],
 }
 
 export
-const durationTitles = ['минута', 'минуты', 'минут'];
+const DURATION_TITLES = ['минута', 'минуты', 'минут'];
 
 export
-const loginFormSetting = {
+const LOGIN_FORM_SETTING = {
   type: 'login',
   title: 'Рады видеть!',
   btnSubmitText: 'Войти',
@@ -18,7 +36,7 @@ const loginFormSetting = {
 }
 
 export
-const registerFormSetting = {
+const REGISTER_FORM_SETTING = {
   type: 'register',
   title: 'Добро пожаловать!',
   btnSubmitText: 'Зарегистрироваться',
@@ -28,87 +46,28 @@ const registerFormSetting = {
 }
 
 export
-const cardList = [
-  {
-    country: 'США',
-    director: 'Стивен Содерберг',
-    duration: 116,
-    year: 2001,
-    description: 'После выхода из тюрьмы вора Дэнни Оушена не проходит и 24 часов, а он уже планирует организовать самое сложное ограбление казино в истории. Он хочет украсть 160 млн американских долларов из трёх самых преуспевающих казино Лас-Вегаса. Все эти казино принадлежат элегантному и в то же время жестокому дельцу Терри Бенедикту, который только и мечтает о том, как встретится с бывшей женой Дэнни Оушена - Тесс.',
-    image: 'https://avatars.mds.yandex.net/get-kinopoisk-image/1773646/02636f2c-4a48-4a9c-a160-c3c60f732064/1920x',
-    trailerLink: 'https://link.ru',
-    thumbnail: 'https://link.ru',
-    movieId: 11,
-    nameRU: 'Одиннадцать друзей Оушена',
-    nameEN: "Ocean's Eleven",
-  },
-  {
-    country: 'США',
-    director: 'Стивен Содерберг',
-    duration: 120,
-    year: 2004,
-    description: 'ангстер Денни Оушен собрал свою банду профессиональных грабителей и мошенников, и теперь там появились новые лица. Они задумали совершить три ограбления в европейских столицах. Владелец казино Терри Бенедикт, которого Оушен ограбил в Лас-Вегасе, жаждет мести и пытается настигнуть банду. За ней также охотятся агенты Европола и Диннер Джекет.',
-    image: 'https://avatars.mds.yandex.net/get-kinopoisk-image/1629390/747d0cb6-1f28-4315-a4f5-8465ab49f371/1920x',
-    trailerLink: 'https://link.ru',
-    thumbnail: 'https://link.ru',
-    movieId: 12,
-    nameRU: 'Двенадцать друзей Оушена',
-    nameEN: "Ocean's Twelve",
-  },
-  {
-    country: 'США',
-    director: 'Стивен Содерберг',
-    duration: 122,
-    year: 2007,
-    description: 'Новая глава о криминальных похождениях Дэнни Оушена и его команды талантливейших мошенников в Лас-Вегасе. У Дэнни Оушена и его команды могла быть только одна причина, по которой они готовы провернуть самое амбициозное и рискованное ограбление казино в их жизни, — ради защиты одного из «своих».',
-    image: 'https://avatars.mds.yandex.net/get-kinopoisk-image/1773646/d4b1ed50-8cad-4bed-89bd-46fd60c3b945/1920x',
-    trailerLink: 'https://link.ru',
-    thumbnail: 'https://link.ru',
-    movieId: 13,
-    nameRU: 'Тринадцать друзей Оушена',
-    nameEN: "Ocean's Thirteen",
-  },
-  {
-    country: 'США',
-    director: 'Гэри Росс',
-    duration: 110,
-    year: 2018,
-    description: 'Пять лет, восемь месяцев, 12 дней… и далее. Именно столько Дебби Оушен разрабатывала план величайшего ограбления своей жизни.',
-    image: 'https://avatars.mds.yandex.net/get-kinopoisk-image/1773646/6d07a65f-584a-49b9-9263-7997afdc5502/1920x',
-    trailerLink: 'https://link.ru',
-    thumbnail: 'https://link.ru',
-    movieId: 14,
-    nameRU: '8 подруг Оушена',
-    nameEN: "Ocean's Eight",
-  },
-];
+const INPUT_ERROR_NAME = {
+  name: 'Имя не должно быть короче 2 букв',
+  email: 'Введите корректный email',
+  password: 'Пароль должен быть не короче 8 символов',
+  searchMovies: 'Нужно ввести ключевое слово',
+}
 
 export
-const saveCardList = [
-  {
-    country: 'США',
-    director: 'Стивен Содерберг',
-    duration: 116,
-    year: 2001,
-    description: 'После выхода из тюрьмы вора Дэнни Оушена не проходит и 24 часов, а он уже планирует организовать самое сложное ограбление казино в истории. Он хочет украсть 160 млн американских долларов из трёх самых преуспевающих казино Лас-Вегаса. Все эти казино принадлежат элегантному и в то же время жестокому дельцу Терри Бенедикту, который только и мечтает о том, как встретится с бывшей женой Дэнни Оушена - Тесс.',
-    image: 'https://avatars.mds.yandex.net/get-kinopoisk-image/1773646/02636f2c-4a48-4a9c-a160-c3c60f732064/1920x',
-    trailerLink: 'https://link.ru',
-    thumbnail: 'https://link.ru',
-    movieId: 11,
-    nameRU: 'Одиннадцать друзей Оушена',
-    nameEN: "Ocean's Eleven",
-  },
-  {
-    country: 'США',
-    director: 'Стивен Содерберг',
-    duration: 120,
-    year: 2004,
-    description: 'ангстер Денни Оушен собрал свою банду профессиональных грабителей и мошенников, и теперь там появились новые лица. Они задумали совершить три ограбления в европейских столицах. Владелец казино Терри Бенедикт, которого Оушен ограбил в Лас-Вегасе, жаждет мести и пытается настигнуть банду. За ней также охотятся агенты Европола и Диннер Джекет.',
-    image: 'https://avatars.mds.yandex.net/get-kinopoisk-image/1629390/747d0cb6-1f28-4315-a4f5-8465ab49f371/1920x',
-    trailerLink: 'https://link.ru',
-    thumbnail: 'https://link.ru',
-    movieId: 12,
-    nameRU: 'Двенадцать друзей Оушена',
-    nameEN: "Ocean's Twelve",
-  },
-];
+const ERROR_MESSAGE = {
+  notFound: 'Ничего не найдено',
+  tryAgainLater: 'Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз',
+  errorRequest: 'Неверный email или пароль',
+  repeatedEmail: 'Пользователь с таким email уже зарегистрирован',
+}
+
+export
+const STORAGE_DATA_NAME = {
+  userId: 'uI',
+  movies: 'movies',
+  searchQuery: 'sQ',
+  toggleShortMovie: 'toggleSM'
+}
+
+export
+const DURATION_SHORTMOVIE = 40;

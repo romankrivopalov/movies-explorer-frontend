@@ -1,27 +1,37 @@
-import MoviesCard from "../MoviesCard/MoviesCard.js"
+import MoviesCard from "../MoviesCard/MoviesCard.js";
 
-function MoviesCardList({ cardList, typeCardBtn }) {
+function MoviesCardList({ isLoad, moviesList, loadList, error, handleBtnMore, handleActionBtn }) {
 
   return(
     <section className="movies-card">
-      <ul className="movies-card__list">
-        {cardList.map(card => (
-          <MoviesCard
-            key={card.movieId}
-            movieId={card.movieId}
-            duration={card.duration}
-            image={card.image}
-            name={card.nameRU}
-            typeCardBtn={typeCardBtn}
-          />
-        ))}
-      </ul>
-      {cardList.length > 2 &&
-        <button className="movies-card__more-btn">
-          Ещё
-        </button>}
-    </section>
-  )
-}
+      { isLoad || !moviesList
+        ?
+          <span className="movies-card__loader"/>
+        : error
+        ?
+          <p className="movies-card__error">{error}</p>
+        :
+          <ul className="movies-card__list">
+            {moviesList.map(movie => (
+              <MoviesCard
+                key={movie.id || movie.movieId}
+                movie={movie}
+                handleActionBtn={handleActionBtn}
+                savedMovieBtn={!!loadList}
+              />
+            ))}
+          </ul>
+      }
 
-export default MoviesCardList
+      {(!isLoad && !!loadList && moviesList.length < loadList.length) &&
+        <button
+          className="movies-card__more-btn"
+          onClick={handleBtnMore}>
+          Ещё
+        </button>
+      }
+    </section>
+  );
+};
+
+export default MoviesCardList;

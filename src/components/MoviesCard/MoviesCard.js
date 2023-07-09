@@ -1,40 +1,59 @@
-import { saveCardList } from '../../utils/constants';
-import { durationTitles } from '../../utils/constants.js';
+import { DURATION_TITLES } from '../../utils/constants.js';
+import { MOVIES_API_SETTING } from '../../utils/constants';
 import getEndLine from '../../utils/getEndLine.js';
 
-function MoviesCard({ movieId, duration, image, name, typeCardBtn }) {
-  const isSavedMovieCard = saveCardList.some(i => i.movieId === movieId);
+function MoviesCard({ movie, handleActionBtn, savedMovieBtn }) {
+  const {
+          duration,
+          image,
+          trailerLink,
+          nameRU,
+          isLiked
+        } = movie,
+        btnClassName = `card__btn ${
+          !savedMovieBtn
+            ? 'card__btn_type_delete'
+            : isLiked
+              ? 'card__btn_type_saved'
+              : 'card__btn_type_save'
+        }`
 
-  function getDuration(duration, durationTitles) {
+  const getDuration = (duration, durationTitles) => {
     return getEndLine(duration, durationTitles);
+  }
+
+  const handleAction = () => {
+    handleActionBtn(movie);
   }
 
   return (
     <li className="card">
       <div className="card__header">
         <h2 className="card__title">
-          {name}
+          {nameRU}
         </h2>
         <p className="card__duration">
-          {getDuration(duration, durationTitles)}
+          {getDuration(duration, DURATION_TITLES)}
         </p>
       </div>
-      <img
-        src={image}
-        alt={name}
-        className="card__img"
-        />
+      <a
+        className='card__link'
+        href={trailerLink}
+        target="_blank"
+        rel="noreferrer">
+        <img
+          src={image.url
+            ? `${MOVIES_API_SETTING.baseUrl}${image.url}`
+            : image
+          }
+          alt={nameRU}
+          className="card__img"
+          />
+      </a>
       <button
-        className={`card__btn ${
-          !typeCardBtn.save
-            ? 'card__btn_type_delete'
-            : isSavedMovieCard
-            ? 'card__btn_saved'
-            : ''
-        }`}>
-        {!typeCardBtn.save || isSavedMovieCard
-          ? ''
-          : 'Сохранить'}
+        onClick={handleAction}
+        className={btnClassName}>
+        {!savedMovieBtn ? "" : isLiked ? "" : "Сохранить"}
       </button>
     </li>
   )

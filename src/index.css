@@ -1,6 +1,7 @@
 @import url('./vendor/normalize.css');
 @import url('./vendor/fonts/fonts.css');
 @import url('./vendor/variables.css');
+@import url('./vendor/animation.css');
 
 @import url('./components/App/App.css');
 
@@ -23,3 +24,5 @@
 @import url('./components/AuthForm/AuthForm.css');
 
 @import url('./components/Footer/Footer.css');
+
+@import url('./components/NotFound/NotFound.css');

@@ -1,5 +1,5 @@
 function Footer() {
-  function getYear() {
+  const getYear = () => {
     return new Date().getFullYear();
   }
 
@@ -12,8 +12,8 @@ function Footer() {
         <ul className="footer__list">
           <li>
             <a
-              href='https://practicum.yandex.ru/'
-              target='_blank'
+              href="https://practicum.yandex.ru/"
+              target="_blank"
               rel="noopener noreferrer"
               className="footer__link">
               Яндекс.Практикум
@@ -21,8 +21,8 @@ function Footer() {
           </li>
           <li>
             <a
-              href='https://github.com/romankrivopalov'
-              target='_blank'
+              href="https://github.com/romankrivopalov"
+              target="_blank"
               rel="noopener noreferrer"
               className="footer__link">
               Github
@@ -32,7 +32,7 @@ function Footer() {
         <p className="footer__age">&copy;{getYear()}</p>
       </div>
     </footer>
-  )
-}
+  );
+};
 
 export default Footer;

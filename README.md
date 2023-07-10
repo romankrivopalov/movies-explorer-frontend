@@ -14,5 +14,5 @@
 
 ***
 [Открыть сайт в браузере](https://krivo.nomoredomains.rocks)\
-[Ссылка на макет в Figma](https://www.figma.com/file/Ig7xSmE1dlZDPPLNv1Bqpq/Diploma-(Copy)?type=design&node-id=891%3A3857&t=cFEftSFF5Owm87eP-1)\
+[Ссылка на макет в Figma](https://www.figma.com/file/Ig7xSmE1dlZDPPLNv1Bqpq/Diploma-(Copy)?type=design&node-id=891%3A3857&t=cFEftSFF5Owm87eP-1)
 
